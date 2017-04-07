@@ -59,9 +59,5 @@ public class RadiateShieldController : MonoBehaviour
 
 			rigidBody.AddForce(transform.forward * moveSpeed * 10.0f, ForceMode.Impulse);
 		}
-		else
-		{
-
-		}
 	}
 }

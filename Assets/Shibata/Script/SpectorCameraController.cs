@@ -18,18 +18,21 @@ public class SpectorCameraController : MonoBehaviour
 	private float angleH;
 	private float angleV;
 
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
+	private Camera camera;
 
-	// Update is called once per frame
-	void Update()
-	{
-		if (ControlMode.State != ControlMode.Mode.Specter)
-			return;
+	private bool isInControl;
+	private void EnableControl() { isInControl = true; }
+	private void DisableControl() { isInControl = false; }
 
+	private bool isEnableCameraControl;
+	private void EnableCameraControl() { isEnableCameraControl = true; }
+	private void DisableCameraControl() { isEnableCameraControl = false; }
+
+	/// <summary>
+	/// カメラ操作
+	/// </summary>
+	private void CameraControl()
+	{
 		float rotX = Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensitivity;
 		float rotY = Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
 
@@ -42,7 +45,13 @@ public class SpectorCameraController : MonoBehaviour
 		Quaternion rotH = Quaternion.AngleAxis(angleH, Vector3.up);
 		Quaternion rotV = Quaternion.AngleAxis(angleV, Vector3.right);
 		transform.rotation = rotH * rotV;
+	}
 
+	/// <summary>
+	/// 移動操作
+	/// </summary>
+	private void MovementControl()
+	{
 		//前進
 		if (Input.GetKey(KeyCode.W))
 		{
@@ -71,8 +80,13 @@ public class SpectorCameraController : MonoBehaviour
 			vel = transform.TransformDirection(vel);
 			transform.localPosition += vel * Time.deltaTime;
 		}
+	}
 
-		Camera camera = GetComponent<Camera>();
+	/// <summary>
+	/// アイテム生成操作
+	/// </summary>
+	private void ItemConstructControl()
+	{
 		Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f));
 		Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.red);
 
@@ -80,11 +94,45 @@ public class SpectorCameraController : MonoBehaviour
 		{
 			RaycastHit hit;
 
-			if(Physics.Raycast(ray, out hit))
+			if (Physics.Raycast(ray, out hit))
 			{
 				var obj = Instantiate(item);
 				obj.transform.position = hit.point;
 			}
 		}
+	}
+
+	// Use this for initialization
+	void Start ()
+	{
+		camera = GetComponent<Camera>();
+
+		isInControl = ControlMode.CurrentMode == ControlMode.Mode.Specter;
+		isEnableCameraControl = CursorOperationMode.CurrentMode == CursorOperationMode.Mode.ViewportManipulate;
+
+		ControlMode.OnChangeSpecter += EnableControl;
+		ControlMode.OnChangeUnityChan += DisableControl;
+		CursorOperationMode.OnChangeViewportManipulate += EnableCameraControl;
+		CursorOperationMode.OnChangeFreeCursor += DisableCameraControl;
+	}
+
+	void OnDestroy()
+	{
+		ControlMode.OnChangeSpecter -= EnableControl;
+		ControlMode.OnChangeUnityChan -= DisableControl;
+		CursorOperationMode.OnChangeViewportManipulate -= EnableCameraControl;
+		CursorOperationMode.OnChangeFreeCursor -= DisableCameraControl;
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		if (!isInControl)
+			return;
+		if(isEnableCameraControl)
+			CameraControl();
+
+		MovementControl();
+		ItemConstructControl();
 	}
 }

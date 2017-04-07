@@ -45,37 +45,60 @@ public class UnityChanController : MonoBehaviour
 	private float angleH = 0.0f;
 	private float angleV = 0.0f;
 
+	/*共通化できそう*/
+	private bool isInControl;
+	/// <summary>
+	/// コントロール中であるか
+	/// </summary>
+	public bool IsInControl { get; private set; }
+	
+	/// <summary>
+	/// コントロールを有効化
+	/// </summary>
+	private void EnableControl() { isInControl = true; }
+	/// <summary>
+	/// コントロールを無効化
+	/// </summary>
+	private void DisableControl() { isInControl = false; }
 
-	void Start()
+	private bool isInViewportManipulate;
+	/// <summary>
+	/// 視点操作有効化
+	/// </summary>
+	private void EnableViewportManipulate() { isInViewportManipulate = true; }
+	/// <summary>
+	/// 視点操作無効化
+	/// </summary>
+	private void DisableViewportManipulate() { isInViewportManipulate = false; }
+
+	/// <summary>
+	/// カメラ操作
+	/// </summary>
+	private void ViewportManipulate()
 	{
-		anim = targetModel.GetComponent<Animator>();
+		//カメラ操作
+		lookPos = anim.GetBoneTransform(HumanBodyBones.Head).position;
+		float rotX = Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensitivity;
+		float rotY = Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
+
+		angleH += rotX;
+		angleV -= rotY;
+
+		angleV = Mathf.Clamp(angleV, -70.0f, 70.0f);
+
+		//クォータニオンで捻る
+		Quaternion rotH = Quaternion.AngleAxis(angleH, Vector3.up);
+		Quaternion rotV = Quaternion.AngleAxis(angleV, Vector3.right);
+		lookPos += rotH * rotV * transform.forward;
+		transform.rotation = rotH;
+		camera.transform.rotation = rotH * rotV;
 	}
 
-	void FixedUpdate()
+	/// <summary>
+	/// 移動操作
+	/// </summary>
+	private void MovementControl()
 	{
-		if (ControlMode.State != ControlMode.Mode.UnityChan)
-			return;
-
-		if (CursorOperationMode.State == CursorOperationMode.Mode.ViewportManipulate)
-		{
-			//カメラ操作
-			lookPos = anim.GetBoneTransform(HumanBodyBones.Head).position;
-			float rotX = Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensitivity;
-			float rotY = Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
-
-			angleH += rotX;
-			angleV -= rotY;
-
-			angleV = Mathf.Clamp(angleV, -70.0f, 70.0f);
-
-			//クォータニオンで捻る
-			Quaternion rotH = Quaternion.AngleAxis(angleH, Vector3.up);
-			Quaternion rotV = Quaternion.AngleAxis(angleV, Vector3.right);
-			lookPos += rotH * rotV * transform.forward;
-			transform.rotation = rotH;
-			camera.transform.rotation = rotH * rotV;
-		}
-
 		//前進
 		if (Input.GetKey(KeyCode.W))
 		{
@@ -127,14 +150,65 @@ public class UnityChanController : MonoBehaviour
 		{
 			anim.SetBool("DownSpaceKey", false);
 		}
+	}
+	
+	GameObject inRetensionShield = null;
+	RadiateShieldController inRetensionShieldController;
 
-		//光の壁を出す
-		if (Input.GetKeyDown(KeyCode.F))
+	private void RadiateShieldControl()
+	{
+		if (Input.GetKey(KeyCode.F) && inRetensionShield == null) 
 		{
-			var shield = Instantiate(radiateShield);
-			shield.transform.position = transform.position + transform.forward * 1.0f;
-			shield.transform.rotation = camera.transform.rotation;
+			inRetensionShield = Instantiate(radiateShield);
+			inRetensionShieldController = inRetensionShield.GetComponent<RadiateShieldController>();
+			inRetensionShieldController.CurrentMode = RadiateShieldController.Mode.Retension;
 		}
+
+		if(inRetensionShield)
+		{
+			inRetensionShield.transform.position = camera.transform.position + camera.transform.forward * 1.0f;
+			inRetensionShield.transform.rotation = camera.transform.rotation;
+		}
+
+		if (Input.GetKeyUp(KeyCode.F) && inRetensionShield) 
+		{
+			inRetensionShieldController.CurrentMode = RadiateShieldController.Mode.Injection;
+			inRetensionShield = null;
+		}
+	}
+
+	void Start()
+	{
+		anim = targetModel.GetComponent<Animator>();
+
+		isInControl = ControlMode.CurrentMode == ControlMode.Mode.UnityChan;
+		isInViewportManipulate = CursorOperationMode.CurrentMode == CursorOperationMode.Mode.ViewportManipulate;
+
+		ControlMode.OnChangeUnityChan += EnableControl;
+		ControlMode.OnChangeSpecter += DisableControl;
+		CursorOperationMode.OnChangeViewportManipulate += EnableViewportManipulate;
+		CursorOperationMode.OnChangeFreeCursor += DisableViewportManipulate;
+	}
+
+	void OnDestroy()
+	{
+		ControlMode.OnChangeUnityChan -= EnableControl;
+		ControlMode.OnChangeSpecter -= DisableControl;
+		CursorOperationMode.OnChangeViewportManipulate -= EnableViewportManipulate;
+		CursorOperationMode.OnChangeFreeCursor -= DisableViewportManipulate;
+
+	}
+
+	void FixedUpdate()
+	{
+		if (!isInControl)
+			return;
+
+		if (isInViewportManipulate)
+			ViewportManipulate();
+
+		MovementControl();
+		RadiateShieldControl();
 
 		DebugTextWriter.Write("ユニティちゃんの位置:" + transform.position.ToString());
 		DebugTextWriter.Write("ユニティちゃんの角度:" + transform.rotation.ToString());
