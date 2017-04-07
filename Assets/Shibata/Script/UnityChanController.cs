@@ -133,7 +133,7 @@ public class UnityChanController : MonoBehaviour
 		{
 			var shield = Instantiate(radiateShield);
 			shield.transform.position = transform.position + transform.forward * 1.0f;
-			shield.transform.rotation = transform.rotation;
+			shield.transform.rotation = camera.transform.rotation;
 		}
 
 		DebugTextWriter.Write("ユニティちゃんの位置:" + transform.position.ToString());

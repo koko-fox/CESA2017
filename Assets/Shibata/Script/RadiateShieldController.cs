@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class RadiateShieldController : MonoBehaviour
 {
-	enum Mode
+	public enum Mode
 	{
 		Retension,	//保持
 		Injection,	//射出
 	}
 
 	private Mode currentMode = Mode.Injection;
+	public Mode CurrentMode
+	{
+		set
+		{
+			currentMode = value;
+		}
+		get
+		{
+			return currentMode;
+		}
+	}
+
 
 
 	[SerializeField]
@@ -39,12 +51,17 @@ public class RadiateShieldController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		elapsedTime += Time.deltaTime;
-		if (elapsedTime > moveDuration)
-			Destroy(transform.gameObject);
+		if (currentMode == Mode.Injection)
+		{
+			elapsedTime += Time.deltaTime;
+			if (elapsedTime > moveDuration)
+				Destroy(transform.gameObject);
 
-		rigidBody.AddForce(transform.forward * moveSpeed*10.0f, ForceMode.Impulse);
+			rigidBody.AddForce(transform.forward * moveSpeed * 10.0f, ForceMode.Impulse);
+		}
+		else
+		{
 
-		//transform.position += transform.forward * moveSpeed * Time.deltaTime;	
+		}
 	}
 }

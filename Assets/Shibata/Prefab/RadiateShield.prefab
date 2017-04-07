@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23992124766676106}
   - component: {fileID: 114924365127822866}
   - component: {fileID: 54194067907298406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RadiateShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
