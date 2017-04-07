@@ -2,8 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void OnChangeUnityChan();
+public delegate void OnChangeSpecter();
+
 public static class ControlMode
 {
+	/// <summary>
+	/// ユニティちゃんにコントロールが移った時のdelegate
+	/// </summary>
+	public static OnChangeUnityChan OnChangeUnityChan { get; set; }
+
+	/// <summary>
+	/// スペクターにコントロールが移った時のdelegate
+	/// </summary>
+	public static OnChangeSpecter OnChangeSpecter { get; set; }
+
 	public static GameObject unityChanCamera;
 	public static GameObject specterCamera;
 
@@ -13,26 +26,28 @@ public static class ControlMode
 		Specter,
 	}
 
-	private static Mode state = Mode.UnityChan;
-	public static Mode State
+	private static Mode currentMode;
+	public static Mode CurrentMode
 	{
 		set
 		{
 			if(value==Mode.UnityChan)
 			{
+				OnChangeUnityChan();
 				unityChanCamera.SetActive(true);
 				specterCamera.SetActive(false);
 			}
 			if(value==Mode.Specter)
 			{
+				OnChangeSpecter();
 				unityChanCamera.SetActive(false);
 				specterCamera.SetActive(true);
 			}
-			state = value;
+			currentMode = value;
 		}
 		get
 		{
-			return state;
+			return currentMode;
 		}
 	}
 }
@@ -50,6 +65,7 @@ public class ControlModeChanger : MonoBehaviour
 	{
 		ControlMode.unityChanCamera = unityChanCamera;
 		ControlMode.specterCamera = specterCamera;
+		ControlMode.CurrentMode = ControlMode.Mode.UnityChan;
 	}
 	
 	// Update is called once per frame
@@ -57,10 +73,10 @@ public class ControlModeChanger : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.U))
 		{
-			if (ControlMode.State == ControlMode.Mode.UnityChan)
-				ControlMode.State = ControlMode.Mode.Specter;
+			if (ControlMode.CurrentMode == ControlMode.Mode.UnityChan)
+				ControlMode.CurrentMode = ControlMode.Mode.Specter;
 			else
-				ControlMode.State = ControlMode.Mode.UnityChan;
+				ControlMode.CurrentMode = ControlMode.Mode.UnityChan;
 		}
 	}
 }
