@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
   private GameObject target;
   [SerializeField]
   private Stage stage;
+  [SerializeField]
   private List<int> collisions = new List<int>();
 
   public Stage Stage {
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour {
   }
 
   public void OnCollisionEnter(Collision collision) {
+    if (collisions.Contains(collision.gameObject.layer)) return;
     collisions.Add(collision.gameObject.layer);
     var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
     var wallLayer = LayerMask.NameToLayer("Wall");
