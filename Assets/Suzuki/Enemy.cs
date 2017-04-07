@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
   private GameObject target;
   [SerializeField]
   private Stage stage;
+  private List<int> collisions = new List<int>();
 
   public Stage Stage {
     get {
@@ -39,6 +40,9 @@ public class Enemy : MonoBehaviour {
   }
 
   public void Killed() {
+    Destroy(GetComponent<Rigidbody>());
+    Destroy(GetComponent<Collider>());
+    Destroy(GetComponent<NavMeshAgent>());
     StartCoroutine("Die");
   }
 
@@ -54,6 +58,26 @@ public class Enemy : MonoBehaviour {
     }
     stage.TrySpawnEnemy();
     Destroy(gameObject);
+  }
+
+  public void OnCollisionEnter(Collision collision) {
+    collisions.Add(collision.gameObject.layer);
+    var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
+    var wallLayer = LayerMask.NameToLayer("Wall");
+    if (collision.gameObject.layer == radiateShieldLayer) {
+      gameObject.layer = LayerMask.NameToLayer("BlownEnemy");
+    }
+    if (collisions.Contains(radiateShieldLayer) && collisions.Contains(wallLayer)) {
+      Killed();
+    }
+  }
+
+  public void OnCollisionExit(Collision collision) {
+    collisions.Remove(collision.gameObject.layer);
+    var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
+    if (collision.gameObject.layer == radiateShieldLayer) {
+      gameObject.layer = LayerMask.NameToLayer("Enemy");
+    }
   }
 
 }

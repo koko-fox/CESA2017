@@ -6,15 +6,13 @@ public class DebugManager : MonoBehaviour {
   [SerializeField]
   private GameObject player;
   [SerializeField]
-  private GameObject wallPrefab;
+  private GameObject shieldPrefab;
 
   private void Update() {
-    if (Input.GetKeyDown(KeyCode.K)) {
-      var position = player.transform.position + player.transform.forward * 2.0f;
-      var rotation = player.transform.rotation;
-      var wall = Instantiate(wallPrefab, position, rotation) as GameObject;
-      var rigidBody = wall.GetComponent<Rigidbody>();
-      rigidBody.AddForce(player.transform.forward * 100, ForceMode.Impulse);
+    if (Input.GetKeyDown(KeyCode.F)) {
+      var shield = Instantiate(shieldPrefab);
+      shield.transform.position = player.transform.position + player.transform.forward * 1.0f;
+      shield.transform.rotation = player.transform.rotation;
     }
   }
 
