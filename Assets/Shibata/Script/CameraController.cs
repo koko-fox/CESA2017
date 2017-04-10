@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
 
 	void Start()
 	{
+		controller = FindObjectOfType<UnityChanController>();
 		var animator = controller.GetComponentInChildren<Animator>();
 		playerHead = animator.GetBoneTransform(HumanBodyBones.Head);
 	}

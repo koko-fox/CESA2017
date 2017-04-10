@@ -78,7 +78,7 @@ public class UnityChanController : MonoBehaviour
 
 	[SerializeField]
 	[Tooltip("カメラ")]
-	private Camera camera;
+	private GameObject cameraObject;
 
 	//ユニティちゃんのアニメーター
 	private Animator anim;
@@ -139,7 +139,7 @@ public class UnityChanController : MonoBehaviour
 		Quaternion rotV = Quaternion.AngleAxis(angleV, Vector3.right);
 		lookPos += rotH * rotV * transform.forward;
 		transform.rotation = rotH;
-		camera.transform.rotation = rotH * rotV;
+		cameraObject.transform.rotation = rotH * rotV;
 	}
 
 	/// <summary>
@@ -214,8 +214,8 @@ public class UnityChanController : MonoBehaviour
 
 		if (inRetensionShield)
 		{
-			inRetensionShield.transform.position = camera.transform.position + camera.transform.forward * 1.0f;
-			inRetensionShield.transform.rotation = camera.transform.rotation;
+			inRetensionShield.transform.position = cameraObject.transform.position + cameraObject.transform.forward * 1.0f;
+			inRetensionShield.transform.rotation = cameraObject.transform.rotation;
 			EnergyValue -= _shieldRetensionCost * Time.fixedDeltaTime;
 
 			if (_shieldRetensionCost*Time.fixedDeltaTime > EnergyValue)
@@ -236,6 +236,7 @@ public class UnityChanController : MonoBehaviour
 	void Start()
 	{
 		anim = targetModel.GetComponent<Animator>();
+		cameraObject = FindObjectOfType<CameraController>().gameObject;
 
 		isInControl = ControlMode.CurrentMode == ControlMode.Mode.UnityChan;
 		isInViewportManipulate = CursorOperationMode.CurrentMode == CursorOperationMode.Mode.ViewportManipulate;

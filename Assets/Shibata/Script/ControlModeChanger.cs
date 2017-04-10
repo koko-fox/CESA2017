@@ -53,17 +53,11 @@ public static class ControlMode
 
 public class ControlModeChanger : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject unityChanCamera;
-
-	[SerializeField]
-	private GameObject specterCamera;
-
 	// Use this for initialization
 	void Start ()
 	{
-		ControlMode.unityChanCamera = unityChanCamera;
-		ControlMode.specterCamera = specterCamera;
+		ControlMode.unityChanCamera = FindObjectOfType<CameraController>().gameObject;
+		ControlMode.specterCamera = FindObjectOfType<SpectorCameraController>().gameObject;
 		ControlMode.CurrentMode = ControlMode.Mode.UnityChan;
 	}
 	
