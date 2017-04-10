@@ -11,6 +11,12 @@ public class Enemy : MonoBehaviour {
   [SerializeField]
   private Stage stage;
   [SerializeField]
+  private Sensor detectionArea;
+  [SerializeField]
+  private Sensor firingArea;
+  [SerializeField]
+  private EnemyGun gun;
+
   private List<int> collisions = new List<int>();
 
   public Stage Stage {
@@ -23,10 +29,34 @@ public class Enemy : MonoBehaviour {
     }
   }
 
+  enum Mode {
+    Patrol,
+    Attack
+  }
+
+  Mode mode = Mode.Patrol;
+
+  private void Start() {
+    detectionArea.OnSensorEnter = OnPlayerInDetectionArea;
+    firingArea.OnSensorEnter = OnPlayerEnterFiringArea;
+    firingArea.OnSensorExit = OnPlayerExitFiringAre;
+  }
+
   private void Update() {
-    if (target != null) {
-      agent.destination = target.transform.position;
+    switch (mode) {
+    case Mode.Patrol: {
+        if (target != null) {
+          agent.destination = target.transform.position;
+        }
+        break;
+      }
+    case Mode.Attack: {
+        gun.Fire();
+        break;
+      }
     }
+
+
     if (Input.GetKeyDown(KeyCode.I)) {
       Killed();
     }
@@ -78,8 +108,34 @@ public class Enemy : MonoBehaviour {
     collisions.Remove(collision.gameObject.layer);
     var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
     if (collision.gameObject.layer == radiateShieldLayer) {
-      gameObject.layer = LayerMask.NameToLayer("Enemy");
+      gameObject.layer = LayerMask.NameToLayer("UnityChan");
     }
   }
+
+  private void OnPlayerInDetectionArea(Collider other) {
+    if (target != null) return;
+    var playerLayer = LayerMask.NameToLayer("UnityChan");
+    if (other.gameObject.layer == playerLayer) {
+      target = other.gameObject;
+    }
+  }
+
+  private void OnPlayerEnterFiringArea(Collider other) {
+    var playerLayer = LayerMask.NameToLayer("UnityChan");
+    if (other.gameObject.layer == playerLayer) {
+      target = other.gameObject;
+      agent.Stop();
+      mode = Mode.Attack;
+    }
+  }
+
+  private void OnPlayerExitFiringAre(Collider other) {
+    var playerLayer = LayerMask.NameToLayer("UnityChan");
+    if (other.gameObject.layer == playerLayer) {
+      agent.Resume();
+      mode = Mode.Patrol;
+    }
+  }
+
 
 }
