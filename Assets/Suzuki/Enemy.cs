@@ -71,8 +71,7 @@ public class Enemy : MonoBehaviour {
     if (target != null) {
       Vector3 direction = (target.transform.position - transform.position).normalized;
       Quaternion lookRotation = Quaternion.LookRotation(direction);
-      var rotationSpeed = agent.angularSpeed;
-      transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+      transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
     }
   }
 
@@ -161,6 +160,15 @@ public class Enemy : MonoBehaviour {
           return true;
         }
       }
+    }
+    return false;
+  }
+
+  private bool IsPlayerInFieldOfView() {
+    var direction = (target.transform.position - transform.position).normalized;
+    var dot = Vector3.Dot(transform.forward, direction);
+    if (dot >= 0.8f) {
+      return true;
     }
     return false;
   }
