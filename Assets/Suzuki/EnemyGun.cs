@@ -7,8 +7,8 @@ public class EnemyGun : MonoBehaviour {
   private GameObject bulletPrefab;
   [SerializeField]
   private int roundPerSecond;
-
-  private const float reloadTime = 4.0f;
+  [SerializeField]
+  private float reloadTime = 4.0f;
   [SerializeField]
   private float coolTime = 0.0f;
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,10 +19,23 @@ public class Enemy : MonoBehaviour {
   private EnemyGun gun;
   [SerializeField]
   private float durationToChase;
+  [SerializeField]
+  private int moveSpeed;
   private float remainingTimeToChase = 0.0f;
+  [SerializeField]
+  private float fieldOfFire;
+  [SerializeField]
+  private int health;
+  [SerializeField]
+  private int firePower;
+  [SerializeField]
+  private int defence;
+  [SerializeField]
+  private GameObject[] dropItemPrefab;
+  [SerializeField]
+  private int[] dropRateTable;
 
   private List<int> collisions = new List<int>();
-
   public Stage Stage {
     get {
       return stage;
@@ -31,7 +45,9 @@ public class Enemy : MonoBehaviour {
       stage = value;
     }
   }
+  private bool isKilled = false;
 
+  public
   enum Mode {
     Idle,
     Chase,
@@ -43,61 +59,96 @@ public class Enemy : MonoBehaviour {
   Mode mode = Mode.Idle;
 
   private void Start() {
-    detectionArea.OnSensorEnter = OnPlayerEnterDetectionArea;
-    detectionArea.OnSensorExit = OnPlayerExitDetectionArea;
-    firingArea.OnSensorEnter = OnPlayerEnterFiringArea;
-    firingArea.OnSensorExit = OnPlayerExitFiringAre;
+    detectionArea.OnSensorEnter = OnTriggerEnterDetectionArea;
+    detectionArea.OnSensorExit = OnTriggerExitDetectionArea;
+    firingArea.OnSensorEnter = OnTriggerEnterFiringArea;
+    firingArea.OnSensorExit = OnTriggerExitFiringArea;
+    firingArea.OnSensorStay = OnTriggerStayFiringArea;
   }
 
   private void Update() {
-    MoveTowards();
-    switch (mode) {
-    case Mode.Idle: {
-        break;
-      }
-    case Mode.Chase: {
-        remainingTimeToChase -= Time.deltaTime;
-        if (remainingTimeToChase < 0.0f) {
-          target = null;
-          agent.Stop();
-          agent.ResetPath();
-          agent.Resume();
-          mode = Mode.Idle;
-        }
-        break;
-      }
-    case Mode.Approach: {
-        break;
-      }
-    case Mode.Attack: {
-        if (RaycastTest()) {
-          agent.updatePosition = false;
-          gun.Fire();
-        }
-        else {
-          agent.updatePosition = true;
-        }
-        break;
+    if (health <= 0) {
+      if (!isKilled) {
+        Killed();
+        isKilled = true;
       }
     }
+    else {
+      MoveTowardTarget();
 
+      switch (mode) {
+        case Mode.Idle: break;
+        case Mode.Chase:
+          Chase();
+          break;
+        case Mode.Approach: break;
+        case Mode.Attack:
+          Attack();
+          break;
+      }
+    }
     if (Input.GetKeyDown(KeyCode.I)) {
-      Killed();
+      health = 0;
     }
   }
 
-  private void MoveTowards() {
-    if (target != null) {
-      agent.nextPosition = transform.position;
-      agent.SetDestination(target.transform.position);
+  private void MoveTowardTarget() {
+    if (agent == null) return;
+    if (target == null) return;
+    agent.speed = moveSpeed / 10;
+    agent.SetDestination(target.transform.position);
+  }
+
+  private void Attack() {
+    if (!CanSeeTarget()) return;
+    if (!IsTargetInFieldOfFire()) return;
+    gun.Fire();
+  }
+
+  private void Chase() {
+    remainingTimeToChase -= Time.deltaTime;
+    if (remainingTimeToChase < 0.0f) {
+      target = null;
+      agent.ResetPath();
+      mode = Mode.Idle;
     }
   }
 
-  public void Killed() {
+  private bool CanSeeTarget() {
+    if (target == null) return false;
+    NavMeshHit hitInfo;
+    if (agent.Raycast(target.transform.position, out hitInfo)) return false;
+    return true;
+  }
+
+  private bool IsTargetInFieldOfFire() {
+    if (target == null) return false;
+    var heading = (target.transform.position - transform.position);
+    var direction = heading.normalized;
+    var dot = Vector3.Dot(transform.forward, direction);
+    if (dot < fieldOfFire) return false;
+    return true;
+  }
+
+  private void Killed() {
     Destroy(GetComponent<Rigidbody>());
     Destroy(GetComponent<Collider>());
     Destroy(GetComponent<NavMeshAgent>());
+    Destroy(detectionArea);
+    Destroy(firingArea);
+    Destroy(gun);
+
     StartCoroutine("Die");
+  }
+
+  private void DropItem() {
+    for (int i = 0; i < dropRateTable.Length; ++i) {
+      if (UnityEngine.Random.Range(0, 100) < dropRateTable[i]) {
+        Instantiate(dropItemPrefab[i], transform.position, Quaternion.identity);
+        return;
+      }
+    }
+    Instantiate(dropItemPrefab[4], transform.position, Quaternion.identity);
   }
 
   private IEnumerator Die() {
@@ -110,80 +161,108 @@ public class Enemy : MonoBehaviour {
       scale.y = scaleOrigin.y;
       transform.localScale = scale;
     }
+    DropItem();
+
     stage.TrySpawnEnemy();
     Destroy(gameObject);
   }
 
-  public void OnCollisionEnter(Collision collision) {
-    if (collisions.Contains(collision.gameObject.layer)) return;
-    collisions.Add(collision.gameObject.layer);
-    var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
-    var wallLayer = LayerMask.NameToLayer("Wall");
-    if (collision.gameObject.layer == radiateShieldLayer) {
+  private void TakeDamage() {
+    health -= 1;
+  }
+
+  private void OnCollisionEnter(Collision collision) {
+    if (!collisions.Contains(collision.gameObject.layer)) {
+     collisions.Add(collision.gameObject.layer);
+    }
+    if (IsRadiateShield(collision.gameObject)) {
       gameObject.layer = LayerMask.NameToLayer("BlownEnemy");
     }
-    if (collisions.Contains(radiateShieldLayer) && collisions.Contains(wallLayer)) {
-      Killed();
+    if (IsRadiateShield(collision.gameObject) || IsWall(collision.gameObject)) {
+      if (IsSandwiched()) {
+        TakeDamage();
+      }
     }
   }
 
-  public void OnCollisionExit(Collision collision) {
+  private void OnCollisionExit(Collision collision) {
     collisions.Remove(collision.gameObject.layer);
-    var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
-    if (collision.gameObject.layer == radiateShieldLayer) {
+    if (IsRadiateShield(collision.gameObject)) {
       gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
   }
 
-  private void OnPlayerEnterDetectionArea(Collider other) {
-    var playerLayer = LayerMask.NameToLayer("UnityChan");
-    if (other.gameObject.layer == playerLayer) {
+  private void OnTriggerEnterDetectionArea(Collider other) {
+    if (IsPlayer(other.gameObject)) {
       target = other.gameObject;
       mode = Mode.Approach;
     }
   }
 
-  private void OnPlayerExitDetectionArea(Collider other) {
-    if (target == null) return;
-    var playerLayer = LayerMask.NameToLayer("UnityChan");
-    if (other.gameObject.layer == playerLayer) {
+  private void OnTriggerExitDetectionArea(Collider other) {
+    if (IsPlayer(other.gameObject)) {
       remainingTimeToChase = durationToChase;
       mode = Mode.Chase;
     }
   }
 
-  private void OnPlayerEnterFiringArea(Collider other) {
-    var playerLayer = LayerMask.NameToLayer("UnityChan");
-    if (other.gameObject.layer == playerLayer) {
+  private void OnTriggerEnterFiringArea(Collider other) {
+    if (IsPlayer(other.gameObject)) {
       target = other.gameObject;
-      mode = Mode.Attack;
+      if (CanSeeTarget()) {
+        agent.updatePosition = false;
+        mode = Mode.Attack;
+      }
     }
   }
 
-  private void OnPlayerExitFiringAre(Collider other) {
-    var playerLayer = LayerMask.NameToLayer("UnityChan");
-    if (other.gameObject.layer == playerLayer) {
+  private void OnTriggerStayFiringArea(Collider other) {
+    if (IsPlayer(other.gameObject)) {
+      if (CanSeeTarget()) {
+        agent.nextPosition = transform.position;
+        agent.updatePosition = false;
+        mode = Mode.Attack;
+      }
+      else {
+        mode = Mode.Approach;
+        agent.nextPosition = transform.position;
+        agent.updatePosition = true;
+      }
+    }
+  }
+
+  private void OnTriggerExitFiringArea(Collider other) {
+    if (IsPlayer(other.gameObject)) {
       agent.nextPosition = transform.position;
       agent.updatePosition = true;
       mode = Mode.Approach;
     }
   }
 
-  private bool RaycastTest() {
-    if (target != null) {
-      var origin = transform.position;
-      var direction = transform.forward;
-      RaycastHit hitInfo;
-      var maxDistance = 1000.0f;
-      var layerMask = LayerMask.GetMask("Enemy");
-      layerMask = ~layerMask;
-      if (Physics.Raycast(origin, direction, out hitInfo, maxDistance, layerMask)) {
-        var playerLayer = LayerMask.NameToLayer("UnityChan");
-        if (hitInfo.transform.gameObject.layer == playerLayer) {
-          return true;
-        }
-      }
+  private bool IsSandwiched() {
+    var wallLayer = LayerMask.NameToLayer("Wall");
+    var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
+    if (collisions.Contains(radiateShieldLayer) && collisions.Contains(wallLayer)) {
+      return true;
     }
+    return false;
+  }
+
+  private bool IsPlayer(GameObject other) {
+    var playerLayer = LayerMask.NameToLayer("UnityChan");
+    if (other.gameObject.layer == playerLayer) return true;
+    return false;
+  }
+
+  private bool IsRadiateShield(GameObject other) {
+    var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
+    if (other.gameObject.layer == radiateShieldLayer) return true;
+    return false;
+  }
+
+  private bool IsWall(GameObject other) {
+    var wallLayer = LayerMask.NameToLayer("Wall");
+    if (other.gameObject.layer == wallLayer) return true;
     return false;
   }
 }

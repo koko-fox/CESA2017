@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour {
   public delegate void OnSensorEnterEvent(Collider other);
+  public delegate void OnSensorStayEvent(Collider other);
   public delegate void OnSensorExitEvent(Collider other);
 
   private OnSensorEnterEvent onSensorEnter;
+  private OnSensorStayEvent onSensorStay;
   private OnSensorExitEvent onSensorExit;
 
   public OnSensorEnterEvent OnSensorEnter {
@@ -29,9 +31,25 @@ public class Sensor : MonoBehaviour {
     }
   }
 
+  public OnSensorStayEvent OnSensorStay {
+    get {
+      return onSensorStay;
+    }
+
+    set {
+      onSensorStay = value;
+    }
+  }
+
   private void OnTriggerEnter(Collider other) {
     if (onSensorEnter != null) {
       onSensorEnter(other);
+    }
+  }
+
+  private void OnTriggerStay(Collider other) {
+    if (onSensorStay != null) {
+      onSensorStay(other);
     }
   }
 
