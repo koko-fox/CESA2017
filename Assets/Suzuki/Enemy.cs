@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour {
   private Sensor firingArea;
   [SerializeField]
   private EnemyGun gun;
+  [SerializeField]
+  private float durationToChase;
+  private float remainingTimeToChase = 0.0f;
 
   private List<int> collisions = new List<int>();
 
@@ -30,14 +33,18 @@ public class Enemy : MonoBehaviour {
   }
 
   enum Mode {
-    Patrol,
+    Idle,
+    Chase,
+    Approach,
     Attack
   }
 
-  Mode mode = Mode.Patrol;
+  [SerializeField]
+  Mode mode = Mode.Idle;
 
   private void Start() {
-    detectionArea.OnSensorEnter = OnPlayerInDetectionArea;
+    detectionArea.OnSensorEnter = OnPlayerEnterDetectionArea;
+    detectionArea.OnSensorExit = OnPlayerExitDetectionArea;
     firingArea.OnSensorEnter = OnPlayerEnterFiringArea;
     firingArea.OnSensorExit = OnPlayerExitFiringAre;
   }
@@ -45,12 +52,30 @@ public class Enemy : MonoBehaviour {
   private void Update() {
     MoveTowards();
     switch (mode) {
-    case Mode.Patrol: {
+    case Mode.Idle: {
+        break;
+      }
+    case Mode.Chase: {
+        remainingTimeToChase -= Time.deltaTime;
+        if (remainingTimeToChase < 0.0f) {
+          target = null;
+          agent.Stop();
+          agent.ResetPath();
+          agent.Resume();
+          mode = Mode.Idle;
+        }
+        break;
+      }
+    case Mode.Approach: {
         break;
       }
     case Mode.Attack: {
         if (RaycastTest()) {
+          agent.updatePosition = false;
           gun.Fire();
+        }
+        else {
+          agent.updatePosition = true;
         }
         break;
       }
@@ -110,11 +135,20 @@ public class Enemy : MonoBehaviour {
     }
   }
 
-  private void OnPlayerInDetectionArea(Collider other) {
-    if (target != null) return;
+  private void OnPlayerEnterDetectionArea(Collider other) {
     var playerLayer = LayerMask.NameToLayer("UnityChan");
     if (other.gameObject.layer == playerLayer) {
       target = other.gameObject;
+      mode = Mode.Approach;
+    }
+  }
+
+  private void OnPlayerExitDetectionArea(Collider other) {
+    if (target == null) return;
+    var playerLayer = LayerMask.NameToLayer("UnityChan");
+    if (other.gameObject.layer == playerLayer) {
+      remainingTimeToChase = durationToChase;
+      mode = Mode.Chase;
     }
   }
 
@@ -122,7 +156,6 @@ public class Enemy : MonoBehaviour {
     var playerLayer = LayerMask.NameToLayer("UnityChan");
     if (other.gameObject.layer == playerLayer) {
       target = other.gameObject;
-      agent.updatePosition = false;
       mode = Mode.Attack;
     }
   }
@@ -132,7 +165,7 @@ public class Enemy : MonoBehaviour {
     if (other.gameObject.layer == playerLayer) {
       agent.nextPosition = transform.position;
       agent.updatePosition = true;
-      mode = Mode.Patrol;
+      mode = Mode.Approach;
     }
   }
 
@@ -142,7 +175,9 @@ public class Enemy : MonoBehaviour {
       var direction = transform.forward;
       RaycastHit hitInfo;
       var maxDistance = 1000.0f;
-      if (Physics.Raycast(origin, direction, out hitInfo, maxDistance)) {
+      var layerMask = LayerMask.GetMask("Enemy");
+      layerMask = ~layerMask;
+      if (Physics.Raycast(origin, direction, out hitInfo, maxDistance, layerMask)) {
         var playerLayer = LayerMask.NameToLayer("UnityChan");
         if (hitInfo.transform.gameObject.layer == playerLayer) {
           return true;

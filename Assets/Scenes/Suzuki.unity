@@ -1076,6 +1076,11 @@ Prefab:
       propertyPath: m_AngularSpeed
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 114119821929632798, guid: 466e98f99b6ce4142b881d8a62e81edc,
+        type: 2}
+      propertyPath: durationToChase
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135666347470121302, guid: 466e98f99b6ce4142b881d8a62e81edc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 466e98f99b6ce4142b881d8a62e81edc, type: 2}
