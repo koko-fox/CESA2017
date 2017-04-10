@@ -16,7 +16,6 @@ public static class ControlMode
 	/// スペクターにコントロールが移った時のdelegate
 	/// </summary>
 	public static OnChangeSpecter OnChangeSpecter { get; set; }
-
 	public static GameObject unityChanCamera;
 	public static GameObject specterCamera;
 

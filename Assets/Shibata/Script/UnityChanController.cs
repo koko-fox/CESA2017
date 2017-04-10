@@ -4,10 +4,53 @@ using UnityEngine;
 
 public class UnityChanController : MonoBehaviour
 {
+	#region ステータス系パラメータ
+	[Header("ステータス系パラメータ設定")]
 	[SerializeField]
-	[Tooltip("ターゲットにする3Dモデル")]
-	private GameObject targetModel;
+	[Tooltip("HP最大値")]
+	private float _maxHealth;
+	public float MaxHealth { get { return _maxHealth; } }
 
+	[SerializeField]
+	[Tooltip("EN最大値")]
+	private float _maxEnergy;
+	public float MaxEnergy { get { return _maxEnergy; } }
+
+	[SerializeField]
+	[Tooltip("SP最大値")]
+	private float _maxSpecial;
+	public float MaxSpecial { get { return _maxSpecial; } }
+
+	[SerializeField]
+	[Tooltip("EN自然回復量(X/秒)")]
+	private float _energyRegenRate;
+
+	[SerializeField]
+	[Tooltip("シールド発射コスト")]
+	private float _shieldShotCost;
+
+	[SerializeField]
+	[Tooltip("シールド保持コスト(X/秒)")]
+	private float _shieldRetensionCost;
+
+	//現在HP
+	private float _health;
+	public float Health { get { return _health; } set { _health = Mathf.Clamp(value, 0.0f, _maxHealth); } }
+	//装甲値
+	private float _armorValue;
+	public float ArmorValue { get { return _armorValue; } set { _armorValue = value; } }
+	//エネルギー値
+	private float _energyValue;
+	public float EnergyValue { get { return _energyValue; } set { _energyValue = Mathf.Clamp(value, 0.0f, _maxEnergy); } }
+	//SP値
+	private float _specialValue;
+	public float SpecialValue { get { return _specialValue; } set { _specialValue = Mathf.Clamp(value, 0.0f, _maxSpecial); } }
+	//取得経験値オーブの個数
+	private float _expOrbNum;
+	public float ExpOrbNum { get { return _expOrbNum; } set { _expOrbNum = value; } }
+	#endregion
+
+	[Header("操作系パラメータ設定")]
 	[SerializeField]
 	[Tooltip("移動速度")]
 	private float forwardSpeed = 3.0f;
@@ -21,16 +64,21 @@ public class UnityChanController : MonoBehaviour
 	private float sideWalkSpeed = 1.5f;
 
 	[SerializeField]
-	[Tooltip("カメラ")]
-	private Camera camera;
-
-	[SerializeField]
 	[Tooltip("マウス感度")]
 	private float mouseSensitivity = 100.0f;
 
+	[Header("アタッチするオブジェクト")]
 	[SerializeField]
 	[Tooltip("光の壁prefab")]
 	private GameObject radiateShield;
+
+	[SerializeField]
+	[Tooltip("ターゲットにする3Dモデル")]
+	private GameObject targetModel;
+
+	[SerializeField]
+	[Tooltip("カメラ")]
+	private Camera camera;
 
 	//ユニティちゃんのアニメーター
 	private Animator anim;
@@ -50,8 +98,8 @@ public class UnityChanController : MonoBehaviour
 	/// <summary>
 	/// コントロール中であるか
 	/// </summary>
-	public bool IsInControl { get; private set; }
-	
+	public bool IsInControl { get { return isInControl; } }
+
 	/// <summary>
 	/// コントロールを有効化
 	/// </summary>
@@ -151,29 +199,37 @@ public class UnityChanController : MonoBehaviour
 			anim.SetBool("DownSpaceKey", false);
 		}
 	}
-	
+
 	GameObject inRetensionShield = null;
 	RadiateShieldController inRetensionShieldController;
 
 	private void RadiateShieldControl()
 	{
-		if (Input.GetKey(KeyCode.F) && inRetensionShield == null) 
+		if (Input.GetKey(KeyCode.F) && !inRetensionShield && EnergyValue >= _shieldShotCost)
 		{
 			inRetensionShield = Instantiate(radiateShield);
 			inRetensionShieldController = inRetensionShield.GetComponent<RadiateShieldController>();
 			inRetensionShieldController.CurrentMode = RadiateShieldController.Mode.Retension;
 		}
 
-		if(inRetensionShield)
+		if (inRetensionShield)
 		{
 			inRetensionShield.transform.position = camera.transform.position + camera.transform.forward * 1.0f;
 			inRetensionShield.transform.rotation = camera.transform.rotation;
+			EnergyValue -= _shieldRetensionCost * Time.fixedDeltaTime;
+
+			if (_shieldRetensionCost*Time.fixedDeltaTime > EnergyValue)
+			{
+				Destroy(inRetensionShield);
+				inRetensionShield = null;
+			}
 		}
 
-		if (Input.GetKeyUp(KeyCode.F) && inRetensionShield) 
+		if (Input.GetKeyUp(KeyCode.F) && inRetensionShield)
 		{
 			inRetensionShieldController.CurrentMode = RadiateShieldController.Mode.Injection;
 			inRetensionShield = null;
+			EnergyValue -= _shieldShotCost;
 		}
 	}
 
@@ -196,11 +252,16 @@ public class UnityChanController : MonoBehaviour
 		ControlMode.OnChangeSpecter -= DisableControl;
 		CursorOperationMode.OnChangeViewportManipulate -= EnableViewportManipulate;
 		CursorOperationMode.OnChangeFreeCursor -= DisableViewportManipulate;
-
 	}
 
 	void FixedUpdate()
 	{
+		DebugTextWriter.Write("HP :" + _health + "/" + _maxHealth);
+		DebugTextWriter.Write("AP :" + _armorValue);
+		DebugTextWriter.Write("EN :" + _energyValue + "/" + _maxEnergy);
+		DebugTextWriter.Write("SP :" + _specialValue + "/" + _maxSpecial);
+		DebugTextWriter.Write("EXP:" + _expOrbNum + "個");
+
 		if (!isInControl)
 			return;
 
@@ -210,7 +271,7 @@ public class UnityChanController : MonoBehaviour
 		MovementControl();
 		RadiateShieldControl();
 
-		DebugTextWriter.Write("ユニティちゃんの位置:" + transform.position.ToString());
-		DebugTextWriter.Write("ユニティちゃんの角度:" + transform.rotation.ToString());
+		if(!inRetensionShield)
+			EnergyValue += _energyRegenRate * Time.fixedDeltaTime;
 	}
 }
