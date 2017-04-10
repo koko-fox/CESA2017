@@ -20,4 +20,11 @@ public class EnemyBullet : MonoBehaviour {
       Destroy(gameObject);
     }
   }
+
+  private void OnTriggerEnter(Collider other) {
+    var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
+    if (other.gameObject.layer == radiateShieldLayer) {
+      Destroy(gameObject);
+    }
+  }
 }

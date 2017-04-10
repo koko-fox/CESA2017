@@ -113,7 +113,9 @@ MonoBehaviour:
   agent: {fileID: 195910923499017954}
   target: {fileID: 0}
   stage: {fileID: 0}
-  collisions: 
+  detectionArea: {fileID: 0}
+  firingArea: {fileID: 0}
+  gun: {fileID: 0}
 --- !u!135 &135666347470121302
 SphereCollider:
   m_ObjectHideFlags: 1

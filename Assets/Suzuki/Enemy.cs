@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour {
   }
 
   private void Update() {
-    RotateTowards();
     MoveTowards();
     switch (mode) {
     case Mode.Patrol: {
@@ -64,22 +63,8 @@ public class Enemy : MonoBehaviour {
 
   private void MoveTowards() {
     if (target != null) {
+      agent.nextPosition = transform.position;
       agent.SetDestination(target.transform.position);
-    }
-  }
-  private void RotateTowards() {
-    if (target != null) {
-      Vector3 direction = (target.transform.position - transform.position).normalized;
-      Quaternion lookRotation = Quaternion.LookRotation(direction);
-      transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
-    }
-  }
-
-  private void OnTriggerStay(Collider other) {
-    if (target != null) return;
-    var otherObject = other.gameObject;
-    if (otherObject.name == "Player") {
-      target = otherObject;
     }
   }
 
@@ -137,6 +122,7 @@ public class Enemy : MonoBehaviour {
     var playerLayer = LayerMask.NameToLayer("UnityChan");
     if (other.gameObject.layer == playerLayer) {
       target = other.gameObject;
+      agent.updatePosition = false;
       mode = Mode.Attack;
     }
   }
@@ -144,6 +130,8 @@ public class Enemy : MonoBehaviour {
   private void OnPlayerExitFiringAre(Collider other) {
     var playerLayer = LayerMask.NameToLayer("UnityChan");
     if (other.gameObject.layer == playerLayer) {
+      agent.nextPosition = transform.position;
+      agent.updatePosition = true;
       mode = Mode.Patrol;
     }
   }
@@ -160,15 +148,6 @@ public class Enemy : MonoBehaviour {
           return true;
         }
       }
-    }
-    return false;
-  }
-
-  private bool IsPlayerInFieldOfView() {
-    var direction = (target.transform.position - transform.position).normalized;
-    var dot = Vector3.Dot(transform.forward, direction);
-    if (dot >= 0.8f) {
-      return true;
     }
     return false;
   }
