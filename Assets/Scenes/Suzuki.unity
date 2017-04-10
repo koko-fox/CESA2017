@@ -306,7 +306,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 899779725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 1.2, z: 20}
+  m_LocalPosition: {x: 15, y: 1.2, z: 19.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 923511500}
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1592496630000202, guid: b4f4491c62dc875419ae4e864c5ee8ea,
     type: 2}
+  roundPerSecond: 10
   coolTime: 0
 --- !u!4 &1069354486
 Transform:

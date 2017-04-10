@@ -43,22 +43,36 @@ public class Enemy : MonoBehaviour {
   }
 
   private void Update() {
+    RotateTowards();
+    MoveTowards();
     switch (mode) {
     case Mode.Patrol: {
-        if (target != null) {
-          agent.destination = target.transform.position;
-        }
         break;
       }
     case Mode.Attack: {
-        gun.Fire();
+        if (RaycastTest()) {
+          gun.Fire();
+        }
         break;
       }
     }
 
-
     if (Input.GetKeyDown(KeyCode.I)) {
       Killed();
+    }
+  }
+
+  private void MoveTowards() {
+    if (target != null) {
+      agent.SetDestination(target.transform.position);
+    }
+  }
+  private void RotateTowards() {
+    if (target != null) {
+      Vector3 direction = (target.transform.position - transform.position).normalized;
+      Quaternion lookRotation = Quaternion.LookRotation(direction);
+      var rotationSpeed = agent.angularSpeed;
+      transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
   }
 
@@ -108,7 +122,7 @@ public class Enemy : MonoBehaviour {
     collisions.Remove(collision.gameObject.layer);
     var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
     if (collision.gameObject.layer == radiateShieldLayer) {
-      gameObject.layer = LayerMask.NameToLayer("UnityChan");
+      gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
   }
 
@@ -124,7 +138,6 @@ public class Enemy : MonoBehaviour {
     var playerLayer = LayerMask.NameToLayer("UnityChan");
     if (other.gameObject.layer == playerLayer) {
       target = other.gameObject;
-      agent.Stop();
       mode = Mode.Attack;
     }
   }
@@ -132,10 +145,23 @@ public class Enemy : MonoBehaviour {
   private void OnPlayerExitFiringAre(Collider other) {
     var playerLayer = LayerMask.NameToLayer("UnityChan");
     if (other.gameObject.layer == playerLayer) {
-      agent.Resume();
       mode = Mode.Patrol;
     }
   }
 
-
+  private bool RaycastTest() {
+    if (target != null) {
+      var origin = transform.position;
+      var direction = transform.forward;
+      RaycastHit hitInfo;
+      var maxDistance = 1000.0f;
+      if (Physics.Raycast(origin, direction, out hitInfo, maxDistance)) {
+        var playerLayer = LayerMask.NameToLayer("UnityChan");
+        if (hitInfo.transform.gameObject.layer == playerLayer) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 }
