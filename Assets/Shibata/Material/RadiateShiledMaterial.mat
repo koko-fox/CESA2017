@@ -91,7 +91,7 @@ Material:
       second: 10
     - first:
         name: _GlossMapScale
-      second: 1
+      second: 0.08
     - first:
         name: _Glossiness
       second: 0.52
@@ -131,7 +131,7 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 0}
     - first:
         name: _EmissionColor
-      second: {r: 0.013462382, g: 0.23984684, b: 0.6102941, a: 1}
+      second: {r: 0.030882383, g: 0.5502029, b: 1.4, a: 1}
     - first:
         name: _SpecColor
       second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
