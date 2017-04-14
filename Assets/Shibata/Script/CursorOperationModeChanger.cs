@@ -13,6 +13,7 @@ public static class CursorOperationMode
 		ViewportManipulate, //視点操作モード
 		FreeCursor,     //自由カーソルモード
 	}
+
 	private static OnChangeViewportManipulate onChangeViewportManipulate;
 	/// <summary>
 	/// 視点操作モード変更時に呼び出し

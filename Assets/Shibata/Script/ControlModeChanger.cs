@@ -16,8 +16,8 @@ public static class ControlMode
 	/// スペクターにコントロールが移った時のdelegate
 	/// </summary>
 	public static OnChangeSpecter OnChangeSpecter { get; set; }
-	public static GameObject unityChanCamera;
-	public static GameObject specterCamera;
+	public static Camera unityChanCamera;
+	public static Camera specterCamera;
 
 	public enum Mode
 	{
@@ -33,14 +33,14 @@ public static class ControlMode
 			if(value==Mode.UnityChan)
 			{
 				OnChangeUnityChan();
-				unityChanCamera.SetActive(true);
-				specterCamera.SetActive(false);
+				unityChanCamera.enabled = true;
+				specterCamera.enabled = false;
 			}
 			if(value==Mode.Specter)
 			{
 				OnChangeSpecter();
-				unityChanCamera.SetActive(false);
-				specterCamera.SetActive(true);
+				unityChanCamera.enabled = false;
+				specterCamera.enabled = true;
 			}
 			currentMode = value;
 		}
@@ -56,8 +56,8 @@ public class ControlModeChanger : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		ControlMode.unityChanCamera = FindObjectOfType<CameraController>().gameObject;
-		ControlMode.specterCamera = FindObjectOfType<SpectorCameraController>().gameObject;
+		ControlMode.unityChanCamera = FindObjectOfType<CameraController>().gameObject.GetComponent<Camera>();
+		ControlMode.specterCamera = FindObjectOfType<SpectorCameraController>().gameObject.GetComponent<Camera>();
 		ControlMode.CurrentMode = ControlMode.Mode.UnityChan;
 	}
 	

@@ -53,15 +53,15 @@ public class UnityChanController : MonoBehaviour
 	[Header("操作系パラメータ設定")]
 	[SerializeField]
 	[Tooltip("移動速度")]
-	private float forwardSpeed = 3.0f;
+	private float _forwardSpeed = 3.0f;
 
 	[SerializeField]
 	[Tooltip("後退速度")]
-	private float backSpeed = 1.5f;
+	private float _backSpeed = 1.5f;
 
 	[SerializeField]
 	[Tooltip("横歩き速度")]
-	private float sideWalkSpeed = 1.5f;
+	private float _sideWalkSpeed = 1.5f;
 
 	[SerializeField]
 	[Tooltip("マウス感度")]
@@ -79,6 +79,7 @@ public class UnityChanController : MonoBehaviour
 	[SerializeField]
 	[Tooltip("カメラ")]
 	private GameObject cameraObject;
+	private ShoulderCameraController _shoulderCamController;
 
 	//ユニティちゃんのアニメーター
 	private Animator anim;
@@ -147,61 +148,33 @@ public class UnityChanController : MonoBehaviour
 	/// </summary>
 	private void MovementControl()
 	{
-		//前進
-		if (Input.GetKey(KeyCode.W))
-		{
+		Vector3 velocity = Vector3.zero;
+		bool isForward = Input.GetKey(KeyCode.W);
+		bool isLeft = Input.GetKey(KeyCode.A);
+		bool isRight = Input.GetKey(KeyCode.D);
+		bool isBack = Input.GetKey(KeyCode.S);
+
+		if (isForward&&!isBack)
+			velocity.z += _forwardSpeed;
+		if (isLeft&&!isRight)
+			velocity.x += -_sideWalkSpeed;
+		if (isRight&&!isLeft)
+			velocity.x += _sideWalkSpeed;
+		if (isBack&&!isForward)
+			velocity.z += -_backSpeed;
+
+		if (isForward || isLeft || isRight || isBack)
 			anim.SetBool("Forward", true);
-			Vector3 vel = new Vector3(0, 0, forwardSpeed);
-			vel = transform.TransformDirection(vel);
-			transform.localPosition += vel * Time.fixedDeltaTime;
-		}
-		//左移動
-		else if (Input.GetKey(KeyCode.A))
-		{
-			anim.SetBool("Forward", true);
-			Vector3 vel = new Vector3(-sideWalkSpeed, 0, 0);
-			vel = transform.TransformDirection(vel);
-			transform.localPosition += vel * Time.fixedDeltaTime;
-		}
-		//右移動
-		else if (Input.GetKey(KeyCode.D))
-		{
-			anim.SetBool("Forward", true);
-			Vector3 vel = new Vector3(sideWalkSpeed, 0, 0);
-			vel = transform.TransformDirection(vel);
-			transform.localPosition += vel * Time.fixedDeltaTime;
-		}
 		else
-		{
 			anim.SetBool("Forward", false);
-		}
 
-		//後退
-		if (Input.GetKey(KeyCode.S))
-		{
-			anim.SetBool("Back", true);
-			Vector3 vel = new Vector3(0, 0, -backSpeed);
-			vel = transform.TransformDirection(vel);
-			transform.localPosition += vel * Time.fixedDeltaTime;
-
-		}
-		else
-		{
-			anim.SetBool("Back", false);
-		}
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			anim.SetBool("DownSpaceKey", true);
-		}
-		else
-		{
-			anim.SetBool("DownSpaceKey", false);
-		}
+		velocity = transform.TransformDirection(velocity);
+		transform.position += velocity * Time.fixedDeltaTime;
 	}
 
 	GameObject inRetensionShield = null;
 	RadiateShieldController inRetensionShieldController;
+
 
 	private void RadiateShieldControl()
 	{
@@ -216,9 +189,9 @@ public class UnityChanController : MonoBehaviour
 		{
 			inRetensionShield.transform.position = cameraObject.transform.position + cameraObject.transform.forward * 1.0f;
 			inRetensionShield.transform.rotation = cameraObject.transform.rotation;
-			EnergyValue -= _shieldRetensionCost * Time.fixedDeltaTime;
+			EnergyValue -= _shieldRetensionCost * Time.deltaTime;
 
-			if (_shieldRetensionCost*Time.fixedDeltaTime > EnergyValue)
+			if (_shieldRetensionCost*Time.deltaTime > EnergyValue)
 			{
 				Destroy(inRetensionShield);
 				inRetensionShield = null;
@@ -231,13 +204,20 @@ public class UnityChanController : MonoBehaviour
 			inRetensionShield = null;
 			EnergyValue -= _shieldShotCost;
 		}
+
+		if (!inRetensionShield)
+			EnergyValue += _energyRegenRate * Time.deltaTime;
+	}
+
+	private void Awake()
+	{
+		cameraObject = FindObjectOfType<ShoulderCameraController>().gameObject;
+		_shoulderCamController = cameraObject.GetComponent<ShoulderCameraController>();
 	}
 
 	void Start()
 	{
 		anim = targetModel.GetComponent<Animator>();
-		cameraObject = FindObjectOfType<CameraController>().gameObject;
-
 		isInControl = ControlMode.CurrentMode == ControlMode.Mode.UnityChan;
 		isInViewportManipulate = CursorOperationMode.CurrentMode == CursorOperationMode.Mode.ViewportManipulate;
 
@@ -267,12 +247,17 @@ public class UnityChanController : MonoBehaviour
 			return;
 
 		if (isInViewportManipulate)
-			ViewportManipulate();
+			//ViewportManipulate();
 
 		MovementControl();
+	}
+
+	void Update()
+	{
+		if (!isInControl)
+			return;
 		RadiateShieldControl();
 
-		if(!inRetensionShield)
-			EnergyValue += _energyRegenRate * Time.fixedDeltaTime;
+		transform.rotation = Quaternion.AngleAxis(_shoulderCamController.AngleH, Vector3.up);
 	}
 }
