@@ -23,9 +23,8 @@ public class OrbBase : MonoBehaviour
 	/// ターゲットに接触したときの処理
 	/// </summary>
 	protected virtual void OnCollisionTarget() { }
-
-	// Use this for initialization
-	void Start ()
+	
+	private void Awake()
 	{
 		_rigidBody = GetComponent<Rigidbody>();
 		_sphereCollider = GetComponent<SphereCollider>();
@@ -36,7 +35,7 @@ public class OrbBase : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		float distance = Vector3.Distance(transform.position, _target.transform.position);
+		float distance = Vector3.Distance(transform.position+new Vector3(0.0f,0.7f,0.0f), _target.transform.position);
 		if(distance<_vacuumRadius)
 		{
 			Vector3 dir = (_target.transform.position - transform.position).normalized;
@@ -45,9 +44,9 @@ public class OrbBase : MonoBehaviour
 
 		var hits = Physics.SphereCastAll(transform.position, _sphereCollider.radius, transform.forward);
 
-		foreach(var hit in hits)
+		foreach (var hit in hits)
 		{
-			if(hit.transform.gameObject==_target)
+			if (hit.transform.gameObject == _target)
 			{
 				OnCollisionTarget();
 				Destroy(transform.gameObject);
