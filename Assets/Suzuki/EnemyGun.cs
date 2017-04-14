@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyGun : MonoBehaviour {
   [SerializeField]
-  private GameObject bulletPrefab;
-  [SerializeField]
   private int roundPerSecond;
   [SerializeField]
   private float reloadTime = 4.0f;
@@ -28,15 +26,31 @@ public class EnemyGun : MonoBehaviour {
 
   private IEnumerator ThreeRoundBurst() {
     for (int i = 0; i < 3; ++i) {
-      SpawnBullet();
+      Shoot();
       yield return new WaitForSeconds(1.0f / roundPerSecond);
     }
     coolTime = reloadTime;
     isFiring = false;
   }
 
-  private void SpawnBullet() {
-    Instantiate(bulletPrefab, transform.position, transform.rotation);
+  private void Shoot() {
+    RaycastHit hitinfo;
+    var origin = transform.position;
+    var direction = transform.forward;
+    var layerMask = LayerMask.GetMask("Enemy", "BlownEnemy", "ItemOrb");
+    layerMask = ~layerMask;
+    if (Physics.Raycast(origin, direction, out hitinfo, 1000.0f, layerMask)) {
+      var otherObject = hitinfo.collider.gameObject;
+      var playerLayer = LayerMask.NameToLayer("UnityChan");
+      if (otherObject.layer == playerLayer) {
+        // TODO: プレイヤーにダメージを与える処理
+        Debug.Log("Hit to player");
+      }
+      var shieldLayer = LayerMask.NameToLayer("RadiateShield");
+      if (otherObject.layer == shieldLayer) {
+        // TODO: シールドに当たったときの処理
+        Debug.Log("Hit to shield");
+      }
+    }
   }
-
 }

@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour {
   private GameObject[] dropItemPrefab;
   [SerializeField]
   private int[] dropRateTable;
+  [SerializeField]
+  private float rotationSpeed;
 
   private List<int> collisions = new List<int>();
   public Stage Stage {
@@ -75,7 +77,7 @@ public class Enemy : MonoBehaviour {
     }
     else {
       MoveTowardTarget();
-
+      RotationTowardTarget();
       switch (mode) {
         case Mode.Idle: break;
         case Mode.Chase:
@@ -86,10 +88,21 @@ public class Enemy : MonoBehaviour {
           Attack();
           break;
       }
+      Debug.DrawRay(transform.position, transform.forward * 20, Color.red);
     }
     if (Input.GetKeyDown(KeyCode.I)) {
       health = 0;
     }
+  }
+
+  private void RotationTowardTarget() {
+    if (agent == null) return;
+    if (target == null) return;
+    var direction = (target.transform.position - transform.position).normalized;
+    direction.y = 0.0f;
+    var lookRotation = Quaternion.LookRotation(direction);
+    var t = Time.deltaTime * rotationSpeed;
+    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, t);
   }
 
   private void MoveTowardTarget() {
