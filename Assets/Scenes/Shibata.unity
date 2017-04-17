@@ -603,12 +603,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1558880007}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8ff0560a9108464b8ef783d7f9408d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _operateModel: {fileID: 766728884}
+  _radiateShieldPrefab: {fileID: 0}
   _forwardSpeed: 3
   _backSpeed: 1.5
   _sideWalkSpeed: 1.5
@@ -618,6 +619,53 @@ MonoBehaviour:
   _energyRegenRate: 0
   _shieldShotCost: 0
   _shieldRetensionCost: 0
+--- !u!114 &1558880013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1558880007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30d7ae0bb7d4a74bb297f56ce165436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forwardSpeed: 3
+  _backSpeed: 1.5
+  _sideWalkSpeed: 1.5
+  _maxHealth: 0
+  _maxEnergy: 0
+  _maxSpecial: 0
+  _energyRegenRate: 0
+  _shieldShotCost: 0
+  _shieldHoldCost: 0
+--- !u!114 &1558880014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1558880007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdbc01aef7cd1f4788b6f096e97cf88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _modelForAnimation: {fileID: 766728884}
+--- !u!114 &1558880015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1558880007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b4a55906fba0c2428318cf765df5f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shieldPrefab: {fileID: 1886929234999552, guid: d81acee0b2a2df143a25ef388bb03906,
+    type: 2}
+  _generateDistance: 0.5
+  _generateHeight: 1
 --- !u!1001 &1573731289
 Prefab:
   m_ObjectHideFlags: 0

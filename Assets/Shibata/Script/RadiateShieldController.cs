@@ -23,29 +23,42 @@ public class RadiateShieldController : MonoBehaviour
 		}
 	}
 
-
+	[SerializeField]
+	[Header("発射する力")]
+	private float _movementForce = 100.0f;
 
 	[SerializeField]
-	[Tooltip("最大到達距離")]
-	private float maximumReach=10.0f;
+	[Header("自然消滅までの時間")]
+	private float _lifeTime = 3.0f;
 
 	[SerializeField]
-	[Tooltip("移動速度")]
-	private float moveSpeed=7.5f;
-
-	//移動時間
-	private float moveDuration;
+	[Header("ヒット時に再生するサウンド")]
+	private AudioClip _hitSound;
+	private AudioSource _audioSource;
 
 	//経過時間
-	private float elapsedTime = 0.0f;
+	private float _elapsedTime = 0.0f;
+	//剛体
+	private Rigidbody _rigidBody;
 
-	private Rigidbody rigidBody;
+	/// <summary>
+	/// ヒットサウンド用オーディオソースを再生する
+	/// </summary>
+	public void PlayHitSound()
+	{
+		_audioSource.Play();
+	}
+
+	private void Awake()
+	{
+		_audioSource = gameObject.GetComponent<AudioSource>();
+		_audioSource.clip = _hitSound;
+	}
 
 	// Use this for initialization
 	void Start ()
 	{
-		moveDuration = maximumReach / moveSpeed;
-		rigidBody = transform.GetComponent<Rigidbody>();
+		_rigidBody = transform.GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
@@ -53,11 +66,11 @@ public class RadiateShieldController : MonoBehaviour
 	{
 		if (currentMode == Mode.Injection)
 		{
-			elapsedTime += Time.deltaTime;
-			if (elapsedTime > moveDuration)
+			_elapsedTime += Time.deltaTime;
+			if (_elapsedTime >= _lifeTime)
 				Destroy(transform.gameObject);
 
-			rigidBody.AddForce(transform.forward * moveSpeed * 10.0f, ForceMode.Impulse);
+			_rigidBody.AddForce(transform.forward * _lifeTime, ForceMode.VelocityChange);
 		}
 	}
 }
