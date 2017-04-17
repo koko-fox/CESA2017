@@ -46,7 +46,8 @@ public class RadiateShieldController : MonoBehaviour
 	/// </summary>
 	public void PlayHitSound()
 	{
-		_audioSource.Play();
+		AudioSource.PlayClipAtPoint(_hitSound, transform.position);
+		//_audioSource.Play();
 	}
 
 	private void Awake()
