@@ -2,63 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void OnChangeUnityChan();
-public delegate void OnChangeSpecter();
-
-public static class ControlMode
-{
-	/// <summary>
-	/// ユニティちゃんにコントロールが移った時のdelegate
-	/// </summary>
-	public static OnChangeUnityChan OnChangeUnityChan { get; set; }
-
-	/// <summary>
-	/// スペクターにコントロールが移った時のdelegate
-	/// </summary>
-	public static OnChangeSpecter OnChangeSpecter { get; set; }
-	public static Camera unityChanCamera;
-	public static Camera specterCamera;
-
-	public enum Mode
-	{
-		UnityChan,
-		Specter,
-	}
-
-	private static Mode currentMode;
-	public static Mode CurrentMode
-	{
-		set
-		{
-			if(value==Mode.UnityChan)
-			{
-				OnChangeUnityChan();
-				unityChanCamera.enabled = true;
-				specterCamera.enabled = false;
-			}
-			if(value==Mode.Specter)
-			{
-				OnChangeSpecter();
-				unityChanCamera.enabled = false;
-				specterCamera.enabled = true;
-			}
-			currentMode = value;
-		}
-		get
-		{
-			return currentMode;
-		}
-	}
-}
-
 public class ControlModeChanger : MonoBehaviour
 {
-	// Use this for initialization
-	void Start ()
+	private HanachanCore _hanachanCore;
+	[SerializeField]
+	[Header("ハナちゃん側のカメラ")]
+	private Camera _hanachanSideCamera;
+
+	private SpecterCore _specterCore;
+	[SerializeField]
+	[Header("スペクター側のカメラ")]
+	private Camera _specterSideCamera;
+
+	private bool _isHanachanEnabled;
+	public bool IsHanachanEnabled { get { return _isHanachanEnabled; } }
+	private bool _isSpecterEnabled;
+	public bool IsSpecterEnabled { get { return _isSpecterEnabled; } }
+
+	private void Awake()
 	{
-		ControlMode.unityChanCamera = FindObjectOfType<CameraController>().gameObject.GetComponent<Camera>();
-		ControlMode.specterCamera = FindObjectOfType<SpectorCameraController>().gameObject.GetComponent<Camera>();
-		ControlMode.CurrentMode = ControlMode.Mode.UnityChan;
+		_hanachanCore = FindObjectOfType<HanachanCore>();
+		_specterCore = FindObjectOfType<SpecterCore>();
+		_isHanachanEnabled = true;
+		_isSpecterEnabled = false;
+
+		_specterCore.MovementModule.enabled = false;
+		_specterCore.CameraControlModule.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -66,10 +35,26 @@ public class ControlModeChanger : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.U))
 		{
-			if (ControlMode.CurrentMode == ControlMode.Mode.UnityChan)
-				ControlMode.CurrentMode = ControlMode.Mode.Specter;
+			if (_isHanachanEnabled)
+			{
+				_hanachanCore.ShieldControlModule.enabled = false;
+				_hanachanCore.MovementModule.enabled = false;
+				_hanachanSideCamera.enabled = false;
+
+				_specterCore.CameraControlModule.enabled = true;
+				_specterCore.MovementModule.enabled = true;
+				_specterSideCamera.enabled = true;
+			}
 			else
-				ControlMode.CurrentMode = ControlMode.Mode.UnityChan;
+			{
+				_hanachanCore.ShieldControlModule.enabled = true;
+				_hanachanCore.MovementModule.enabled = true;
+				_hanachanSideCamera.enabled = true;
+
+				_specterCore.CameraControlModule.enabled = false;
+				_specterCore.MovementModule.enabled = false;
+				_specterSideCamera.enabled = false;
+			}
 		}
 	}
 }

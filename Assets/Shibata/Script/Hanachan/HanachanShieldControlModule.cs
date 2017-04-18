@@ -24,7 +24,7 @@ public class HanachanShieldControlModule : MonoBehaviour
 
 	private HanachanStatuses _statuses;
 	private ShoulderCameraController _shoulderCam;
-	
+
 	private void InShotReady()
 	{
 		if (Input.GetKeyDown(KeyCode.F) && !_inHoldShield && _statuses.EnergyValue >= _statuses.ShieldShotCost)
@@ -39,11 +39,10 @@ public class HanachanShieldControlModule : MonoBehaviour
 	private void InHold()
 	{
 		_inHoldShield.transform.position = transform.position + transform.forward * _generateDistance + transform.up * _generateHeight;
-		_inHoldShield.transform.rotation =
-			_shoulderCam.transform.rotation;
+		_inHoldShield.transform.rotation = Quaternion.AngleAxis(_shoulderCam.AngleH, Vector3.up);
 		_statuses.EnergyValue -= _statuses.ShieldHoldCost * Time.deltaTime;
 
-		if(Input.GetKeyUp(KeyCode.F))
+		if (Input.GetKeyUp(KeyCode.F))
 		{
 			_inHoldShieldController.CurrentMode = RadiateShieldController.Mode.Injection;
 			_inHoldShield = null;
@@ -51,7 +50,7 @@ public class HanachanShieldControlModule : MonoBehaviour
 			_inState = InShotReady;
 		}
 
-		if(_statuses.ShieldHoldCost*Time.deltaTime>_statuses.EnergyValue)
+		if (_statuses.ShieldHoldCost * Time.deltaTime > _statuses.EnergyValue)
 		{
 			Destroy(_inHoldShield);
 			_inHoldShield = null;
@@ -71,7 +70,7 @@ public class HanachanShieldControlModule : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
 		_inState();
 	}

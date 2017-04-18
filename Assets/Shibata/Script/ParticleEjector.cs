@@ -11,5 +11,8 @@ public class ParticleEjector : MonoBehaviour
 	{
 		var particle = Instantiate(_onDestroy);
 		particle.transform.position = transform.position;
+
+		var system = particle.GetComponent<ParticleSystem>();
+		Destroy(particle, system.duration);
 	}
 }

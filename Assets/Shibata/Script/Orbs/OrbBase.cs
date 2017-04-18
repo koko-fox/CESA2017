@@ -14,7 +14,7 @@ public class OrbBase : MonoBehaviour
 
 	//対象
 	protected GameObject _target;
-	protected UnityChanController _unityChanController;
+	protected HanachanCore _hanachanCore;
 
 	protected Rigidbody _rigidBody;
 	protected SphereCollider _sphereCollider;
@@ -28,8 +28,8 @@ public class OrbBase : MonoBehaviour
 	{
 		_rigidBody = GetComponent<Rigidbody>();
 		_sphereCollider = GetComponent<SphereCollider>();
-		_unityChanController = FindObjectOfType<UnityChanController>();
-		_target = _unityChanController.gameObject;
+		_hanachanCore = FindObjectOfType<HanachanCore>();
+		_target = _hanachanCore.gameObject;
 	}
 	
 	// Update is called once per frame

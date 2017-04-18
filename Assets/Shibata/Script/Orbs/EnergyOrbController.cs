@@ -13,6 +13,6 @@ public class EnergyOrbController : OrbBase
 	{
 		base.OnCollisionTarget();
 
-		_unityChanController.EnergyValue += recoveryRate/100.0f * _unityChanController.MaxEnergy;
+		_hanachanCore.Statuses.EnergyValue += recoveryRate/100.0f * _hanachanCore.Statuses.MaxEnergy;
 	}
 }

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class HanachanCore : MonoBehaviour
 {
+	private HanachanMovementModule _movementModule;
+	public HanachanMovementModule MovementModule { get { return _movementModule; } }
+
+	private HanachanShieldControlModule _shieldControlModule;
+	public HanachanShieldControlModule ShieldControlModule { get { return _shieldControlModule; } }
+
+	private HanachanStatuses _statuses;
+	public HanachanStatuses Statuses { get { return _statuses; } }
+
 	private void Awake()
 	{
-	}
-
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		_movementModule = GetComponent<HanachanMovementModule>();
+		_shieldControlModule = GetComponent<HanachanShieldControlModule>();
+		_statuses = GetComponent<HanachanStatuses>();
 	}
 }

@@ -11,6 +11,6 @@ public class ExpOrbController : OrbBase
 	protected override void OnCollisionTarget()
 	{
 		base.OnCollisionTarget();
-		_unityChanController.ExpOrbNum += amount;
+		_hanachanCore.Statuses.ExpOrbNum += amount;
 	}
 }

@@ -11,6 +11,6 @@ public class HealthOrbController : OrbBase
 
 	protected override void OnCollisionTarget()
 	{
-		_unityChanController.Health += _unityChanController.MaxHealth * (recoveryRate / 100.0f);
+		_hanachanCore.Statuses.Health += _hanachanCore.Statuses.MaxHealth * (recoveryRate / 100.0f);
 	}
 }

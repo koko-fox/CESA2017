@@ -3,65 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.ComponentModel;
 
-public delegate void OnChangeViewportManipulate();
-public delegate void OnChangeFreeCursor();
-
-public static class CursorOperationMode
-{
-	public enum Mode
-	{
-		ViewportManipulate, //視点操作モード
-		FreeCursor,     //自由カーソルモード
-	}
-
-	private static OnChangeViewportManipulate onChangeViewportManipulate;
-	/// <summary>
-	/// 視点操作モード変更時に呼び出し
-	/// </summary>
-	public static OnChangeViewportManipulate OnChangeViewportManipulate { get; set; }
-	private static OnChangeFreeCursor onChangeFreeCursor;
-	/// <summary>
-	/// 自由カーソルモード変更時に呼び出し
-	/// </summary>
-	public static OnChangeFreeCursor OnChangeFreeCursor { get; set; }
-
-	private static Mode currentMode = Mode.ViewportManipulate;
-	/// <summary>
-	/// 現在のモード
-	/// </summary>
-	public static Mode CurrentMode
-	{
-		set
-		{
-			if (value == Mode.ViewportManipulate)
-			{
-				OnChangeViewportManipulate();
-				Cursor.visible = false;
-				Cursor.lockState = CursorLockMode.Locked;
-			}
-			if (value == Mode.FreeCursor)
-			{
-				OnChangeFreeCursor();
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.None;
-			}
-			currentMode = value;
-		}
-		get
-		{
-			return currentMode;
-		}
-	}
-}
-
-
 public class CursorOperationModeChanger : MonoBehaviour
 {
+	private ControlModeChanger _controlModeChanger;
 
-	// Use this for initialization
-	void Start ()
+	private HanachanCore _hanachanCore;
+	private ShoulderCameraController _shoulderCam;
+	private SpecterCore _specterCore;
+
+	private bool _isCameraControlEnabled = true;
+	private bool _isFreeCursorEnabled = false;
+
+	private void Awake()
 	{
-		CursorOperationMode.CurrentMode = CursorOperationMode.Mode.ViewportManipulate;
+		_controlModeChanger = FindObjectOfType<ControlModeChanger>();
+		_hanachanCore = FindObjectOfType<HanachanCore>();
+		_shoulderCam = FindObjectOfType<ShoulderCameraController>();
+		_specterCore = FindObjectOfType<SpecterCore>();
+
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -69,6 +30,44 @@ public class CursorOperationModeChanger : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.LeftAlt))
 		{
+			if(_isCameraControlEnabled)
+			{
+				if (_controlModeChanger.IsHanachanEnabled)
+				{
+					_hanachanCore.MovementModule.enabled = false;
+					_hanachanCore.ShieldControlModule.enabled = false;
+					_shoulderCam.enabled = false;
+				}
+				else
+				{
+					_specterCore.MovementModule.enabled = false;
+					_specterCore.CameraControlModule.enabled = false;
+				}
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+				_isCameraControlEnabled = false;
+				_isFreeCursorEnabled = true;
+			}
+			else
+			{
+				if (_controlModeChanger.IsHanachanEnabled)
+				{
+					_hanachanCore.MovementModule.enabled = true;
+					_hanachanCore.ShieldControlModule.enabled = true;
+					_shoulderCam.enabled = true;
+				}
+				else
+				{
+					_specterCore.MovementModule.enabled = true;
+					_specterCore.CameraControlModule.enabled = true;
+				}
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+				_isCameraControlEnabled = true;
+				_isFreeCursorEnabled = false;
+			}
+
+			/*
 			if (CursorOperationMode.CurrentMode == CursorOperationMode.Mode.ViewportManipulate)
 			{
 				CursorOperationMode.CurrentMode = CursorOperationMode.Mode.FreeCursor;
@@ -77,6 +76,7 @@ public class CursorOperationModeChanger : MonoBehaviour
 			{
 				CursorOperationMode.CurrentMode = CursorOperationMode.Mode.ViewportManipulate;
 			}
+			*/
 		}
 	}
 }

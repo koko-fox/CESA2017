@@ -12,6 +12,6 @@ public class SpecialOrbController : OrbBase
 	protected override void OnCollisionTarget()
 	{
 		base.OnCollisionTarget();
-		_unityChanController.SpecialValue += recoveryRate/100.0f * _unityChanController.MaxSpecial;
+		_hanachanCore.Statuses.SpecialValue += recoveryRate/100.0f * _hanachanCore.Statuses.MaxSpecial;
 	}
 }

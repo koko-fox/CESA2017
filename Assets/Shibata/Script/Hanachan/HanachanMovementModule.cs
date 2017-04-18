@@ -23,15 +23,18 @@ public class HanachanMovementModule : MonoBehaviour
 	/// </summary>
 	private ShoulderCameraController _shoulderCam;
 
+	private Rigidbody _rigidbody;
+
 	private void Awake()
 	{
 		_animator = _modelForAnimation.GetComponent<Animator>();
 		_shoulderCam = FindObjectOfType<ShoulderCameraController>();
 		_statuses = GetComponent<HanachanStatuses>();
+		_rigidbody = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
 		Vector3 velocity = Vector3.zero;
 		bool isForward = Input.GetKey(KeyCode.W);
@@ -54,8 +57,8 @@ public class HanachanMovementModule : MonoBehaviour
 			_animator.SetBool("Forward", false);
 
 		velocity = transform.TransformDirection(velocity);
-		transform.position += velocity * Time.deltaTime;
-
+		//transform.position += velocity * Time.deltaTime;
+		_rigidbody.velocity = velocity;
 		transform.rotation = Quaternion.AngleAxis(_shoulderCam.AngleH, Vector3.up);
 	}
 }
