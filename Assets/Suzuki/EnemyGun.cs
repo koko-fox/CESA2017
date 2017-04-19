@@ -9,6 +9,12 @@ public class EnemyGun : MonoBehaviour {
   private float reloadTime = 4.0f;
   [SerializeField]
   private float coolTime = 0.0f;
+  [SerializeField]
+  private AudioSource audioSource;
+  [SerializeField]
+  private AudioClip shootSound;
+  [SerializeField]
+  private AudioClip reloadSound;
 
   private bool isFiring = false;
 
@@ -29,11 +35,13 @@ public class EnemyGun : MonoBehaviour {
       Shoot();
       yield return new WaitForSeconds(1.0f / roundPerSecond);
     }
+    AudioSource.PlayClipAtPoint(reloadSound, transform.position);
     coolTime = reloadTime;
     isFiring = false;
   }
 
   private void Shoot() {
+    audioSource.PlayOneShot(shootSound);
     RaycastHit hitinfo;
     var origin = transform.position;
     var direction = transform.forward;
@@ -49,6 +57,8 @@ public class EnemyGun : MonoBehaviour {
       var shieldLayer = LayerMask.NameToLayer("RadiateShield");
       if (otherObject.layer == shieldLayer) {
         // TODO: シールドに当たったときの処理
+        var shieldScript = otherObject.GetComponent<RadiateShieldController>();
+        shieldScript.PlayHitSound();
         Debug.Log("Hit to shield");
       }
     }

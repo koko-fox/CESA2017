@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour {
   private int[] dropRateTable;
   [SerializeField]
   private float rotationSpeed;
+  [SerializeField]
+  private AudioClip enemyKilledSound;
 
   private List<int> collisions = new List<int>();
   public Stage Stage {
@@ -150,6 +152,7 @@ public class Enemy : MonoBehaviour {
     Destroy(detectionArea);
     Destroy(firingArea);
     Destroy(gun);
+    AudioSource.PlayClipAtPoint(enemyKilledSound, transform.position);
 
     StartCoroutine("Die");
   }
