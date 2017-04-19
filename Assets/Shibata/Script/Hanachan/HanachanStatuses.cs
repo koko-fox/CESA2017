@@ -2,8 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void OnHealthChanged();
+public delegate void OnEnergyChanged();
+public delegate void OnArmorChanged();
+public delegate void OnSpecialChanged();
+public delegate void OnExpChanged();
+
 public class HanachanStatuses : MonoBehaviour
 {
+	private static void Null() { }
+
+	public OnHealthChanged OnHealthChanged = Null;
+	public OnEnergyChanged OnEnergyChanged = Null;
+	public OnArmorChanged OnArmorChanged = Null;
+	public OnSpecialChanged OnSpecialChanged = Null;
+	public OnExpChanged OnExpChanged = Null;
+
 	[Header("移動系パラメータ設定")]
 	[SerializeField]
 	[Tooltip("移動速度")]
@@ -51,19 +65,82 @@ public class HanachanStatuses : MonoBehaviour
 	private float _shieldHoldCost;
 	public float ShieldHoldCost { get { return _shieldHoldCost; } }
 
-	//現在HP
 	private float _health;
-	public float Health { get { return _health; } set { _health = Mathf.Clamp(value, 0.0f, _maxHealth); } }
-	//装甲値
+	/// <summary>
+	/// 現在ヘルス
+	/// </summary>
+	public float Health
+	{
+		get { return _health; }
+		set
+		{
+			_health = Mathf.Clamp(value, 0.0f, _maxHealth);
+			OnHealthChanged();
+		}
+	}
+
 	private float _armorValue;
-	public float ArmorValue { get { return _armorValue; } set { _armorValue = value; } }
+	/// <summary>
+	/// アーマー値
+	/// </summary>
+	public float ArmorValue
+	{
+		get { return _armorValue; }
+		set
+		{
+			_armorValue = value;
+			OnArmorChanged();
+		}
+	}
+
 	//エネルギー値
 	private float _energyValue;
-	public float EnergyValue { get { return _energyValue; } set { _energyValue = Mathf.Clamp(value, 0.0f, _maxEnergy); } }
+	/// <summary>
+	/// 現在エネルギー
+	/// </summary>
+	public float EnergyValue
+	{
+		get { return _energyValue; }
+		set
+		{
+			_energyValue = Mathf.Clamp(value, 0.0f, _maxEnergy);
+			OnEnergyChanged();
+		}
+	}
+
 	//SP値
 	private float _specialValue;
-	public float SpecialValue { get { return _specialValue; } set { _specialValue = Mathf.Clamp(value, 0.0f, _maxSpecial); } }
+	/// <summary>
+	/// 現在SP
+	/// </summary>
+	public float SpecialValue
+	{
+		get { return _specialValue; }
+		set
+		{
+			_specialValue = Mathf.Clamp(value, 0.0f, _maxSpecial);
+			OnSpecialChanged();
+		}
+	}
+
 	//取得経験値オーブの個数
 	private float _expOrbNum;
-	public float ExpOrbNum { get { return _expOrbNum; } set { _expOrbNum = value; } }
+	/// <summary>
+	/// 現在EXP
+	/// </summary>
+	public float ExpOrbNum
+	{
+		get { return _expOrbNum; }
+		set
+		{
+			_expOrbNum = value;
+			OnExpChanged();
+		}
+	}
+
+	private void Start()
+	{
+		Health = MaxHealth;
+		EnergyValue = MaxEnergy;
+	}
 }
