@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
+  public delegate void OnEnemyKilledEvent(Enemy enemy);
+  public OnEnemyKilledEvent OnKilled { get; set; }
+
   [SerializeField]
   private NavMeshAgent agent;
   [SerializeField]
@@ -47,6 +50,7 @@ public class Enemy : MonoBehaviour {
       stage = value;
     }
   }
+
   private bool isKilled = false;
 
   public
@@ -176,8 +180,8 @@ public class Enemy : MonoBehaviour {
       transform.localScale = scale;
     }
     DropItem();
-
-    stage.TrySpawnEnemy();
+    OnKilled(this);
+    //stage.TrySpawnEnemy();
     Destroy(gameObject);
   }
 

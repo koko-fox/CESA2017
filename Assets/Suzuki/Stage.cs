@@ -17,7 +17,20 @@ public class Stage : MonoBehaviour {
       var rotation = spawnPoint.transform.rotation;
       var enemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
       var enemyBehavior = enemy.GetComponent<Enemy>();
-      enemyBehavior.Stage = this;
+      enemyBehavior.OnKilled += TrySpawnEnemy2;
+    }
+  }
+
+  private void TrySpawnEnemy2(Enemy enemy) {
+    foreach (var spawnPoint in spawnPoints) {
+      if (spawnPoint.transform.childCount == 0) {
+        var position = spawnPoint.transform.position;
+        var rotation = spawnPoint.transform.rotation;
+        var newEnemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
+        var enemyBehavior = newEnemy.GetComponent<Enemy>();
+        enemyBehavior.OnKilled += TrySpawnEnemy2;
+        break;
+      }
     }
   }
 
