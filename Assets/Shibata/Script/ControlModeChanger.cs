@@ -28,6 +28,8 @@ public class ControlModeChanger : MonoBehaviour
 
 		_specterCore.MovementModule.enabled = false;
 		_specterCore.CameraControlModule.enabled = false;
+		_specterCore.ConstructorModule.enabled = false;
+		_specterSideCamera.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -43,7 +45,11 @@ public class ControlModeChanger : MonoBehaviour
 
 				_specterCore.CameraControlModule.enabled = true;
 				_specterCore.MovementModule.enabled = true;
+				_specterCore.ConstructorModule.enabled = true;
 				_specterSideCamera.enabled = true;
+
+				_isHanachanEnabled = false;
+				_isSpecterEnabled = true;
 			}
 			else
 			{
@@ -53,7 +59,11 @@ public class ControlModeChanger : MonoBehaviour
 
 				_specterCore.CameraControlModule.enabled = false;
 				_specterCore.MovementModule.enabled = false;
+				_specterCore.ConstructorModule.enabled = false;
 				_specterSideCamera.enabled = false;
+
+				_isHanachanEnabled = true;
+				_isSpecterEnabled = false;
 			}
 		}
 	}
