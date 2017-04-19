@@ -23,6 +23,10 @@ public class ControlModeChanger : MonoBehaviour
 	{
 		_hanachanCore = FindObjectOfType<HanachanCore>();
 		_specterCore = FindObjectOfType<SpecterCore>();
+	}
+
+	private void Start()
+	{
 		_isHanachanEnabled = true;
 		_isSpecterEnabled = false;
 
@@ -31,7 +35,7 @@ public class ControlModeChanger : MonoBehaviour
 		_specterCore.ConstructorModule.enabled = false;
 		_specterSideCamera.enabled = false;
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
