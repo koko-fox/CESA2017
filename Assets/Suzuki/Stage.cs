@@ -7,14 +7,32 @@ public class Stage : MonoBehaviour {
   private GameObject enemyPrefab;
   [SerializeField]
   private float spawnWait;
+  [SerializeField]
+  private GameObject[] spawnPoints;
 
   private void Start() {
-    TrySpawnEnemy();
-    TrySpawnEnemy();
-    TrySpawnEnemy();
+    for (int i = 0; i < 10; ++i) {
+      var spawnPoint = spawnPoints[i];
+      var position = spawnPoint.transform.position;
+      var rotation = spawnPoint.transform.rotation;
+      var enemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
+      var enemyBehavior = enemy.GetComponent<Enemy>();
+      enemyBehavior.Stage = this;
+    }
   }
+
   public void TrySpawnEnemy() {
-    StartCoroutine("Spawn");
+    foreach (var spawnPoint in spawnPoints) {
+      if (spawnPoint.transform.childCount == 0) {
+        var position = spawnPoint.transform.position;
+        var rotation = spawnPoint.transform.rotation;
+        var enemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
+        var enemyBehavior = enemy.GetComponent<Enemy>();
+        enemyBehavior.Stage = this;
+        break;
+      }
+    }
+    //StartCoroutine("Spawn");
   }
 
   private IEnumerator Spawn() {

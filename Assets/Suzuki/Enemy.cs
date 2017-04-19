@@ -25,11 +25,9 @@ public class Enemy : MonoBehaviour {
   [SerializeField]
   private float fieldOfFire;
   [SerializeField]
-  private int health;
+  private float health;
   [SerializeField]
   private int firePower;
-  [SerializeField]
-  private int defence;
   [SerializeField]
   private GameObject[] dropItemPrefab;
   [SerializeField]
