@@ -7,13 +7,9 @@ public class Sensor : MonoBehaviour {
   public delegate void OnSensorStayEvent(Collider other);
   public delegate void OnSensorExitEvent(Collider other);
 
-  private event OnSensorEnterEvent onSensorEnter = delegate { };
-  private event OnSensorStayEvent onSensorStay = delegate { };
-  private event OnSensorExitEvent onSensorExit = delegate { };
-
-  public event OnSensorEnterEvent OnSensorEnter;
-  public event OnSensorExitEvent OnSensorExit;
-  public event OnSensorStayEvent OnSensorStay;
+  public event OnSensorEnterEvent onSensorEnter = delegate { };
+  public event OnSensorStayEvent onSensorStay = delegate { };
+  public event OnSensorExitEvent onSensorExit = delegate { };
 
   private void OnTriggerEnter(Collider other) {
     onSensorEnter(other);
