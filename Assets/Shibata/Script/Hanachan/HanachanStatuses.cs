@@ -1,22 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public delegate void OnHealthChanged();
-public delegate void OnEnergyChanged();
-public delegate void OnArmorChanged();
-public delegate void OnSpecialChanged();
-public delegate void OnExpChanged();
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class HanachanStatuses : MonoBehaviour
 {
-	private static void Null() { }
+	public delegate void OnValueChanged();
 
-	public OnHealthChanged OnHealthChanged = Null;
-	public OnEnergyChanged OnEnergyChanged = Null;
-	public OnArmorChanged OnArmorChanged = Null;
-	public OnSpecialChanged OnSpecialChanged = Null;
-	public OnExpChanged OnExpChanged = Null;
+	public event OnValueChanged OnHealthChanged = delegate { };
+	public event OnValueChanged OnEnergyChanged = delegate { };
+	public event OnValueChanged OnArmorChanged = delegate { };
+	public event OnValueChanged OnSpecialChanged = delegate { };
+	public event OnValueChanged OnExpChanged = delegate { };
 
 	[Header("移動系パラメータ設定")]
 	[SerializeField]
@@ -143,4 +140,33 @@ public class HanachanStatuses : MonoBehaviour
 		Health = MaxHealth;
 		EnergyValue = MaxEnergy;
 	}
+
+
+#if UNITY_EDITOR
+
+	[CustomEditor(typeof(HanachanStatuses))]
+	public class HanachanStatusesEditor : Editor
+	{
+		public override void OnInspectorGUI()
+		{
+			HanachanStatuses status = target as HanachanStatuses;
+
+			status._forwardSpeed = EditorGUILayout.FloatField("前進速度", status._forwardSpeed);
+			status._sideWalkSpeed = EditorGUILayout.FloatField("横歩き速度", status._sideWalkSpeed);
+			status._backSpeed = EditorGUILayout.FloatField("後退速度", status._backSpeed);
+
+			EditorGUILayout.Space();
+
+			status._maxHealth = EditorGUILayout.FloatField("最大ヘルス", status._maxHealth);
+			status._maxEnergy = EditorGUILayout.FloatField("最大エネルギー", status._maxEnergy);
+
+			EditorGUILayout.Space();
+
+			status._energyRegenRate = EditorGUILayout.FloatField("EN自然回復量(X/秒)", status._energyRegenRate);
+			status._shieldShotCost = EditorGUILayout.FloatField("シールド発射時の消費EN", status._shieldShotCost);
+			status._shieldHoldCost = EditorGUILayout.FloatField("シールド保持時の消費EN(X/秒)", status._shieldHoldCost);
+		}
+	}
+
+#endif
 }

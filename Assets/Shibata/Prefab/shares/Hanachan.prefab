@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1072482698270484
 GameObject:
   m_ObjectHideFlags: 1
@@ -532,7 +532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1092763893148934
 GameObject:
   m_ObjectHideFlags: 1
@@ -670,7 +670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1114073274653218
 GameObject:
   m_ObjectHideFlags: 1
@@ -826,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1140673288915862
 GameObject:
   m_ObjectHideFlags: 1
@@ -2165,6 +2165,7 @@ GameObject:
   - component: {fileID: 114528641308948838}
   - component: {fileID: 114497854654400904}
   - component: {fileID: 114695427925146174}
+  - component: {fileID: 114330567112909594}
   m_Layer: 10
   m_Name: Hanachan
   m_TagString: Untagged
@@ -2771,7 +2772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1482104971410886
 GameObject:
   m_ObjectHideFlags: 1
@@ -2892,7 +2893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1514974547590054
 GameObject:
   m_ObjectHideFlags: 1
@@ -5211,7 +5212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1984393064524800
 GameObject:
   m_ObjectHideFlags: 1
@@ -5652,7 +5653,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1132796748377644}
-  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.060806733}
+  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.06080673}
   m_LocalPosition: {x: -0.05543403, y: 0.0017306843, z: 0.098653734}
   m_LocalScale: {x: 1.0000004, y: 1.0000006, z: 1.0000005}
   m_Children:
@@ -7834,7 +7835,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221943077842174}
-  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.06080674}
+  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.060806736}
   m_LocalPosition: {x: -0.05543403, y: 0.0017306843, z: 0.098653734}
   m_LocalScale: {x: 1.0000004, y: 1.0000006, z: 1.0000005}
   m_Children:
@@ -11503,12 +11504,25 @@ MonoBehaviour:
   _forwardSpeed: 3
   _backSpeed: 1.5
   _sideWalkSpeed: 1.5
-  _maxHealth: 0
-  _maxEnergy: 0
-  _maxSpecial: 0
-  _energyRegenRate: 0
-  _shieldShotCost: 0
-  _shieldHoldCost: 0
+  _maxHealth: 100
+  _maxEnergy: 100
+  _maxSpecial: 100
+  _energyRegenRate: 4
+  _shieldShotCost: 25
+  _shieldHoldCost: 3
+--- !u!114 &114330567112909594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370407405627618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b89e69d5f93d164ea96669f9f527919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthGuageController: {fileID: 0}
+  _energyGuageController: {fileID: 0}
 --- !u!114 &114497854654400904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11535,7 +11549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdbc01aef7cd1f4788b6f096e97cf88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _modelForAnimation: {fileID: 1072163714008890}
+  _modelForAnimation: {fileID: 1513017874235272}
 --- !u!114 &114695427925146174
 MonoBehaviour:
   m_ObjectHideFlags: 1
