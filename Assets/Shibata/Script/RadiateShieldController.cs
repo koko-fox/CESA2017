@@ -36,6 +36,14 @@ public class RadiateShieldController : MonoBehaviour
 	private AudioClip _hitSound;
 	private AudioSource _audioSource;
 
+	[SerializeField]
+	private float _attackPower;
+	public float AttackPower
+	{
+		get { return _attackPower; }
+		set { _attackPower = value; }
+	}
+
 	//経過時間
 	private float _elapsedTime = 0.0f;
 	//剛体

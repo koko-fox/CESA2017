@@ -5,6 +5,12 @@ using UnityEngine;
 public class HanachanShieldControlModule : MonoBehaviour
 {
 	[SerializeField]
+	private float _shotCost;
+
+	[SerializeField]
+	private float _holdCost;
+
+	[SerializeField]
 	[Header("複製用シールドprefab")]
 	private GameObject _shieldPrefab;
 
@@ -16,22 +22,30 @@ public class HanachanShieldControlModule : MonoBehaviour
 	[Header("生成高さ")]
 	private float _generateHeight = 1.0f;
 
+	[SerializeField]
+	private float _attackPower;
+
+	public bool IsHold { get { return _inHoldShield; } }
+
 	private GameObject _inHoldShield = null;
 	private RadiateShieldController _inHoldShieldController;
 
 	private delegate void ControlState();
 	private ControlState _inState;
 
+	private HanachanCore _core;
+	private HanachanMovementModule _movementMod;
 	private HanachanStatuses _statuses;
 	private ShoulderCameraController _shoulderCam;
 
 	private void InShotReady()
 	{
-		if (Input.GetKeyDown(KeyCode.F) && !_inHoldShield && _statuses.EnergyValue >= _statuses.ShieldShotCost)
+		if (Input.GetKeyDown(KeyCode.F) && !_inHoldShield && _core.Energy >= _shotCost && !_movementMod.IsInDash)
 		{
 			_inHoldShield = Instantiate(_shieldPrefab);
 			_inHoldShieldController = _inHoldShield.GetComponent<RadiateShieldController>();
 			_inHoldShieldController.CurrentMode = RadiateShieldController.Mode.Retension;
+			_inHoldShieldController.AttackPower = _attackPower;
 			_inState = InHold;
 		}
 	}
@@ -40,17 +54,17 @@ public class HanachanShieldControlModule : MonoBehaviour
 	{
 		_inHoldShield.transform.position = transform.position + transform.forward * _generateDistance + transform.up * _generateHeight;
 		_inHoldShield.transform.rotation = Quaternion.AngleAxis(_shoulderCam.AngleH, Vector3.up);
-		_statuses.EnergyValue -= _statuses.ShieldHoldCost * Time.deltaTime;
+		_core.Energy -= _holdCost * Time.deltaTime;
 
 		if (Input.GetKeyUp(KeyCode.F))
 		{
 			_inHoldShieldController.CurrentMode = RadiateShieldController.Mode.Injection;
 			_inHoldShield = null;
-			_statuses.EnergyValue -= _statuses.ShieldShotCost;
+			_core.Energy -= _shotCost;
 			_inState = InShotReady;
 		}
 
-		if (_statuses.ShieldHoldCost * Time.deltaTime > _statuses.EnergyValue)
+		if (_holdCost * Time.deltaTime > _core.Energy)
 		{
 			Destroy(_inHoldShield);
 			_inHoldShield = null;
@@ -60,6 +74,8 @@ public class HanachanShieldControlModule : MonoBehaviour
 
 	private void Awake()
 	{
+		_core = GetComponent<HanachanCore>();
+		_movementMod = GetComponent<HanachanMovementModule>();
 		_statuses = GetComponent<HanachanStatuses>();
 		_shoulderCam = FindObjectOfType<ShoulderCameraController>();
 	}

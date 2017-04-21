@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HanachanUILinkModule : MonoBehaviour
 {
-	private HanachanStatuses _statuses;
+	private HanachanCore _core;
 
 	[SerializeField]
 	[Header("ヘルスゲージ操作スクリプト")]
@@ -16,9 +16,9 @@ public class HanachanUILinkModule : MonoBehaviour
 
 	private void Awake()
 	{
-		_statuses = GetComponent<HanachanStatuses>();
+		_core = GetComponent<HanachanCore>();
 
-		_statuses.OnHealthChanged += () => { _healthGuageController.Rate = _statuses.Health / _statuses.MaxHealth; };
-		_statuses.OnEnergyChanged += () => { _energyGuageController.Rate = _statuses.EnergyValue / _statuses.MaxEnergy; };
+		_core.OnHealthChanged += () => { _healthGuageController.Rate = _core.Health / _core.MaxHealth; };
+		_core.OnEnergyChanged += () => { _energyGuageController.Rate = _core.Energy / _core.MaxEnergy; };
 	}
 }
