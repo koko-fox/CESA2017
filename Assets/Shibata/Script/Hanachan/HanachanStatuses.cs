@@ -153,40 +153,15 @@ public class HanachanStatuses : MonoBehaviour
 	{
 		public override void OnInspectorGUI()
 		{
-			/*
-			HanachanStatuses status = target as HanachanStatuses;
-
-			status._forwardSpeed = EditorGUILayout.FloatField("前進速度", status._forwardSpeed);
-			status._sideWalkSpeed = EditorGUILayout.FloatField("横歩き速度", status._sideWalkSpeed);
-			status._backSpeed = EditorGUILayout.FloatField("後退速度", status._backSpeed);
-			status._speedMagByDash = EditorGUILayout.FloatField("ダッシュ速度倍率", status._speedMagByDash);
-
-			EditorGUILayout.Space();
-
-			status._maxHealth = EditorGUILayout.FloatField("最大ヘルス", status._maxHealth);
-			status._maxEnergy = EditorGUILayout.FloatField("最大エネルギー", status._maxEnergy);
-
-			EditorGUILayout.Space();
-
-			status._energyRegenRate = EditorGUILayout.FloatField("EN自然回復量(X/秒)", status._energyRegenRate);
-			status._shieldShotCost = EditorGUILayout.FloatField("シールド発射時の消費EN", status._shieldShotCost);
-			status._shieldHoldCost = EditorGUILayout.FloatField("シールド保持時の消費EN(X/秒)", status._shieldHoldCost);
-			*/
-
 			HanachanStatuses stat = target as HanachanStatuses;
 
 			var forwardSpeed = EditorGUILayout.FloatField("前進速度", stat._forwardSpeed);
-			var sideWalkSpeed = EditorGUILayout.FloatField("横歩き速度",
-				stat._sideWalkSpeed);
-			var backSpeed = EditorGUILayout.FloatField("後退速度",
-				stat._backSpeed);
-			var speedMagByDash = EditorGUILayout.FloatField("ダッシュ倍率",
-				stat._speedMagByDash);
+			var sideWalkSpeed = EditorGUILayout.FloatField("横歩き速度", stat._sideWalkSpeed);
+			var backSpeed = EditorGUILayout.FloatField("後退速度", stat._backSpeed);
+			var speedMagByDash = EditorGUILayout.FloatField("ダッシュ倍率", stat._speedMagByDash);
 
-			var maxHealth = EditorGUILayout.FloatField("最大ヘルス",
-				stat._maxHealth);
-			var maxEnergy = EditorGUILayout.FloatField("最大エネルギー",
-				stat._maxEnergy);
+			var maxHealth = EditorGUILayout.FloatField("最大ヘルス", stat._maxHealth);
+			var maxEnergy = EditorGUILayout.FloatField("最大エネルギー", stat._maxEnergy);
 
 			var energyRegenRate = EditorGUILayout.FloatField("EN自然回復量(X/秒)", stat._energyRegenRate);
 			var shieldShotCost = EditorGUILayout.FloatField("シールド発射消費EN", stat._shieldShotCost);

@@ -8,6 +8,9 @@ public class HanachanMovementModule : MonoBehaviour
 	[Header("アニメーション用のモデル")]
 	private GameObject _modelForAnimation;
 
+	[SerializeField]
+	private float _runSpeed;
+
 	/// <summary>
 	/// Hanachanステータス定義モジュール
 	/// </summary>
