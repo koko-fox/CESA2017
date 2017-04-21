@@ -18,18 +18,22 @@ public class HanachanStatuses : MonoBehaviour
 	[Header("移動系パラメータ設定")]
 	[SerializeField]
 	[Tooltip("移動速度")]
-	private float _forwardSpeed = 3.0f;
+	private float _forwardSpeed;
 	public float ForwardSpeed { get { return _forwardSpeed; } }
 
 	[SerializeField]
 	[Tooltip("後退速度")]
-	private float _backSpeed = 1.5f;
+	private float _backSpeed;
 	public float BackSpeed { get { return _backSpeed; } }
 
 	[SerializeField]
 	[Tooltip("横歩き速度")]
-	private float _sideWalkSpeed = 1.5f;
+	private float _sideWalkSpeed;
 	public float SideWalkSpeed { get { return _sideWalkSpeed; } }
+
+	[SerializeField]
+	private float _speedMagByDash;
+	public float SpeedMagByDash { get { return _speedMagByDash; } }
 
 	[Header("ステータス系パラメータ設定")]
 	[SerializeField]
@@ -149,11 +153,13 @@ public class HanachanStatuses : MonoBehaviour
 	{
 		public override void OnInspectorGUI()
 		{
+			/*
 			HanachanStatuses status = target as HanachanStatuses;
 
 			status._forwardSpeed = EditorGUILayout.FloatField("前進速度", status._forwardSpeed);
 			status._sideWalkSpeed = EditorGUILayout.FloatField("横歩き速度", status._sideWalkSpeed);
 			status._backSpeed = EditorGUILayout.FloatField("後退速度", status._backSpeed);
+			status._speedMagByDash = EditorGUILayout.FloatField("ダッシュ速度倍率", status._speedMagByDash);
 
 			EditorGUILayout.Space();
 
@@ -165,6 +171,40 @@ public class HanachanStatuses : MonoBehaviour
 			status._energyRegenRate = EditorGUILayout.FloatField("EN自然回復量(X/秒)", status._energyRegenRate);
 			status._shieldShotCost = EditorGUILayout.FloatField("シールド発射時の消費EN", status._shieldShotCost);
 			status._shieldHoldCost = EditorGUILayout.FloatField("シールド保持時の消費EN(X/秒)", status._shieldHoldCost);
+			*/
+
+			HanachanStatuses stat = target as HanachanStatuses;
+
+			var forwardSpeed = EditorGUILayout.FloatField("前進速度", stat._forwardSpeed);
+			var sideWalkSpeed = EditorGUILayout.FloatField("横歩き速度",
+				stat._sideWalkSpeed);
+			var backSpeed = EditorGUILayout.FloatField("後退速度",
+				stat._backSpeed);
+			var speedMagByDash = EditorGUILayout.FloatField("ダッシュ倍率",
+				stat._speedMagByDash);
+
+			var maxHealth = EditorGUILayout.FloatField("最大ヘルス",
+				stat._maxHealth);
+			var maxEnergy = EditorGUILayout.FloatField("最大エネルギー",
+				stat._maxEnergy);
+
+			var energyRegenRate = EditorGUILayout.FloatField("EN自然回復量(X/秒)", stat._energyRegenRate);
+			var shieldShotCost = EditorGUILayout.FloatField("シールド発射消費EN", stat._shieldShotCost);
+			var shieldHoldCost = EditorGUILayout.FloatField("シールド保持時消費EN", stat._shieldHoldCost);
+
+			Undo.RecordObject(stat, "HanachanStatuses Changed");
+
+			stat._forwardSpeed = forwardSpeed;
+			stat._sideWalkSpeed = sideWalkSpeed;
+			stat._backSpeed = backSpeed;
+			stat._speedMagByDash = speedMagByDash;
+			stat._maxHealth = maxHealth;
+			stat._maxEnergy = maxEnergy;
+			stat._energyRegenRate = energyRegenRate;
+			stat._shieldShotCost = shieldShotCost;
+			stat._shieldHoldCost = shieldHoldCost;
+
+			EditorUtility.SetDirty(stat);
 		}
 	}
 

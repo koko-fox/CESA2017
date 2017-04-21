@@ -41,6 +41,7 @@ public class HanachanMovementModule : MonoBehaviour
 		bool isLeft = Input.GetKey(KeyCode.A);
 		bool isRight = Input.GetKey(KeyCode.D);
 		bool isBack = Input.GetKey(KeyCode.S);
+		bool isDash = Input.GetKey(KeyCode.LeftShift);
 
 		if (isForward && !isBack)
 			velocity.z += _statuses.ForwardSpeed;
@@ -51,10 +52,18 @@ public class HanachanMovementModule : MonoBehaviour
 		if (isBack && !isForward)
 			velocity.z += -_statuses.BackSpeed;
 
+		if (isDash)
+			velocity *= _statuses.SpeedMagByDash;
+
 		if (isForward || isLeft || isRight || isBack)
 			_animator.SetBool("Forward", true);
 		else
 			_animator.SetBool("Forward", false);
+
+		if (isDash)
+			_animator.SetBool("Dash", true);
+		else
+			_animator.SetBool("Dash", false);
 
 		velocity = transform.TransformDirection(velocity);
 		//transform.position += velocity * Time.deltaTime;

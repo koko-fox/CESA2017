@@ -131,7 +131,7 @@ public class UIGuageController : MonoBehaviour
 	{
 		public override void OnInspectorGUI()
 		{
-			DrawDefaultInspector();
+			//DrawDefaultInspector();
 
 			UIGuageController cont = target as UIGuageController;
 
@@ -140,6 +140,7 @@ public class UIGuageController : MonoBehaviour
 			var backColor = EditorGUILayout.ColorField("バックカラー", cont.BackColor);
 
 			Undo.RecordObject(cont, "UIGuageController Changed");
+
 			cont.Length = length;
 			cont.FrontColor = frontColor;
 			cont.BackColor = backColor;
