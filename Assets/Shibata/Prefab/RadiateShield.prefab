@@ -216,4 +216,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementForce: 100
   _lifeTime: 3
-  _hitSound: {fileID: 0}
+  _hitSound: {fileID: 8300000, guid: 4d7cc6a5fcbb1754a94fbd1fcb54d825, type: 3}

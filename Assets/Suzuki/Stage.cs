@@ -41,7 +41,6 @@ public class Stage : MonoBehaviour {
         var rotation = spawnPoint.transform.rotation;
         var enemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
         var enemyBehavior = enemy.GetComponent<Enemy>();
-        enemyBehavior.Stage = this;
         break;
       }
     }
@@ -56,7 +55,6 @@ public class Stage : MonoBehaviour {
     var rotation = transform.rotation;
     var newEnemy = Instantiate(enemyPrefab, position, rotation) as GameObject;
     var enemyScript = newEnemy.GetComponent<Enemy>();
-    enemyScript.Stage = this;
   }
 
 }

@@ -13,8 +13,6 @@ public class Enemy : MonoBehaviour {
   [SerializeField]
   private GameObject target;
   [SerializeField]
-  private Stage stage;
-  [SerializeField]
   private Sensor detectionArea;
   [SerializeField]
   private Sensor firingArea;
@@ -41,15 +39,6 @@ public class Enemy : MonoBehaviour {
   private AudioClip enemyKilledSound;
 
   private List<int> collisions = new List<int>();
-  public Stage Stage {
-    get {
-      return stage;
-    }
-
-    set {
-      stage = value;
-    }
-  }
 
   private bool isKilled = false;
 
@@ -65,11 +54,11 @@ public class Enemy : MonoBehaviour {
   Mode mode = Mode.Idle;
 
   private void Start() {
-    detectionArea.OnSensorEnter = OnTriggerEnterDetectionArea;
-    detectionArea.OnSensorExit = OnTriggerExitDetectionArea;
-    firingArea.OnSensorEnter = OnTriggerEnterFiringArea;
-    firingArea.OnSensorExit = OnTriggerExitFiringArea;
-    firingArea.OnSensorStay = OnTriggerStayFiringArea;
+    detectionArea.onSensorEnter += OnTriggerEnterDetectionArea;
+    detectionArea.onSensorExit += OnTriggerExitDetectionArea;
+    firingArea.onSensorEnter += OnTriggerEnterFiringArea;
+    firingArea.onSensorExit += OnTriggerExitFiringArea;
+    firingArea.onSensorStay += OnTriggerStayFiringArea;
   }
 
   private void Update() {
