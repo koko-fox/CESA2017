@@ -18,6 +18,12 @@ public class EnemyGun : MonoBehaviour {
 
   private bool isFiring = false;
 
+  public bool CanFire() {
+    if (isFiring) return false;
+    if (coolTime > 0.0f) return false;
+    return true;
+  }
+
   public void Fire() {
     if (isFiring) return;
     if (coolTime < 0.0f) {

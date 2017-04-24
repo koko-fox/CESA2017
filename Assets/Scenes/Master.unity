@@ -89,7 +89,7 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
-    accuratePlacement: 0
+    accuratePlacement: 1
   m_NavMeshData: {fileID: 23800000, guid: 16268170c714a7f4c951497aea740b63, type: 2}
 --- !u!1 &25667120
 GameObject:
@@ -418,7 +418,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a3384ef3e2313034f9016ad8a1f3999f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -515,7 +515,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a3384ef3e2313034f9016ad8a1f3999f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -752,7 +752,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a3384ef3e2313034f9016ad8a1f3999f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -948,6 +948,21 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1754181579}
+    - target: {fileID: 114802878949996030, guid: 332d0696249d5a44783197eb684b8c7e,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114802878949996030, guid: 332d0696249d5a44783197eb684b8c7e,
+        type: 2}
+      propertyPath: m_ReferenceResolution.x
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 114802878949996030, guid: 332d0696249d5a44783197eb684b8c7e,
+        type: 2}
+      propertyPath: m_ReferenceResolution.y
+      value: 768
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 332d0696249d5a44783197eb684b8c7e, type: 2}
   m_IsPrefabParent: 0
@@ -1023,7 +1038,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a3384ef3e2313034f9016ad8a1f3999f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1197,6 +1212,26 @@ Prefab:
       propertyPath: _energyGuageController
       value: 
       objectReference: {fileID: 1158363368}
+    - target: {fileID: 114273700351136556, guid: b20949799e2857540900cd96166a4b31,
+        type: 2}
+      propertyPath: _speedMagByDash
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114273700351136556, guid: b20949799e2857540900cd96166a4b31,
+        type: 2}
+      propertyPath: _shieldShotCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114273700351136556, guid: b20949799e2857540900cd96166a4b31,
+        type: 2}
+      propertyPath: _energyRegenRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114273700351136556, guid: b20949799e2857540900cd96166a4b31,
+        type: 2}
+      propertyPath: _shieldHoldCost
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b20949799e2857540900cd96166a4b31, type: 2}
   m_IsPrefabParent: 0
@@ -1453,7 +1488,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a3384ef3e2313034f9016ad8a1f3999f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

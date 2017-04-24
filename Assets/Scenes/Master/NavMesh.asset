@@ -157,6 +157,22 @@ NavMeshData:
     walkableRadius: 0.5
     walkableClimb: 0.4166667
     cellSize: 0.16666667
-  m_Heightmaps: []
-  m_HeightMeshes: []
+  m_Heightmaps:
+  - position: {x: -250, y: 0, z: -250}
+    terrainData: {fileID: 15600000, guid: 4cccd4f9103808e4cb6768013beb5685, type: 2}
+  m_HeightMeshes:
+  - m_Vertices:
+    - {x: 13.607365, y: 5.667095, z: 25.058834}
+    - {x: 13.607365, y: 5.667095, z: 12.941165}
+    - {x: -0.40736485, y: 5.667095, z: 12.941165}
+    - {x: -0.40736485, y: 5.667095, z: 25.058834}
+    m_Indices: 000000000100000002000000000000000200000003000000
+    m_Bounds:
+      m_Center: {x: 6.6, y: 5.667095, z: 19}
+      m_Extent: {x: 7.0073647, y: 0, z: 6.0588346}
+    m_Nodes:
+    - min: {x: -0.40736485, y: 5.667095, z: 12.941165}
+      max: {x: 13.607365, y: 5.667095, z: 25.058834}
+      i: 0
+      n: 2
   m_OffMeshLinks: []
