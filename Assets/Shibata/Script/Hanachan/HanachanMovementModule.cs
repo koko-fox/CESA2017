@@ -110,7 +110,7 @@ public class HanachanMovementModule : MonoBehaviour
 		_rigidbody.velocity = velocity;
 
 		if (isForward || isLeft || isRight || isBack||_shieldControlMod.IsHold)
-			transform.DORotateQuaternion(Quaternion.AngleAxis(_shoulderCam.AngleH, Vector3.up),1.5f);
+			transform.DORotateQuaternion(Quaternion.AngleAxis(_shoulderCam.AngleH, Vector3.up),0.2f);
 	}
 
 #if UNITY_EDITOR
@@ -121,6 +121,8 @@ public class HanachanMovementModule : MonoBehaviour
 		public override void OnInspectorGUI()
 		{
 			HanachanMovementModule param = target as HanachanMovementModule;
+
+			var model = EditorGUILayout.ObjectField("3Dモデル", param._modelForAnimation, typeof(GameObject), true) as GameObject;
 
 			var baseSpeed = EditorGUILayout.FloatField("ベース速度", param._baseSpeed);
 			var sideWalkMul = EditorGUILayout.FloatField("横歩き速度倍率", param._sideWalkMultiplier);
@@ -135,6 +137,8 @@ public class HanachanMovementModule : MonoBehaviour
 			var switchDashKey = (KeyCode)EditorGUILayout.EnumPopup("ダッシュキー", param._switchDashKey);
 
 			Undo.RecordObject(param, "HanachanMovementModuleEditor Changed");
+
+			param._modelForAnimation = model;
 
 			param._baseSpeed = baseSpeed;
 			param._sideWalkMultiplier = sideWalkMul;

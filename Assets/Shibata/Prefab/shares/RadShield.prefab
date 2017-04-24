@@ -22,12 +22,13 @@ GameObject:
   - component: {fileID: 33586475378900758}
   - component: {fileID: 65883288530307774}
   - component: {fileID: 23992124766676106}
-  - component: {fileID: 114924365127822866}
   - component: {fileID: 54194067907298406}
-  - component: {fileID: 114162419004788806}
   - component: {fileID: 82533602654857002}
+  - component: {fileID: 114262140017754144}
+  - component: {fileID: 114602863598885626}
+  - component: {fileID: 114785782737142464}
   m_Layer: 8
-  m_Name: RadiateShield
+  m_Name: RadShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +192,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114162419004788806
+--- !u!114 &114262140017754144
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -199,11 +200,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1886929234999552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a378253cc19932244bdf0c0820a6a2d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 83a23936b2ab8bd49928a1ac3f9b1456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onDestroy: {fileID: 1511875308946920, guid: 044770efb48e31b449cb60746c05e253, type: 2}
---- !u!114 &114924365127822866
+  _baseAttackPower: 10
+  _endurance: 20
+  _hitSound: {fileID: 0}
+--- !u!114 &114602863598885626
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -211,9 +214,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1886929234999552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf1d777c54441b4fa1237fa129db7ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 80dc85daeefbe1e418d307975a8c3569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementForce: 100
+  _force: 10
+--- !u!114 &114785782737142464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886929234999552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4912f82ffa9234ab16d3a057ceb21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _lifeTime: 3
-  _hitSound: {fileID: 8300000, guid: 4d7cc6a5fcbb1754a94fbd1fcb54d825, type: 3}

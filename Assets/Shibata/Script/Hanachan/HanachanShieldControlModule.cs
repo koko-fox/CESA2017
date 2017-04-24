@@ -22,13 +22,10 @@ public class HanachanShieldControlModule : MonoBehaviour
 	[Header("生成高さ")]
 	private float _generateHeight = 1.0f;
 
-	[SerializeField]
-	private float _attackPower;
-
 	public bool IsHold { get { return _inHoldShield; } }
 
 	private GameObject _inHoldShield = null;
-	private RadiateShieldController _inHoldShieldController;
+	private RadShieldMovementSystem _shieldMovementSystem;
 
 	private delegate void ControlState();
 	private ControlState _inState;
@@ -43,9 +40,8 @@ public class HanachanShieldControlModule : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.F) && !_inHoldShield && _core.Energy >= _shotCost && !_movementMod.IsInDash)
 		{
 			_inHoldShield = Instantiate(_shieldPrefab);
-			_inHoldShieldController = _inHoldShield.GetComponent<RadiateShieldController>();
-			_inHoldShieldController.CurrentMode = RadiateShieldController.Mode.Retension;
-			_inHoldShieldController.AttackPower = _attackPower;
+			_shieldMovementSystem = _inHoldShield.GetComponent<RadShieldMovementSystem>();
+			_shieldMovementSystem.MoveEnabled = false;
 			_inState = InHold;
 		}
 	}
@@ -58,7 +54,7 @@ public class HanachanShieldControlModule : MonoBehaviour
 
 		if (Input.GetKeyUp(KeyCode.F))
 		{
-			_inHoldShieldController.CurrentMode = RadiateShieldController.Mode.Injection;
+			_shieldMovementSystem.MoveEnabled = true;
 			_inHoldShield = null;
 			_core.Energy -= _shotCost;
 			_inState = InShotReady;
