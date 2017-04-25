@@ -9,7 +9,7 @@ public class RadShieldCore : MonoBehaviour
 	[SerializeField]
 	private float _baseAttackPower;
 	private float _realAttackPower;
-	public event OnCalc OnCalcAttackPower;
+	public event OnCalc OnCalcAttackPower = delegate { return 1; };
 	public float AttackPower
 	{
 		get
