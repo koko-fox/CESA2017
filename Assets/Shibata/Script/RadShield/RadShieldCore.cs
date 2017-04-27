@@ -27,6 +27,9 @@ public class RadShieldCore : MonoBehaviour
 	private AudioClip _hitSound;
 	private AudioSource _audioSource;
 
+	[SerializeField]
+	private GameObject _hitParticle;
+
 	/// <summary>
 	/// ヒットサウンド用オーディオソースを再生する
 	/// </summary>
@@ -35,9 +38,28 @@ public class RadShieldCore : MonoBehaviour
 		AudioSource.PlayClipAtPoint(_hitSound, transform.position);
 	}
 
+
+	/// <summary>
+	/// 弾が当たったことを通知
+	/// </summary>
+	/// <param name="hitPos">衝突した位置</param>
+	public void NoticeHitBullet(Vector3 hitPos)
+	{
+		AudioSource.PlayClipAtPoint(_hitSound, transform.position);
+
+		var particle = Instantiate(_hitParticle);
+		particle.transform.position = hitPos;
+		particle.transform.rotation = Quaternion.LookRotation(transform.forward);
+	}
+
 	private void Awake()
 	{
 		_audioSource = gameObject.GetComponent<AudioSource>();
 		_audioSource.clip = _hitSound;
+	}
+
+	private void FixedUpdate()
+	{
+		DebugTextWriter.Write("atk:"+AttackPower.ToString());
 	}
 }

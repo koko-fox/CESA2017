@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114262140017754144}
   - component: {fileID: 114602863598885626}
   - component: {fileID: 114785782737142464}
+  - component: {fileID: 114454996813684042}
   m_Layer: 8
   m_Name: RadShield
   m_TagString: Untagged
@@ -54,8 +55,8 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1886929234999552}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -97,7 +98,7 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!65 &65883288530307774
@@ -205,7 +206,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseAttackPower: 10
   _endurance: 20
-  _hitSound: {fileID: 0}
+  _hitSound: {fileID: 8300000, guid: 4d7cc6a5fcbb1754a94fbd1fcb54d825, type: 3}
+  _hitParticle: {fileID: 1644001473580206, guid: 2bfb8c44ee5f3a54181b1b5bf3ebbd3b,
+    type: 2}
+--- !u!114 &114454996813684042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886929234999552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b21439615cfa742b9188f537f7c8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chargeTimeByLevel:
+  - 1
+  - 2
+  - 3
+  _materialByLevel:
+  - {fileID: 2100000, guid: 741318af394797b46babae400e3bd5f1, type: 2}
+  - {fileID: 2100000, guid: e6906a0017581b540b1b7dfc410b99fc, type: 2}
+  - {fileID: 2100000, guid: 778971c654881ec44b3f1e8b5d94a834, type: 2}
+  _powerMultiplierByLevel:
+  - 1
+  - 2
+  - 3
+  _scaleByLevel:
+  - 1
+  - 1.5
+  - 3
+  _lifeTimeMultiplierByLevel:
+  - 0
+  - 0
+  - 0
 --- !u!114 &114602863598885626
 MonoBehaviour:
   m_ObjectHideFlags: 1

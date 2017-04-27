@@ -5653,7 +5653,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1132796748377644}
-  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.06080673}
+  m_LocalRotation: {x: -0.09374654, y: 0.6978552, z: 0.70746905, w: 0.060806733}
   m_LocalPosition: {x: -0.05543403, y: 0.0017306843, z: 0.098653734}
   m_LocalScale: {x: 1.0000004, y: 1.0000006, z: 1.0000005}
   m_Children:
@@ -7835,7 +7835,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221943077842174}
-  m_LocalRotation: {x: -0.093746535, y: 0.6978551, z: 0.707469, w: 0.060806736}
+  m_LocalRotation: {x: -0.09374654, y: 0.6978552, z: 0.70746905, w: 0.06080674}
   m_LocalPosition: {x: -0.05543403, y: 0.0017306843, z: 0.098653734}
   m_LocalScale: {x: 1.0000004, y: 1.0000006, z: 1.0000005}
   m_Children:
@@ -11504,6 +11504,7 @@ MonoBehaviour:
   _forwardSpeed: 3
   _backSpeed: 1.5
   _sideWalkSpeed: 1.5
+  _speedMagByDash: 0
   _maxHealth: 100
   _maxEnergy: 100
   _maxSpecial: 100
@@ -11534,6 +11535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4a55906fba0c2428318cf765df5f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shotCost: 0
+  _holdCost: 0
   _shieldPrefab: {fileID: 1886929234999552, guid: d81acee0b2a2df143a25ef388bb03906,
     type: 2}
   _generateDistance: 0.5
@@ -11550,6 +11553,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _modelForAnimation: {fileID: 1513017874235272}
+  _baseSpeed: 0
+  _sideWalkMultiplier: 0
+  _backWalkMultiplier: 0
+  _dashSpeedMultiplier: 0
+  _moveForwardKey: 119
+  _moveLeftKey: 97
+  _moveRightKey: 100
+  _moveBackKey: 115
+  _switchDashKey: 304
 --- !u!114 &114695427925146174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11561,6 +11573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae801c3ea0418f4caf94b3ab04afe55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _maxEnergy: 0
+  _healthRegenAmount: 0
+  _energyRegenAmount: 0
 --- !u!136 &136040361759459504
 CapsuleCollider:
   m_ObjectHideFlags: 1

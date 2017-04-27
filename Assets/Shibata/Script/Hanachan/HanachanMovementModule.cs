@@ -128,7 +128,7 @@ public class HanachanMovementModule : MonoBehaviour
 			var sideWalkMul = EditorGUILayout.FloatField("横歩き速度倍率", param._sideWalkMultiplier);
 			var backWalkMul = EditorGUILayout.FloatField("後ろ歩き倍率", param._backWalkMultiplier);
 			var dashSpeedMul = EditorGUILayout.FloatField("ダッシュ速度倍率", param._dashSpeedMultiplier);
-
+			
 			var moveForwardKey = (KeyCode)EditorGUILayout.EnumPopup("前進キー", param._moveForwardKey);
 			var moveLeftKey = (KeyCode)EditorGUILayout.EnumPopup("左歩きキー", param._moveLeftKey);
 			var moveRightKey = (KeyCode)EditorGUILayout.EnumPopup("右歩きキー", param._moveRightKey);
