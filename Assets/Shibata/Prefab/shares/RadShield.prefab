@@ -225,9 +225,9 @@ MonoBehaviour:
   - 2
   - 3
   _materialByLevel:
-  - {fileID: 2100000, guid: 741318af394797b46babae400e3bd5f1, type: 2}
-  - {fileID: 2100000, guid: e6906a0017581b540b1b7dfc410b99fc, type: 2}
-  - {fileID: 2100000, guid: 778971c654881ec44b3f1e8b5d94a834, type: 2}
+  - {fileID: 2100000, guid: 8b4092b41a8fcd4408e99216260b3b62, type: 2}
+  - {fileID: 2100000, guid: fe6df7ef24177b34ba5088c6a39fb677, type: 2}
+  - {fileID: 2100000, guid: b1d02af7b659d7e4498bb560af0af493, type: 2}
   _powerMultiplierByLevel:
   - 1
   - 2

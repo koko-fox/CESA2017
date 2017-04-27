@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4423848972530542}
   - component: {fileID: 198392565897991490}
   - component: {fileID: 199850591133951408}
+  - component: {fileID: 114299075387541602}
   m_Layer: 0
   m_Name: SparkEffect
   m_TagString: Untagged
@@ -36,11 +37,22 @@ Transform:
   m_GameObject: {fileID: 1644001473580206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.486, z: 0.421}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114299075387541602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1644001473580206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8e43bf76dbeed4a8ec948d4f0fb936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198392565897991490
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -96,12 +108,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 800893948
+  randomSeed: -549074411
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 0.43
+      scalar: 0.8
       maxCurve:
         serializedVersion: 2
         m_Curve:
