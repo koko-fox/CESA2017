@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyGun : MonoBehaviour {
+  private bool isFiring = false;
+
   [SerializeField]
   private int roundPerSecond;
   [SerializeField]
@@ -15,8 +17,12 @@ public class EnemyGun : MonoBehaviour {
   private AudioClip shootSound;
   [SerializeField]
   private AudioClip reloadSound;
-
-  private bool isFiring = false;
+  [SerializeField]
+  private float groupingRate;
+  [SerializeField]
+  private GameObject bullet;
+  [SerializeField]
+  private float firePower;
 
   public bool CanFire() {
     if (isFiring) return false;
@@ -25,11 +31,9 @@ public class EnemyGun : MonoBehaviour {
   }
 
   public void Fire() {
-    if (isFiring) return;
-    if (coolTime < 0.0f) {
-      isFiring = true;
-      StartCoroutine("ThreeRoundBurst");
-    }
+    if (!CanFire()) return;
+    isFiring = true;
+    StartCoroutine("ThreeRoundBurst");
   }
 
   private void Update() {
@@ -50,23 +54,34 @@ public class EnemyGun : MonoBehaviour {
     audioSource.PlayOneShot(shootSound);
     RaycastHit hitinfo;
     var origin = transform.position;
-    var direction = transform.forward;
+
+    var direction = Vector3.forward;
+    var directionRandom = Random.insideUnitCircle * groupingRate;
+    direction.x += directionRandom.x;
+    direction.y += directionRandom.y;
+    direction = transform.rotation * direction;
+
     var layerMask = LayerMask.GetMask("Enemy", "BlownEnemy", "ItemOrb");
     layerMask = ~layerMask;
     if (Physics.Raycast(origin, direction, out hitinfo, 1000.0f, layerMask)) {
       var otherObject = hitinfo.collider.gameObject;
       var playerLayer = LayerMask.NameToLayer("UnityChan");
       if (otherObject.layer == playerLayer) {
-        // TODO: プレイヤーにダメージを与える処理
-        Debug.Log("Hit to player");
+        var player = otherObject.GetComponent<HanachanCore>();
+        player.Health -= firePower;
       }
       var shieldLayer = LayerMask.NameToLayer("RadiateShield");
       if (otherObject.layer == shieldLayer) {
-        // TODO: シールドに当たったときの処理
-        var shieldScript = otherObject.GetComponent<RadiateShieldController>();
-        shieldScript.PlayHitSound();
-        Debug.Log("Hit to shield");
+        var shieldScript = otherObject.GetComponent<RadShieldCore>();
+        shieldScript.NoticeHitBullet(hitinfo.point);
       }
     }
+
+    var newBullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
+    var bulletBehaviour = newBullet.GetComponent<EnemyBullet>();
+    var lookRotation = Quaternion.LookRotation(direction);
+    newBullet.transform.rotation = Quaternion.AngleAxis(90.0f, transform.right);
+    newBullet.transform.rotation *= lookRotation;
+    bulletBehaviour.direction = direction;
   }
 }
