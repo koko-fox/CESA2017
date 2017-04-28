@@ -147,11 +147,6 @@ public class UIGuageController : MonoBehaviour
 
 	private void Awake()
 	{
-		_guage = transform.FindChild("Guage").GetComponent<Image>();
-		_guageBack = transform.FindChild("GuageBack").GetComponent<Image>();
-
-		_valueText = transform.FindChild("ValueText").GetComponent<Text>();
-		_maximumValueText = transform.FindChild("MaximumValueText").GetComponent<Text>();
 
 		_guage.rectTransform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
 		_guageBack.rectTransform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
