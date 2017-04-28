@@ -23,6 +23,7 @@ public class RadShieldReinforcementSystem : MonoBehaviour
 	private RadShieldCore _coreSystem;
 	private RadShieldMovementSystem _movementSystem;
 	private MeshRenderer _meshRenderer;
+	private ShoulderCameraController _shouldCam;
 
 	private int _level = 0;
 	private int _maxLevel;
@@ -34,6 +35,8 @@ public class RadShieldReinforcementSystem : MonoBehaviour
 		_coreSystem = GetComponent<RadShieldCore>();
 		_movementSystem = GetComponent<RadShieldMovementSystem>();
 		_meshRenderer = GetComponent<MeshRenderer>();
+		_shouldCam = FindObjectOfType<ShoulderCameraController>();
+
 		_meshRenderer.material = _materialByLevel[_level];
 		_maxLevel = _chargeTimeByLevel.Length - 1;
 		_baseScale = transform.localScale;
@@ -61,6 +64,8 @@ public class RadShieldReinforcementSystem : MonoBehaviour
 				transform.DOScale(scale, 0.1f);
 
 				_chargeElapsedTime = 0.0f;
+
+				_shouldCam.transform.DOShakePosition(0.5f, 0.07f);
 			}
 		}
 	}

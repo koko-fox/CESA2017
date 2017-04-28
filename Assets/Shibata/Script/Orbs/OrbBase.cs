@@ -42,7 +42,7 @@ public class OrbBase : MonoBehaviour
 			_rigidBody.AddForce(_vacuumForce * dir, ForceMode.VelocityChange);
 		}
 
-		var hits = Physics.SphereCastAll(transform.position, _sphereCollider.radius, transform.forward);
+		var hits = Physics.SphereCastAll(transform.position, _sphereCollider.radius, transform.forward, 0.1f);
 
 		foreach (var hit in hits)
 		{

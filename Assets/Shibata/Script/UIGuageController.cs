@@ -90,10 +90,52 @@ public class UIGuageController : MonoBehaviour
 		get { return _rate; }
 		set
 		{
+			if (_rate > value)
+			{
+				transform.DOComplete();
+				transform.DOShakePosition(0.5f, (_rate - value)*100.0f);
+			}
+
 			_rate = Mathf.Clamp(value, 0.0f, 1.0f);
 			_guage.rectTransform.DOScaleX(_length * _rate, _guageScaleDuration);
+
+			int mem = (int)(_rate * _maximumValue);
+			_valueText.text = mem.ToString();
 		}
 	}
+
+	[SerializeField]
+	private bool _showValue;
+	public bool ShowValue
+	{
+		get { return _showValue; }
+		set
+		{
+			if (!_valueText||!_maximumValueText)
+				return;
+
+			_valueText.enabled = value;
+			_maximumValueText.enabled = value;
+			_showValue = value;
+		}
+	}
+
+	private float _maximumValue = 100.0f;
+	public float MaximumValue
+	{
+		get { return _maximumValue; }
+		set
+		{
+			_maximumValue = value;
+			_maximumValueText.text = "/"+((int)_maximumValue).ToString();
+		}
+	}
+
+	[SerializeField]
+	private Text _valueText;
+
+	[SerializeField]
+	private Text _maximumValueText;
 
 	public void Reboot()
 	{
@@ -107,6 +149,9 @@ public class UIGuageController : MonoBehaviour
 	{
 		_guage = transform.FindChild("Guage").GetComponent<Image>();
 		_guageBack = transform.FindChild("GuageBack").GetComponent<Image>();
+
+		_valueText = transform.FindChild("ValueText").GetComponent<Text>();
+		_maximumValueText = transform.FindChild("MaximumValueText").GetComponent<Text>();
 
 		_guage.rectTransform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
 		_guageBack.rectTransform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
@@ -129,23 +174,31 @@ public class UIGuageController : MonoBehaviour
 	[CanEditMultipleObjects]
 	public class UIGuageControllerEditor : Editor
 	{
+		private bool _foldout;
+
 		public override void OnInspectorGUI()
 		{
-			//DrawDefaultInspector();
-
 			UIGuageController cont = target as UIGuageController;
 
 			var length = EditorGUILayout.FloatField("ゲージの長さ", cont.Length);
 			var frontColor = EditorGUILayout.ColorField("フロントカラー", cont.FrontColor);
 			var backColor = EditorGUILayout.ColorField("バックカラー", cont.BackColor);
+			var showValue = EditorGUILayout.Toggle("値を表示する", cont.ShowValue);
 
 			Undo.RecordObject(cont, "UIGuageController Changed");
 
 			cont.Length = length;
 			cont.FrontColor = frontColor;
 			cont.BackColor = backColor;
+			cont.ShowValue = showValue;
 
 			EditorUtility.SetDirty(cont);
+
+			EditorGUILayout.Space();
+
+			_foldout = EditorGUILayout.Foldout(_foldout, "default inspector");
+			if(_foldout)
+				DrawDefaultInspector();
 		}
 	}
 
