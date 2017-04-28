@@ -6,4 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Master.unity
+    path: Assets/Scenes/ForPresentation/Title.unity
+  - enabled: 1
+    path: Assets/Scenes/ForPresentation/Play.unity
+  - enabled: 1
+    path: Assets/Scenes/ForPresentation/Result.unity

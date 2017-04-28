@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 195374389958635292}
   - component: {fileID: 114892999981949928}
   - component: {fileID: 114692081608655072}
+  - component: {fileID: 114482339906812800}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -119,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065401929964676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 147.29, y: 0.5, z: 191.98}
+  m_LocalPosition: {x: 147.29, y: 0.5, z: 197.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4435763978949172}
@@ -186,8 +187,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065401929964676}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 0.01
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -200,7 +201,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065401929964676}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5850c630df440ea42aa4854440d368fc, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -308,7 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcb4399370c2004b982c0f0f50f1c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 10
+  diedSound: {fileID: 8300000, guid: ede738a988fd0e346a7a3edc62e767a6, type: 3}
 --- !u!114 &114388087946130206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,7 +324,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionArea: {fileID: 114670323511534378}
   firingArea: {fileID: 114036067970078910}
+  gun: {fileID: 114757405724007748}
   durationToChase: 3
+--- !u!114 &114482339906812800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065401929964676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1f421efd3b00648abd5835c75dcafb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - item: {fileID: 1715464335236080, guid: 149fa6bd7c900da4ca55572ed2166c4e, type: 2}
+    rate: 5
+  - item: {fileID: 1484645355589424, guid: 8907a382a4473db42baf3917f7ccd60c, type: 2}
+    rate: 5
+  - item: {fileID: 1891712428876566, guid: 53deaed295816be4abc082155de13633, type: 2}
+    rate: 5
 --- !u!114 &114670323511534378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,6 +385,9 @@ MonoBehaviour:
   audioSource: {fileID: 82496168593149384}
   shootSound: {fileID: 8300000, guid: 415684dc188702f49a33101f42dd48cc, type: 3}
   reloadSound: {fileID: 8300000, guid: e9d148ecdbae41b44b387603ab2f7e54, type: 3}
+  groupingRate: 0.2
+  bullet: {fileID: 1944783478291386, guid: 6d69d6ea4446ae14d9897090253fc26e, type: 2}
+  firePower: 5
 --- !u!114 &114892999981949928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,6 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   rotationSpeed: 180
+  firePower: 0
 --- !u!135 &135174942196637546
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -387,7 +412,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.02
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135500922694948494
 SphereCollider:
@@ -399,7 +424,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6.11
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195374389958635292
 NavMeshAgent:

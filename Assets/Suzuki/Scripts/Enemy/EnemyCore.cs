@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +7,18 @@ using UnityEngine;
 public class EnemyCore : MonoBehaviour {
   public delegate void UpdateEvent();
   public delegate void FixedUpdateEvent();
+  public delegate void DiedEvent();
   public event UpdateEvent onUpdated = delegate { };
-  public event FixedUpdateEvent onFixedUpdate = delegate { };
+  public event FixedUpdateEvent onFixedUpdated = delegate { };
+  public event DiedEvent onDied = delegate { };
 
   public bool isBlown { get; private set; }
   private List<int> collisions = new List<int>();
-  private RadiateShieldController collidedShield;
+  private RadShieldCore collidedShield;
   [SerializeField]
   private float health;
+  [SerializeField]
+  private AudioClip diedSound;
 
   private void Update() {
     onUpdated();
@@ -25,7 +30,9 @@ public class EnemyCore : MonoBehaviour {
       isBlown = true;
       var wallLayer = LayerMask.NameToLayer("Wall");
       if (collisions.Contains(wallLayer)) {
-        ApplyDamage();
+        if (health > 0.0f) {
+          ApplyDamage();
+        }
       }
     }
     else {
@@ -33,25 +40,48 @@ public class EnemyCore : MonoBehaviour {
       gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
-    onFixedUpdate();
+    onFixedUpdated();
     collisions.Clear();
   }
 
   private void OnCollisionStay(Collision collision) {
     collisions.Add(collision.gameObject.layer);
     if (IsRadiateShield(collision.gameObject)) {
-      collidedShield = collision.gameObject.GetComponent<RadiateShieldController>();
+      collidedShield = collision.gameObject.GetComponent<RadShieldCore>();
     }
   }
 
   private void ApplyDamage() {
     health -= collidedShield.AttackPower * Time.fixedDeltaTime;
+    if (health > 0.0f) return;
+    Die();
+  }
+
+  private void Die() {
+    Destroy(GetComponent<Rigidbody>());
+    Destroy(GetComponent<Collider>());
+    onDied();
+    StartCoroutine(ToDie());
   }
 
   private bool IsRadiateShield(GameObject other) {
     var radiateShieldLayer = LayerMask.NameToLayer("RadiateShield");
     if (other.gameObject.layer == radiateShieldLayer) return true;
     return false;
+  }
+
+  private IEnumerator ToDie() {
+    Vector3 scaleOrigin = transform.localScale;
+    float t = 0.0f;
+    while (transform.localScale.x > 0) {
+      yield return null;
+      t += Time.deltaTime / 0.2f;
+      var scale = Vector3.MoveTowards(scaleOrigin, Vector3.zero, t);
+      scale.y = scaleOrigin.y;
+      transform.localScale = scale;
+    }
+    AudioSource.PlayClipAtPoint(diedSound, transform.position);
+    Destroy(gameObject);
   }
 
 }

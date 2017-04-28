@@ -10,29 +10,26 @@ public class Stage : MonoBehaviour {
   [SerializeField]
   private GameObject[] spawnPoints;
 
-  //private void Start() {
-  //  for (int i = 0; i < 10; ++i) {
-  //    var spawnPoint = spawnPoints[i];
-  //    var position = spawnPoint.transform.position;
-  //    var rotation = spawnPoint.transform.rotation;
-  //    var enemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
-  //    var enemyBehavior = enemy.GetComponent<Enemy>();
-  //    enemyBehavior.OnKilled += TrySpawnEnemy2;
-  //  }
-  //}
+  private void Start() {
+    for (int i = 0; i < 20; ++i) {
+      SpawnEnemy();
+    }
+  }
 
-  //private void TrySpawnEnemy2(Enemy enemy) {
-  //  foreach (var spawnPoint in spawnPoints) {
-  //    if (spawnPoint.transform.childCount == 0) {
-  //      var position = spawnPoint.transform.position;
-  //      var rotation = spawnPoint.transform.rotation;
-  //      var newEnemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
-  //      var enemyBehavior = newEnemy.GetComponent<Enemy>();
-  //      enemyBehavior.OnKilled += TrySpawnEnemy2;
-  //      break;
-  //    }
-  //  }
-  //}
+  private void SpawnEnemy() {
+    while (true) {
+      var index = Random.Range(0, spawnPoints.Length);
+      var spawnPoint = spawnPoints[index];
+      if (spawnPoint.transform.childCount == 0) {
+        var position = spawnPoint.transform.position;
+        var rotation = spawnPoint.transform.rotation;
+        var newEnemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
+        var enemyBehavior = newEnemy.GetComponent<EnemyCore>();
+        enemyBehavior.onDied += SpawnEnemy;
+        break;
+      }
+    }
+  }
 
   //public void TrySpawnEnemy() {
   //  foreach (var spawnPoint in spawnPoints) {
