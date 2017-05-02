@@ -9,9 +9,12 @@ public class Stage : MonoBehaviour {
   private float spawnWait;
   [SerializeField]
   private GameObject[] spawnPoints;
+  [SerializeField]
+  private int enemies;
 
   private void Start() {
-    for (int i = 0; i < 20; ++i) {
+    Debug.Assert(enemies > spawnPoints.Length);
+    for (int i = 0; i < enemies; ++i) {
       SpawnEnemy();
     }
   }
@@ -25,33 +28,14 @@ public class Stage : MonoBehaviour {
         var rotation = spawnPoint.transform.rotation;
         var newEnemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
         var enemyBehavior = newEnemy.GetComponent<EnemyCore>();
-        enemyBehavior.onDied += SpawnEnemy;
+        enemyBehavior.onDied += () => { StartCoroutine(Spawn()); };
         break;
       }
     }
   }
 
-  //public void TrySpawnEnemy() {
-  //  foreach (var spawnPoint in spawnPoints) {
-  //    if (spawnPoint.transform.childCount == 0) {
-  //      var position = spawnPoint.transform.position;
-  //      var rotation = spawnPoint.transform.rotation;
-  //      var enemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
-  //      var enemyBehavior = enemy.GetComponent<Enemy>();
-  //      break;
-  //    }
-  //  }
-  //  //StartCoroutine("Spawn");
-  //}
-
-  //private IEnumerator Spawn() {
-  //  yield return new WaitForSeconds(spawnWait);
-  //  var position = transform.position;
-  //  position.x += Random.Range(-1, 1) * 2.0f;
-  //  position.z += Random.Range(-1, 1) * 2.0f;
-  //  var rotation = transform.rotation;
-  //  var newEnemy = Instantiate(enemyPrefab, position, rotation) as GameObject;
-  //  var enemyScript = newEnemy.GetComponent<Enemy>();
-  //}
-
+  private IEnumerator Spawn() {
+    yield return new WaitForSeconds(spawnWait);
+    SpawnEnemy();
+  }
 }

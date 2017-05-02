@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4422919990480800}
-  - component: {fileID: 65506456271626336}
+  - component: {fileID: 65745361920693762}
   - component: {fileID: 54509228302308368}
   - component: {fileID: 114133509394835318}
   - component: {fileID: 114388087946130206}
@@ -61,7 +61,6 @@ GameObject:
   - component: {fileID: 114892999981949928}
   - component: {fileID: 114692081608655072}
   - component: {fileID: 114482339906812800}
-  - component: {fileID: 114601176861213962}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -124,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 1049551791822612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_Children: []
   m_Father: {fileID: 4422919990480800}
   m_RootOrder: 3
@@ -225,7 +224,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 2
---- !u!65 &65506456271626336
+--- !u!65 &65745361920693762
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -235,8 +234,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 1.5, z: 0.7}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Size: {x: 1.5, y: 2.5, z: 1.5}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!82 &82496168593149384
 AudioSource:
   m_ObjectHideFlags: 1
@@ -374,24 +373,6 @@ MonoBehaviour:
     rate: 5
   - item: {fileID: 1891712428876566, guid: 53deaed295816be4abc082155de13633, type: 2}
     rate: 5
---- !u!114 &114601176861213962
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1065401929964676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1f421efd3b00648abd5835c75dcafb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drops:
-  - item: {fileID: 1715464335236080, guid: 149fa6bd7c900da4ca55572ed2166c4e, type: 2}
-    rate: 5
-  - item: {fileID: 1484645355589424, guid: 8907a382a4473db42baf3917f7ccd60c, type: 2}
-    rate: 5
-  - item: {fileID: 1891712428876566, guid: 53deaed295816be4abc082155de13633, type: 2}
-    rate: 5
 --- !u!114 &114670323511534378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -481,7 +462,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065401929964676}
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
