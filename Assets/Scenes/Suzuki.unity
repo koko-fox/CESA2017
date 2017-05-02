@@ -19249,6 +19249,7 @@ MonoBehaviour:
   - {fileID: 1337443916}
   - {fileID: 1767813669}
   - {fileID: 1159447457}
+  enemies: 40
 --- !u!4 &2103725514
 Transform:
   m_ObjectHideFlags: 0

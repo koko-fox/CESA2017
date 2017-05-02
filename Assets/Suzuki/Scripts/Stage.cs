@@ -13,7 +13,7 @@ public class Stage : MonoBehaviour {
   private int enemies;
 
   private void Start() {
-    Debug.Assert(enemies > spawnPoints.Length);
+    Debug.Assert(enemies < spawnPoints.Length);
     for (int i = 0; i < enemies; ++i) {
       SpawnEnemy();
     }
