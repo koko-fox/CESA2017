@@ -41,6 +41,7 @@ public class EnemyCore : MonoBehaviour {
     }
 
     onFixedUpdated();
+    collidedShield = null;
     collisions.Clear();
   }
 

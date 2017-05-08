@@ -6,7 +6,9 @@ using ParticlePlayground;
 [DisallowMultipleComponent]
 public class EnemyParticleEjectorModule : EnemyModuleBase {
   [SerializeField]
-  private PlaygroundParticlesC particles;
+  private GameObject particlePrefab;
 
-
+  protected override void DoDied() {
+    Instantiate(particlePrefab, transform.position, transform.rotation);
+  }
 }
