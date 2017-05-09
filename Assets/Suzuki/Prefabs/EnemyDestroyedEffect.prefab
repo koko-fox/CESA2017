@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 198432138650155732}
   - component: {fileID: 199436346188339680}
   - component: {fileID: 114848617665804150}
-  - component: {fileID: 114696977261413340}
   m_Layer: 0
   m_Name: EnemyDestroyedEffect
   m_TagString: Untagged
@@ -43,17 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114696977261413340
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1496735805085746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80d2678df55a4d47b2fd47361cfb688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114848617665804150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,8 +58,8 @@ MonoBehaviour:
   emit: 1
   loop: 0
   clearParticlesOnEmissionStop: 0
-  disableOnDone: 0
-  disableOnDoneRoutine: 0
+  disableOnDone: 1
+  disableOnDoneRoutine: 1
   updateRate: 1
   calculate: 1
   calculateDeltaMovement: 0
