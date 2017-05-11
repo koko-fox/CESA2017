@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: a2601d7304a7a7044945c542db828531
+labels:
+- Prop
+- board
+- pieces
+- Chesspieces
+- Chess
+- decoration
+- Chessboard
+- Furniture
+- GameAsset
+- Architecture
+timeCreated: 1449058839
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,15 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ParticlePlayground;
 
 [DisallowMultipleComponent]
 public class EnemyCore : MonoBehaviour {
   public delegate void UpdateEvent();
   public delegate void FixedUpdateEvent();
   public delegate void DiedEvent();
+  public delegate void DamagedEvent(float value);
   public event UpdateEvent onUpdated = delegate { };
   public event FixedUpdateEvent onFixedUpdated = delegate { };
   public event DiedEvent onDied = delegate { };
+  public event DamagedEvent onDamaged = delegate { };
 
   public bool isBlown { get; private set; }
   private List<int> collisions = new List<int>();
@@ -19,6 +22,8 @@ public class EnemyCore : MonoBehaviour {
   private float health;
   [SerializeField]
   private AudioClip diedSound;
+  [SerializeField]
+  private PlaygroundParticlesC particle;
 
   private void Update() {
     onUpdated();
@@ -36,11 +41,13 @@ public class EnemyCore : MonoBehaviour {
       }
     }
     else {
+      particle.emit = false;
       isBlown = false;
       gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
 
     onFixedUpdated();
+    collidedShield = null;
     collisions.Clear();
   }
 
@@ -52,7 +59,10 @@ public class EnemyCore : MonoBehaviour {
   }
 
   private void ApplyDamage() {
-    health -= collidedShield.AttackPower * Time.fixedDeltaTime;
+    var damageValue = collidedShield.AttackPower * Time.fixedDeltaTime;
+    health -= damageValue;
+    particle.emit = true;
+    onDamaged(damageValue);
     if (health > 0.0f) return;
     Die();
   }

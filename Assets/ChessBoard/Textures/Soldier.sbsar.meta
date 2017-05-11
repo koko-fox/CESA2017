@@ -1,0 +1,1379 @@
+fileFormatVersion: 2
+guid: d57dd21000ed84b4184b822def60f199
+timeCreated: 1493364340
+licenseType: Pro
+SubstanceImporter:
+  serializedVersion: 5
+  materialInstances:
+  - serializedVersion: 16
+    name: Soldier
+    prototypeName: Soldier
+    shaderName: 
+    shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: _EMISSION _NORMALMAP _PARALLAXMAP _SPECGLOSSMAP
+    renderQueue: -1
+    lightmapFlags: 1
+    inputs:
+    - name: Wear_and_tear_parameters_Advanced_Wear_and_tear_parametersNormal_Format_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersDiffuse_Intensity_Intensity
+      value:
+        scalar[0]: 0.18
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDust_Intensity
+      value:
+        scalar[0]: 0.332
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDirtiness_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersGlossiness_Intensity_Intensity
+      value:
+        scalar[0]: 0.342
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Brightness_Intensity
+      value:
+        scalar[0]: 0.517
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: $randomseed
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersEdges_Wearing_Intensity
+      value:
+        scalar[0]: 0.585
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Scale_Intensity
+      value:
+        scalar[0]: 4.2
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Intensity_Intensity
+      value:
+        scalar[0]: 0.104
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Threshlod_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Desaturation_Intensity
+      value:
+        scalar[0]: 0.182
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersNormal_Intensity_Intensity
+      value:
+        scalar[0]: 64
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersSpecular_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersAmbient_Occlusion_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersHeight_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: $outputsize
+      value:
+        scalar[0]: 8
+        scalar[1]: 8
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Color_Switch
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Veins_Saturation
+      value:
+        scalar[0]: 0.5
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Glossiness
+      value:
+        scalar[0]: 0.85
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Specular_Strenght
+      value:
+        scalar[0]: 0.25
+        scalar[1]: 0.25
+        scalar[2]: 0.25
+        scalar[3]: 1
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Vein_Hue
+      value:
+        scalar[0]: 0.5
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 42
+    materialProperties:
+      serializedVersion: 2
+      texEnvs:
+      - first:
+          name: _BumpMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailAlbedoMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailMask
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailNormalMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _EmissionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _MainTex
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _OcclusionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _ParallaxMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _SpecGlossMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      floats:
+      - first:
+          name: _BumpScale
+        second: 1
+      - first:
+          name: _Cutoff
+        second: 0.5
+      - first:
+          name: _DetailNormalMapScale
+        second: 1
+      - first:
+          name: _DstBlend
+        second: 0
+      - first:
+          name: _GlossMapScale
+        second: 1
+      - first:
+          name: _Glossiness
+        second: 0.5
+      - first:
+          name: _GlossyReflections
+        second: 1
+      - first:
+          name: _Mode
+        second: 0
+      - first:
+          name: _OcclusionStrength
+        second: 0.702
+      - first:
+          name: _Parallax
+        second: 0.0227
+      - first:
+          name: _SmoothnessTextureChannel
+        second: 0
+      - first:
+          name: _SpecularHighlights
+        second: 1
+      - first:
+          name: _SrcBlend
+        second: 1
+      - first:
+          name: _UVSec
+        second: 0
+      - first:
+          name: _ZWrite
+        second: 1
+      colors:
+      - first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      - first:
+          name: _EmissionColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      - first:
+          name: _SpecColor
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    textureParameters:
+    - name: Soldier_diffuse
+      alphaSource: 1
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_specular
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_output
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_output_1
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 1034933528
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 1034933530
+    - shaderProp:
+        name: _OcclusionMap
+      material: {instanceID: 0}
+      baseUID: 1008239334
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 1008239177
+    - shaderProp:
+        name: _SpecGlossMap
+      material: {instanceID: 0}
+      baseUID: 1034933534
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 2048
+      textureHeight: 2048
+      textureFormat: 0
+      loadingBehavior: 1
+  - serializedVersion: 16
+    name: Soldier_1
+    prototypeName: Soldier
+    shaderName: 
+    shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: _NORMALMAP _PARALLAXMAP _SPECGLOSSMAP
+    renderQueue: -1
+    lightmapFlags: 5
+    inputs:
+    - name: $outputsize
+      value:
+        scalar[0]: 8
+        scalar[1]: 8
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: $randomseed
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Advanced_Wear_and_tear_parametersNormal_Format_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDust_Intensity
+      value:
+        scalar[0]: 0.02
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDirtiness_Intensity
+      value:
+        scalar[0]: 0.1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersEdges_Wearing_Intensity
+      value:
+        scalar[0]: 0.46
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Intensity
+      value:
+        scalar[0]: 0.58
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Scale_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Intensity_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Threshlod_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Desaturation_Intensity
+      value:
+        scalar[0]: 0.06
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Brightness_Intensity
+      value:
+        scalar[0]: 0.63
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersDiffuse_Intensity_Intensity
+      value:
+        scalar[0]: 0.06
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersNormal_Intensity_Intensity
+      value:
+        scalar[0]: 64
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersSpecular_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersGlossiness_Intensity_Intensity
+      value:
+        scalar[0]: 0.08
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersAmbient_Occlusion_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersHeight_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Color_Switch
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Veins_Saturation
+      value:
+        scalar[0]: 0.312
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Glossiness
+      value:
+        scalar[0]: 0.83
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Specular_Strenght
+      value:
+        scalar[0]: 0.125
+        scalar[1]: 0.125
+        scalar[2]: 0.125
+        scalar[3]: 1
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Vein_Hue
+      value:
+        scalar[0]: 0.5
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 0
+    materialProperties:
+      serializedVersion: 2
+      texEnvs:
+      - first:
+          name: _BumpMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailAlbedoMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailMask
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailNormalMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _EmissionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _MainTex
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _OcclusionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _ParallaxMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _SpecGlossMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      floats:
+      - first:
+          name: _BumpScale
+        second: 1
+      - first:
+          name: _Cutoff
+        second: 0.5
+      - first:
+          name: _DetailNormalMapScale
+        second: 1
+      - first:
+          name: _DstBlend
+        second: 0
+      - first:
+          name: _Glossiness
+        second: 0.5
+      - first:
+          name: _Mode
+        second: 0
+      - first:
+          name: _OcclusionStrength
+        second: 0.792
+      - first:
+          name: _Parallax
+        second: 0.0223
+      - first:
+          name: _SrcBlend
+        second: 1
+      - first:
+          name: _UVSec
+        second: 0
+      - first:
+          name: _ZWrite
+        second: 1
+      colors:
+      - first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      - first:
+          name: _EmissionColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      - first:
+          name: _SpecColor
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    textureParameters:
+    - name: Soldier_1_diffuse
+      alphaSource: 6
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_1_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_1_specular
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_1_output
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_1_output_1
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 1034933528
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 1034933530
+    - shaderProp:
+        name: _OcclusionMap
+      material: {instanceID: 0}
+      baseUID: 1008239334
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 1008239177
+    - shaderProp:
+        name: _SpecGlossMap
+      material: {instanceID: 0}
+      baseUID: 1034933534
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 2048
+      textureHeight: 2048
+      textureFormat: 0
+      loadingBehavior: 1
+  - serializedVersion: 16
+    name: Soldier_2
+    prototypeName: Soldier
+    shaderName: 
+    shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: _NORMALMAP _PARALLAXMAP _SPECGLOSSMAP
+    renderQueue: -1
+    lightmapFlags: 5
+    inputs:
+    - name: Wear_and_tear_parameters_Advanced_Wear_and_tear_parametersNormal_Format_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersDiffuse_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDust_Intensity
+      value:
+        scalar[0]: 0.272
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDirtiness_Intensity
+      value:
+        scalar[0]: 0.497
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersGlossiness_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Brightness_Intensity
+      value:
+        scalar[0]: 0.235
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: $randomseed
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersEdges_Wearing_Intensity
+      value:
+        scalar[0]: 0.585
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Scale_Intensity
+      value:
+        scalar[0]: 4.2
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Intensity_Intensity
+      value:
+        scalar[0]: 0.104
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Intensity
+      value:
+        scalar[0]: 0.829
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Threshlod_Intensity
+      value:
+        scalar[0]: 0.751
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Desaturation_Intensity
+      value:
+        scalar[0]: 0.616
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersNormal_Intensity_Intensity
+      value:
+        scalar[0]: 64
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersSpecular_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersAmbient_Occlusion_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersHeight_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: $outputsize
+      value:
+        scalar[0]: 8
+        scalar[1]: 8
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Color_Switch
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Veins_Saturation
+      value:
+        scalar[0]: 0.5
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Glossiness
+      value:
+        scalar[0]: 0.85
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Specular_Strenght
+      value:
+        scalar[0]: 0.25
+        scalar[1]: 0.25
+        scalar[2]: 0.25
+        scalar[3]: 1
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Vein_Hue
+      value:
+        scalar[0]: 0.5
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 42
+    materialProperties:
+      serializedVersion: 2
+      texEnvs:
+      - first:
+          name: _BumpMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailAlbedoMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailMask
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailNormalMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _EmissionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _MainTex
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _OcclusionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _ParallaxMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _SpecGlossMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      floats:
+      - first:
+          name: _BumpScale
+        second: 1
+      - first:
+          name: _Cutoff
+        second: 0.5
+      - first:
+          name: _DetailNormalMapScale
+        second: 1
+      - first:
+          name: _DstBlend
+        second: 0
+      - first:
+          name: _Glossiness
+        second: 0.5
+      - first:
+          name: _Mode
+        second: 0
+      - first:
+          name: _OcclusionStrength
+        second: 0.702
+      - first:
+          name: _Parallax
+        second: 0.0227
+      - first:
+          name: _SrcBlend
+        second: 1
+      - first:
+          name: _UVSec
+        second: 0
+      - first:
+          name: _ZWrite
+        second: 1
+      colors:
+      - first:
+          name: _Color
+        second: {r: 0.7941176, g: 0.7941176, b: 0.7941176, a: 1}
+      - first:
+          name: _EmissionColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      - first:
+          name: _SpecColor
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    textureParameters:
+    - name: Soldier_2_diffuse
+      alphaSource: 1
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_2_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_2_specular
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_2_output
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_2_output_1
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 1034933528
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 1034933530
+    - shaderProp:
+        name: _OcclusionMap
+      material: {instanceID: 0}
+      baseUID: 1008239334
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 1008239177
+    - shaderProp:
+        name: _SpecGlossMap
+      material: {instanceID: 0}
+      baseUID: 1034933534
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 2048
+      textureHeight: 2048
+      textureFormat: 0
+      loadingBehavior: 1
+  - serializedVersion: 16
+    name: Soldier_3
+    prototypeName: Soldier
+    shaderName: 
+    shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: _NORMALMAP _PARALLAXMAP _SPECGLOSSMAP
+    renderQueue: -1
+    lightmapFlags: 5
+    inputs:
+    - name: $outputsize
+      value:
+        scalar[0]: 8
+        scalar[1]: 8
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: $randomseed
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Advanced_Wear_and_tear_parametersNormal_Format_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDust_Intensity
+      value:
+        scalar[0]: 0.02
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersDirtiness_Intensity
+      value:
+        scalar[0]: 0.1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersEdges_Wearing_Intensity
+      value:
+        scalar[0]: 0.46
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Intensity
+      value:
+        scalar[0]: 0.58
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Scale_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersCracks_Intensity_Intensity
+      value:
+        scalar[0]: 0
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Intensity
+      value:
+        scalar[0]: 0.495
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersAge_Threshlod_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Desaturation_Intensity
+      value:
+        scalar[0]: 0.06
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Effect_Wear_and_tear_parametersUsed_Rock_Brightness_Intensity
+      value:
+        scalar[0]: 0.417
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersDiffuse_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersNormal_Intensity_Intensity
+      value:
+        scalar[0]: 64
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersSpecular_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersGlossiness_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersAmbient_Occlusion_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Wear_and_tear_parameters_Blending_Wear_and_tear_parametersHeight_Intensity_Intensity
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Color_Switch
+      value:
+        scalar[0]: 1
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Veins_Saturation
+      value:
+        scalar[0]: 0.312
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Glossiness
+      value:
+        scalar[0]: 0.83
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    - name: Specular_Strenght
+      value:
+        scalar[0]: 0.125
+        scalar[1]: 0.125
+        scalar[2]: 0.125
+        scalar[3]: 1
+        texture: {instanceID: 0}
+    - name: Black_Pieces_Vein_Hue
+      value:
+        scalar[0]: 0.5
+        scalar[1]: 0
+        scalar[2]: 0
+        scalar[3]: 0
+        texture: {instanceID: 0}
+    materialInformation:
+      serializedVersion: 5
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      generateMipmaps: 1
+      generateAllOutputs: 0
+      animationUpdateRate: 0
+    materialProperties:
+      serializedVersion: 2
+      texEnvs:
+      - first:
+          name: _BumpMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailAlbedoMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailMask
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _DetailNormalMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _EmissionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _MainTex
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _OcclusionMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _ParallaxMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      - first:
+          name: _SpecGlossMap
+        second:
+          texture: {instanceID: 0}
+          scale: {x: 1, y: 1}
+          offset: {x: 0, y: 0}
+      floats:
+      - first:
+          name: _BumpScale
+        second: 1
+      - first:
+          name: _Cutoff
+        second: 0.5
+      - first:
+          name: _DetailNormalMapScale
+        second: 1
+      - first:
+          name: _DstBlend
+        second: 0
+      - first:
+          name: _Glossiness
+        second: 0.5
+      - first:
+          name: _Mode
+        second: 0
+      - first:
+          name: _OcclusionStrength
+        second: 0.792
+      - first:
+          name: _Parallax
+        second: 0.0223
+      - first:
+          name: _SrcBlend
+        second: 1
+      - first:
+          name: _UVSec
+        second: 0
+      - first:
+          name: _ZWrite
+        second: 1
+      colors:
+      - first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      - first:
+          name: _EmissionColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      - first:
+          name: _SpecColor
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    textureParameters:
+    - name: Soldier_3_diffuse
+      alphaSource: 6
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_3_normal
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_3_specular
+      alphaSource: 7
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_3_output
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    - name: Soldier_3_output_1
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 1034933528
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 1034933530
+    - shaderProp:
+        name: _OcclusionMap
+      material: {instanceID: 0}
+      baseUID: 1008239334
+    - shaderProp:
+        name: _ParallaxMap
+      material: {instanceID: 0}
+      baseUID: 1008239177
+    - shaderProp:
+        name: _SpecGlossMap
+      material: {instanceID: 0}
+      baseUID: 1034933534
+    buildTargetSettings:
+    - serializedVersion: 2
+      buildTarget: 
+      textureWidth: 2048
+      textureHeight: 2048
+      textureFormat: 0
+      loadingBehavior: 1
+  deletedPrototypes: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

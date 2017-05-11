@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: eab0173b38e36d648a9137f807176cfa
+timeCreated: 1443681512
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Tower_LOD0
+    100004: Tower_LOD1
+    100006: Tower_LOD2
+    100008: Tower_LOD3
+    100010: Tower_LOD4
+    100012: Texture Group
+    400000: //RootNode
+    400002: Tower_LOD0
+    400004: Tower_LOD1
+    400006: Tower_LOD2
+    400008: Tower_LOD3
+    400010: Tower_LOD4
+    400012: Texture Group
+    2300000: Tower_LOD0
+    2300002: Tower_LOD1
+    2300004: Tower_LOD2
+    2300006: Tower_LOD3
+    2300008: Tower_LOD4
+    2300010: //RootNode
+    3300000: Tower_LOD0
+    3300002: Tower_LOD1
+    3300004: Tower_LOD2
+    3300006: Tower_LOD3
+    3300008: Tower_LOD4
+    3300010: //RootNode
+    4300000: Tower_LOD4
+    4300002: Tower_LOD0
+    4300004: Tower_LOD1
+    4300006: Tower_LOD3
+    4300008: Tower_LOD2
+    7400000: Take 001
+    9500000: //RootNode
+    20500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .0625
+    - .03125
+    - .00999999978
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

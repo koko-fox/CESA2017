@@ -1,0 +1,49 @@
+Documetation page with more details: http://mikael-korpinen.com/?page_id=180
+
+Introduction:
+
+Just drag and drop and start developing chess game or put it in a table for nice little detail.
+Special care has been taken to ensure every small detail is covered, if you find something should have been done better then contact me. I'll think about it and update the asset, if it makes any sense. I used highest quality settings and had no problems running the scene with very high frame rate(several hundreds). I have nvidia gtx 970.
+ 
+Topics covered:
+
+1.What is included in the package?
+
+2. How is it made?
+
+3. Scene setup briefly explained
+
+What is included in the package?
+
+–  Following models: Soldier, Tower, Messenger, Horse, Quuen, King and the board itself. Models are cleaned up, pivots aligned and positioned.
+
+– Four LOD levels(LOD0, LOD1, LOD2, LOD3, LOD4) for each piece and 2 on the board(LOD0, LOD1).
+
+– 1 Master prefab that contains the following : reflection probe, light probe group and ChessBoardAndPieces Gameobject.
+
+– Two materials for each color and one for the board
+
+– 2 bonus materials included for the black ones.
+
+How is it Made?
+
+The material part is pretty simple. 2 uv sets. One for the shared occlusion map and one for the tiling detail. This makes it possible so that many object can share one material. Chess board includes LOD-models(level of detail). These cannot be included in global illumination bake process so they are lit with light probes, which are included in the package. They still look the same, so it's not a problem.
+In the chessboard screenshot that I made as an example. I used reflection probes and candela raytraced reflections for the best quality. The lighting is powered with real-time global illumination.
+
+Scene setup briefly explained
+
+In order to get similar lighting as these images next to the documentation you need following post effects:
+
+Candela ssrr (not provided with the package. Assets store stuff)
+
+Vignette and chromatic aberration(unity image effects in standard assets)
+
+Contrast stretch(unity image effects in standard assets)
+
+SSAO pro  (not provided with the package. Assets store stuff). You can use unitys ssao too, but I think ssao pro has little bit better quality overall and less artifacts.
+
+Depth of field(unity image effects in standard assets)
+
+Tonemapping(unity image effects in standard assets)
+
+Deferred rendering with hdr enabled. That means antialiasing have to be done as post effect
