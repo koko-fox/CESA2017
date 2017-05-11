@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 4173750344250406}
   - component: {fileID: 114036067970078910}
   - component: {fileID: 135174942196637546}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: FiringArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 4435763978949172}
   - component: {fileID: 114670323511534378}
   - component: {fileID: 135500922694948494}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: DetectionArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 198016545267333834}
   - component: {fileID: 199624756429217464}
   - component: {fileID: 114427677918466832}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DamageParticle
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 344d4b0036e1d401e8c6c53be26368f0, type: 3}
@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065401929964676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 147.29, y: 0, z: 197.39}
+  m_LocalPosition: {x: 147.29, y: 0.5, z: 197.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4435763978949172}
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 2415
+  _randomSeed: 1345
   randomSeedOnEnable: 1
 --- !u!114 &114482339906812800
 MonoBehaviour:
@@ -1324,7 +1324,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -221412479
+  randomSeed: 1796360928
   InitialModule:
     serializedVersion: 3
     enabled: 1
