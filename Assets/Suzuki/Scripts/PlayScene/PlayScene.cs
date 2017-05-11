@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayScene : MonoBehaviour {
   [SerializeField]
+  private int score;
+
+  [SerializeField]
   private HanachanCore player;
   [SerializeField]
   private Timer timer;
@@ -20,7 +23,10 @@ public class PlayScene : MonoBehaviour {
   private void Awake() {
     timer.onValueChanged += Timer_onValueChanged;
     timer.onValueAdded += Timer_onValueAdded;
-    stage.onEnemyKilled += () => { timer.RemainingTime += timeBonusPerKill; };
+    stage.onEnemyKilled += () => {
+      score += 1;
+      timer.RemainingTime += timeBonusPerKill;
+    };
   }
 
   private void Timer_onValueAdded(float value) {

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 114873012998114546}
   - component: {fileID: 33915329560546138}
   - component: {fileID: 23858608194999400}
+  - component: {fileID: 136813966013490042}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1134,7 +1135,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 1345
+  _randomSeed: 3823
   randomSeedOnEnable: 1
 --- !u!114 &114482339906812800
 MonoBehaviour:
@@ -1249,6 +1250,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136813966013490042
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065401929964676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.6616584
+  m_Height: 2.3738859
+  m_Direction: 1
+  m_Center: {x: 0.048887312, y: 1.188152, z: 0.0012717843}
 --- !u!195 &195374389958635292
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -1324,7 +1338,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1796360928
+  randomSeed: 1770080215
   InitialModule:
     serializedVersion: 3
     enabled: 1
