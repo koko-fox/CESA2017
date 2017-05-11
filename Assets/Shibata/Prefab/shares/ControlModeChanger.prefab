@@ -51,5 +51,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e4806bd445ea34b947d75c4fb70f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hanachanSideCamera: {fileID: 0}
-  _specterSideCamera: {fileID: 0}
