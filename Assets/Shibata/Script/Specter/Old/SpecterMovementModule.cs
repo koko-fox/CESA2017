@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Specter/Old/SpecterMovementModule")]
 public class SpecterMovementModule : MonoBehaviour
 {
 	[SerializeField]

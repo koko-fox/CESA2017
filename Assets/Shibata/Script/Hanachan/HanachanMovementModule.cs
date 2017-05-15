@@ -153,6 +153,9 @@ public class HanachanMovementModule : MonoBehaviour
 			param._switchDashKey = switchDashKey;
 
 			EditorUtility.SetDirty(param);
+
+
+			DrawDefaultInspector();
 		}
 	}
 #endif

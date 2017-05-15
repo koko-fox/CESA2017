@@ -2,72 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlModeChanger : MonoBehaviour
+public class ControlModeChanger : Lockable
 {
-	private HanachanCore _hanachanCore;
-	[SerializeField]
-	[Header("ハナちゃん側のカメラ")]
-	private Camera _hanachanSideCamera;
+	ChanCore _chan;
+	SpecterCore _specter;
 
-	private SpecterCore _specterCore;
-	[SerializeField]
-	[Header("スペクター側のカメラ")]
-	private Camera _specterSideCamera;
-
-	private bool _isHanachanEnabled;
-	public bool IsHanachanEnabled { get { return _isHanachanEnabled; } }
-	private bool _isSpecterEnabled;
-	public bool IsSpecterEnabled { get { return _isSpecterEnabled; } }
+	bool _isChan = true;
+	public bool isChan { get { return _isChan; } }
 
 	private void Awake()
 	{
-		_hanachanCore = FindObjectOfType<HanachanCore>();
-		_specterCore = FindObjectOfType<SpecterCore>();
+		_chan = FindObjectOfType<ChanCore>();
+		_specter = FindObjectOfType<SpecterCore>();
+
+		Change(true);
 	}
 
-	private void Start()
+	public void Change(bool isChan)
 	{
-		_isHanachanEnabled = true;
-		_isSpecterEnabled = false;
+		_isChan = isChan;
 
-		_specterCore.MovementModule.enabled = false;
-		_specterCore.CameraControlModule.enabled = false;
-		_specterCore.ConstructorModule.enabled = false;
-		_specterSideCamera.enabled = false;
+		if (_isChan)
+		{
+			_chan.UnlockAll();
+			_specter.LockAll();
+		}
+		else
+		{
+			_chan.LockAll();
+			_specter.UnlockAll();
+		}
 	}
 
-	// Update is called once per frame
-	void Update ()
+	protected override void LockableUpdate()
 	{
 		if(Input.GetKeyDown(KeyCode.U))
 		{
-			if (_isHanachanEnabled)
+			_isChan = !_isChan;
+
+			if(_isChan)
 			{
-				_hanachanCore.ShieldControlModule.enabled = false;
-				_hanachanCore.MovementModule.enabled = false;
-				_hanachanSideCamera.enabled = false;
-
-				_specterCore.CameraControlModule.enabled = true;
-				_specterCore.MovementModule.enabled = true;
-				_specterCore.ConstructorModule.enabled = true;
-				_specterSideCamera.enabled = true;
-
-				_isHanachanEnabled = false;
-				_isSpecterEnabled = true;
+				_chan.UnlockAll();
+				_specter.LockAll();
 			}
 			else
 			{
-				_hanachanCore.ShieldControlModule.enabled = true;
-				_hanachanCore.MovementModule.enabled = true;
-				_hanachanSideCamera.enabled = true;
-
-				_specterCore.CameraControlModule.enabled = false;
-				_specterCore.MovementModule.enabled = false;
-				_specterCore.ConstructorModule.enabled = false;
-				_specterSideCamera.enabled = false;
-
-				_isHanachanEnabled = true;
-				_isSpecterEnabled = false;
+				_chan.LockAll();
+				_specter.UnlockAll();
 			}
 		}
 	}

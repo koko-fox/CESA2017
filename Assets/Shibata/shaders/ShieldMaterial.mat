@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TestMaterial
-  m_Shader: {fileID: 4800000, guid: ccab9a0c8392a5342b59a05f0903b170, type: 3}
+  m_Name: ShieldMaterial
+  m_Shader: {fileID: 4800000, guid: 4c4880b681f99e748be851723f1eb6e9, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -40,6 +40,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _Diffuse
+      second:
+        m_Texture: {fileID: 2800000, guid: 66321cc856b03e245ac41ed8a53e0ecc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
@@ -55,6 +61,12 @@ Material:
         name: _MetallicGlossMap
       second:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Normal
+      second:
+        m_Texture: {fileID: 2800000, guid: cb6c5165ed180c543be39ed70e72abc8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -80,8 +92,17 @@ Material:
         name: _DetailNormalMapScale
       second: 1
     - first:
+        name: _DevideIntensity
+      second: 91.4
+    - first:
+        name: _DivideIntensity
+      second: 24.1
+    - first:
         name: _DstBlend
       second: 0
+    - first:
+        name: _Frequency
+      second: 10
     - first:
         name: _GlossMapScale
       second: 1
@@ -91,6 +112,9 @@ Material:
     - first:
         name: _GlossyReflections
       second: 1
+    - first:
+        name: _Glow
+      second: 10
     - first:
         name: _Metallic
       second: 0
@@ -104,6 +128,12 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _RimLight
+      second: 10
+    - first:
+        name: _RimLightIntensity
+      second: 8.61
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -113,15 +143,54 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
+        name: _Tessellation
+      second: 1
+    - first:
         name: _UVSec
       second: 0
     - first:
         name: _ZWrite
       second: 1
+    - first:
+        name: _node_1923
+      second: 7.158861
+    - first:
+        name: _node_3060
+      second: 0.83
+    - first:
+        name: _node_4016
+      second: 16.10744
+    - first:
+        name: _node_4218
+      second: 20
+    - first:
+        name: _node_516
+      second: 3
+    - first:
+        name: _node_5306
+      second: 1.111117
+    - first:
+        name: _node_6192
+      second: 7.837607
+    - first:
+        name: _node_8510
+      second: 10
+    - first:
+        name: _node_8510_copy
+      second: 10
+    - first:
+        name: _node_8751
+      second: 0.05128207
     m_Colors:
     - first:
+        name: _Albedo
+      second: {r: 0.6617647, g: 0.6780933, b: 1, a: 1}
+    - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0, g: 0.048275948, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _Specular
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
