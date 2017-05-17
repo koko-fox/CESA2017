@@ -2763,31 +2763,22 @@ Prefab:
     - target: {fileID: 114427677918466832, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
       propertyPath: _randomSeed
-      value: 4876
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 198016545267333834, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
       propertyPath: randomSeed
-      value: -32200903
-      objectReference: {fileID: 0}
-    - target: {fileID: 114427677918466832, guid: 85226096bcf5c0d4f84985da538fd455,
-        type: 2}
-      propertyPath: sorting
-      value: 3
+      value: -767698496
       objectReference: {fileID: 0}
     - target: {fileID: 114427677918466832, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
       propertyPath: particleCount
-      value: 512
+      value: 4096
       objectReference: {fileID: 0}
     - target: {fileID: 198016545267333834, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
       propertyPath: InitialModule.maxNumParticles
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065401929964676, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+      value: 4096
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}

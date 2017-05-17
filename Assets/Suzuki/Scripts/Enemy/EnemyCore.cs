@@ -41,7 +41,6 @@ public class EnemyCore : MonoBehaviour {
       }
     }
     else {
-      particle.emit = false;
       isBlown = false;
       gameObject.layer = LayerMask.NameToLayer("Enemy");
     }
@@ -61,7 +60,6 @@ public class EnemyCore : MonoBehaviour {
   private void ApplyDamage() {
     var damageValue = collidedShield.attackSystem.lastValue * Time.fixedDeltaTime;
     health -= damageValue;
-    particle.emit = true;
     onDamaged(damageValue);
     if (health > 0.0f) return;
     Die();
