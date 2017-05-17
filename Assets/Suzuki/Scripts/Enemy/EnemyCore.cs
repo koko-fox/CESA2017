@@ -17,7 +17,7 @@ public class EnemyCore : MonoBehaviour {
 
   public bool isBlown { get; private set; }
   private List<int> collisions = new List<int>();
-  private RadShieldCore collidedShield;
+  private ShieldCore collidedShield;
   [SerializeField]
   private float health;
   [SerializeField]
@@ -54,12 +54,12 @@ public class EnemyCore : MonoBehaviour {
   private void OnCollisionStay(Collision collision) {
     collisions.Add(collision.gameObject.layer);
     if (IsRadiateShield(collision.gameObject)) {
-      collidedShield = collision.gameObject.GetComponent<RadShieldCore>();
+      collidedShield = collision.gameObject.GetComponent<ShieldCore>();
     }
   }
 
   private void ApplyDamage() {
-    var damageValue = collidedShield.AttackPower * Time.fixedDeltaTime;
+    var damageValue = collidedShield.attackSystem.lastValue * Time.fixedDeltaTime;
     health -= damageValue;
     particle.emit = true;
     onDamaged(damageValue);
@@ -83,13 +83,14 @@ public class EnemyCore : MonoBehaviour {
   private IEnumerator ToDie() {
     Vector3 scaleOrigin = transform.localScale;
     float t = 0.0f;
-    while (transform.localScale.x > 0) {
+    while (transform.localScale.x > 0.0f) {
       yield return null;
-      t += Time.deltaTime / 0.2f;
+      t += Time.deltaTime * 2.0f;
       var scale = Vector3.MoveTowards(scaleOrigin, Vector3.zero, t);
       scale.y = scaleOrigin.y;
       transform.localScale = scale;
     }
+    //yield return new WaitForSeconds(1.0f);
     AudioSource.PlayClipAtPoint(diedSound, transform.position);
     Destroy(gameObject);
   }
