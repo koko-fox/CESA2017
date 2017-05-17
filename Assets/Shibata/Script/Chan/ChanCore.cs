@@ -5,6 +5,12 @@ using UnityEngine;
 [AddComponentMenu("Chan/ChanCore")]
 public class ChanCore : MonoBehaviour
 {
+	public struct LockInfo
+	{
+		public bool locked;
+		public string name;
+	}
+
 	List<Lockable> _systems = new List<Lockable>();
 
 	ChanHealthSystem _healthSystem;
@@ -37,6 +43,12 @@ public class ChanCore : MonoBehaviour
 	/// </summary>
 	public ChanCameraControlSystem cameraControlSystem { get { return _cameraControlSystem; } }
 
+	ChanGrowthSystem _growthSystem;
+	/// <summary>
+	/// 成長システムへのアクセス
+	/// </summary>
+	public ChanGrowthSystem growthSystem { get { return _growthSystem; } }
+
 	/// <summary>
 	/// 全てのシステムをロックする
 	/// </summary>
@@ -55,6 +67,25 @@ public class ChanCore : MonoBehaviour
 			elem.isLock = false;
 	}
 
+	/// <summary>
+	/// 全てのシステムのロック状況を取得する
+	/// </summary>
+	/// <returns></returns>
+	public List<LockInfo> GetLockInfo()
+	{
+		var info = new List<LockInfo>();
+
+		foreach(var elem in _systems)
+		{
+			LockInfo buf;
+			buf.locked = elem.isLock;
+			buf.name = elem.GetType().Name;
+			info.Add(buf);
+		}
+
+		return info;
+	}
+
 	private void Awake()
 	{
 		_healthSystem = GetComponent<ChanHealthSystem>();
@@ -62,11 +93,13 @@ public class ChanCore : MonoBehaviour
 		_movementSystem = GetComponent<ChanMovementSystem>();
 		_shieldSystem = GetComponent<ChanShieldSystem>();
 		_cameraControlSystem = GetComponent<ChanCameraControlSystem>();
+		_growthSystem = GetComponent<ChanGrowthSystem>();
 
 		_systems.Add(_healthSystem);
 		_systems.Add(_energySystem);
 		_systems.Add(_movementSystem);
 		_systems.Add(_shieldSystem);
 		_systems.Add(_cameraControlSystem);
+		_systems.Add(_growthSystem);
 	}
 }

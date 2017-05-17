@@ -40,6 +40,7 @@ public class ChanShieldSystem : Lockable
 
 			_shieldCore = _holdedShield.GetComponent<ShieldCore>();
 			_shieldCore.destroySystem.isLock = true;
+			_shieldCore.movementSystem.isLock = true;
 
 			_isHolding = true;
 			_core.energySystem.energy -= _shotCost;
@@ -52,20 +53,27 @@ public class ChanShieldSystem : Lockable
 
 	void Hold()
 	{
-		_holdedShield.transform.position = transform.position + transform.forward * _distance + transform.up * _height;
+		if(_holdedShield==null)
+		{
+			_state = ShotReady;
+			_core.movementSystem.dashLock = false;
+			_core.energySystem.isLock = false;
 
-		_holdedShield.transform.rotation = Quaternion.AngleAxis(_core.cameraControlSystem.angleH, Vector3.up);
-		_core.energySystem.energy -= _holdCost * Time.deltaTime;
+			return;
+		}
 
 		if(Input.GetMouseButtonUp(0))
 		{
 			_shieldCore.destroySystem.isLock = false;
+			_shieldCore.movementSystem.isLock = false;
 			_holdedShield = null;
 			_isHolding = false;
 			_state = ShotReady;
 
 			_core.movementSystem.dashLock = false;
 			_core.energySystem.isLock = false;
+
+			return;
 		}
 
 		if(_holdCost*Time.deltaTime>_core.energySystem.energy)
@@ -76,7 +84,14 @@ public class ChanShieldSystem : Lockable
 
 			_core.movementSystem.dashLock = false;
 			_core.energySystem.isLock = false;
+
+			return;
 		}
+
+		_holdedShield.transform.position = transform.position + transform.forward * _distance + transform.up * _height;
+
+		_holdedShield.transform.rotation = Quaternion.AngleAxis(_core.cameraControlSystem.angleH, Vector3.up);
+		_core.energySystem.energy -= _holdCost * Time.deltaTime;
 	}
 
 	void Awake()

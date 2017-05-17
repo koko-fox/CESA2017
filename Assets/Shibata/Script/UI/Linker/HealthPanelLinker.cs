@@ -18,7 +18,7 @@ public class HealthPanelLinker : Lockable
 	{
 		_chanCore.healthSystem.onHealthChanged += () =>
 		{
-			float ratio = _chanCore.healthSystem.health / _chanCore.healthSystem.MaxHealth;
+			float ratio = _chanCore.healthSystem.health / _chanCore.healthSystem.maxHealth;
 			_panel.SetBarScale(ratio, 0.5f);
 			_panel.SetValue(_chanCore.healthSystem.health, 0.5f);
 		};

@@ -16,7 +16,7 @@ public class ChanHealthSystem : Lockable
 	/// <summary>
 	/// 最大ヘルス
 	/// </summary>
-	public float MaxHealth
+	public float maxHealth
 	{
 		get { return _maxHealth; }
 		set { _maxHealth = Mathf.Clamp(value, 0.0f, value); }
