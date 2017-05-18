@@ -9,12 +9,14 @@ public class EnemyParticleEjectorModule : EnemyModuleBase {
   private GameObject particlePrefab;
   [SerializeField]
   private PlaygroundParticlesC damageParticle;
+  [SerializeField]
+  private int emitParticlesPerDamaged;
 
   protected override void DoStart() {
     core.onDamaged += (float value) => {
       var minVelocity = damageParticle.initialLocalVelocityMin;
       var maxVelocity = damageParticle.initialLocalVelocityMax;
-      damageParticle.Emit(4, transform.position, minVelocity, maxVelocity, Color.white);
+      damageParticle.Emit(emitParticlesPerDamaged, transform.position, minVelocity, maxVelocity, Color.white);
     };
   }
 

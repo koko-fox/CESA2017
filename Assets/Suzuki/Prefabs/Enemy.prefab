@@ -390,7 +390,7 @@ MonoBehaviour:
   nearestNeighborOrigin: 0
   nearestNeighborOriginVector3: {x: 0, y: 0, z: 0}
   nearestNeighborOriginTransform: {fileID: 0}
-  particleCount: 1024
+  particleCount: 4096
   emissionRate: 1
   overflowMode: 0
   overflowOffset: {x: 0, y: 0, z: 0}
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 6220
+  _randomSeed: 502
   randomSeedOnEnable: 1
 --- !u!114 &114482339906812800
 MonoBehaviour:
@@ -1212,6 +1212,7 @@ MonoBehaviour:
   particlePrefab: {fileID: 1496735805085746, guid: 1059bc2215ad08a49b8fb77a557da531,
     type: 2}
   damageParticle: {fileID: 114427677918466832}
+  emitParticlesPerDamaged: 4
 --- !u!114 &114892999981949928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1325,7 +1326,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1792559563
+  randomSeed: -503266031
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1735,7 +1736,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     randomizeRotationDirection: 0
-    maxNumParticles: 1024
+    maxNumParticles: 4096
     size3D: 0
     rotation3D: 0
     gravityModifier:
