@@ -1134,7 +1134,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 502
+  _randomSeed: 425
   randomSeedOnEnable: 1
 --- !u!114 &114482339906812800
 MonoBehaviour:
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004277684531330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b24c41e5678b7040a84dca2d4f15bde, type: 3}
+  m_Script: {fileID: 11500000, guid: d82745b4df9b57c45a17c1d3b837d514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roundPerSecond: 10
@@ -1195,9 +1195,9 @@ MonoBehaviour:
   audioSource: {fileID: 82496168593149384}
   shootSound: {fileID: 8300000, guid: 415684dc188702f49a33101f42dd48cc, type: 3}
   reloadSound: {fileID: 8300000, guid: e9d148ecdbae41b44b387603ab2f7e54, type: 3}
-  groupingRate: 0.3
+  groupingRate: 0.1
   bullet: {fileID: 1944783478291386, guid: 6d69d6ea4446ae14d9897090253fc26e, type: 2}
-  firePower: 5
+  firePower: 1
 --- !u!114 &114873012998114546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1326,7 +1326,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -503266031
+  randomSeed: 1166344281
   InitialModule:
     serializedVersion: 3
     enabled: 1
