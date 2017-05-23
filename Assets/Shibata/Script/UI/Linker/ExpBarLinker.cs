@@ -34,6 +34,7 @@ public class ExpBarLinker : Lockable
 
 	private void FixedUpdate()
 	{
+		/*
 		var sys = _core.growthSystem;
 		_debug.message += "exp:" + sys.exp + "\n";
 		_debug.message += "next:" + sys.nextRequireExp + "\n";
@@ -43,5 +44,6 @@ public class ExpBarLinker : Lockable
 		{
 			_debug.message += elem.name + ":" + elem.locked.ToString() + "\n";
 		}
-}
+		*/
+	}
 }

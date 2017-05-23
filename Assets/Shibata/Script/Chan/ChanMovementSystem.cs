@@ -77,15 +77,21 @@ public class ChanMovementSystem : Lockable
 		velocity = transform.TransformDirection(velocity);
 		_body.velocity = velocity;
 
+		/*
 		_animator.SetBool("Forward", isForward);
 		_animator.SetBool("Left", isLeft);
 		_animator.SetBool("Right", isRight);
 		_animator.SetBool("Back", isBack);
+		*/
 
+		_animator.SetBool("isRun", isForward || isLeft || isRight);
+
+		/*
 		if (isDash)
 			_animator.SetFloat("DashMultiplier", _dashMul);
 		else
 			_animator.SetFloat("DashMultiplier", 1.0f);
+		*/
 
 		if (isForward || isLeft || isRight || isBack || _core.shieldSystem.isHolding)
 			transform.DORotateQuaternion(Quaternion.AngleAxis(_core.cameraControlSystem.angleH, Vector3.up), 0.2f);
