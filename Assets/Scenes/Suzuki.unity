@@ -467,6 +467,36 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65b5cb9323be03142af8c7c07b44fa57, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &216815769 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1004277684531330, guid: 85226096bcf5c0d4f84985da538fd455,
+    type: 2}
+  m_PrefabInternal: {fileID: 1776109485}
+--- !u!82 &216815771 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82496168593149384, guid: 85226096bcf5c0d4f84985da538fd455,
+    type: 2}
+  m_PrefabInternal: {fileID: 1776109485}
+--- !u!114 &216815772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 216815769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2787aa873742c45973e5d5bf68f9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTime: 4
+  coolTime: 0
+  audioSource: {fileID: 216815771}
+  shootSound: {fileID: 8300000, guid: 415684dc188702f49a33101f42dd48cc, type: 3}
+  reloadSound: {fileID: 8300000, guid: a154ae9dc914a0d4dbb55abae84a8480, type: 3}
+  groupingRate: 0.3
+  bullet: {fileID: 1944783478291386, guid: 6d69d6ea4446ae14d9897090253fc26e, type: 2}
+  firePower: 1
+  bulletsPerFire: 7
 --- !u!1 &264592484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2070,12 @@ Prefab:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 849576302}
+    - target: {fileID: 136040361759459504, guid: b20949799e2857540900cd96166a4b31,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5850c630df440ea42aa4854440d368fc,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b20949799e2857540900cd96166a4b31, type: 2}
   m_IsPrefabParent: 0
@@ -2555,7 +2591,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 139.93
+      value: 134.52
       objectReference: {fileID: 0}
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2593,7 +2629,7 @@ Prefab:
     - target: {fileID: 198016545267333834, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
       propertyPath: randomSeed
-      value: -2073636865
+      value: -615557690
       objectReference: {fileID: 0}
     - target: {fileID: 1065401929964676, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_Name
@@ -2603,7 +2639,11 @@ Prefab:
         type: 2}
       propertyPath: gun
       value: 
-      objectReference: {fileID: 1537742265}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065401929964676, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114757405724007748, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
@@ -2632,18 +2672,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1537742263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2787aa873742c45973e5d5bf68f9d3, type: 3}
+  m_Script: {fileID: 11500000, guid: a78eced7b478e464db491e3209fc38cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadTime: 3
+  reloadTime: 4
   coolTime: 0
   audioSource: {fileID: 1537742264}
-  shootSound: {fileID: 8300000, guid: a154ae9dc914a0d4dbb55abae84a8480, type: 3}
+  shootSound: {fileID: 8300000, guid: 415684dc188702f49a33101f42dd48cc, type: 3}
   reloadSound: {fileID: 8300000, guid: e9d148ecdbae41b44b387603ab2f7e54, type: 3}
-  groupingRate: 0.3
+  groupingRate: 0.1
   bullet: {fileID: 1944783478291386, guid: 6d69d6ea4446ae14d9897090253fc26e, type: 2}
   firePower: 1
-  bulletsPerFire: 7
+  bulletsPerFire: 1
 --- !u!1 &1565411153
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,7 +3042,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 147.29
+      value: 141.84
       objectReference: {fileID: 0}
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3040,13 +3080,23 @@ Prefab:
     - target: {fileID: 198016545267333834, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
       propertyPath: randomSeed
-      value: -1437419020
+      value: -1677974615
       objectReference: {fileID: 0}
     - target: {fileID: 1065401929964676, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114388087946130206, guid: 85226096bcf5c0d4f84985da538fd455,
+        type: 2}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 216815772}
+    - target: {fileID: 4359241391789726, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114757405724007748, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1800971077
