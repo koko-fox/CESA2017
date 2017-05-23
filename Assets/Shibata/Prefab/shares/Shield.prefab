@@ -62,7 +62,7 @@ MeshRenderer:
   m_ReceiveShadows: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 1
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 89ff2aaeb8e79ed4a9a497eb4369b86d, type: 2}
   m_StaticBatchInfo:
@@ -254,22 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d2f6b4529483148b6a8dfe08653196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chargeTimes:
-  - 1
-  - 2
-  - 0
-  _attackMultipliers:
-  - 1
-  - 1.5
-  - 2
-  _scales:
-  - 1.5
-  - 2
-  - 2.5
-  _lifeTimeMultipliers:
-  - 0
-  - 0
-  - 0
+  _maxScale: 3
+  _minScale: 1
+  _expansionSpeed: 1
 --- !u!114 &114813770816457414
 MonoBehaviour:
   m_ObjectHideFlags: 1

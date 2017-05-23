@@ -5,50 +5,38 @@ using DG.Tweening;
 
 public class ShieldReinforcementSystem : Lockable
 {
-	const int _maxLevel = 3;
-	int _level = 0;
-
 	ShieldCore _core;
-	
-	[SerializeField]
-	float[] _chargeTimes = new float[_maxLevel];
-	[SerializeField]
-	float[] _attackMultipliers = new float[_maxLevel];
-	[SerializeField]
-	float[] _scales = new float[_maxLevel];
-	[SerializeField]
-	float[] _lifeTimeMultipliers = new float[_maxLevel];
 
-	Vector3 _baseScale;
-	float _chargeElapsedTime = 0.0f;
+	[SerializeField]
+	float _maxScale;
+	[SerializeField]
+	float _minScale;
+	[SerializeField]
+	float _expansionSpeed;
 
 	private void Awake()
 	{
 		_core = GetComponent<ShieldCore>();
-
-		_core.attackSystem.onCalcValue += () => { return _attackMultipliers[_level]; };
-
-		_baseScale = transform.localScale;
+		transform.localScale = new Vector3(_minScale, transform.localScale.y, transform.localScale.z);
 	}
 
 	private void Start()
 	{
-		transform.localScale = new Vector3(0.0f, _baseScale.y, _baseScale.z);
-		transform.DOScaleX(_baseScale.x, 0.2f);
 	}
 
 	protected override void LockableUpdate()
 	{
-		if (_core.destroySystem.isLock && _level < _maxLevel)
+		if (_core.destroySystem.isLock)
 		{
-			_chargeElapsedTime += Time.deltaTime;
-			if(_chargeElapsedTime>=_chargeTimes[_level])
+			if (_maxScale >= transform.localScale.x)
 			{
-				Vector3 scale = new Vector3(_scales[_level] * _baseScale.x, _baseScale.y, _baseScale.z);
-				transform.DOScale(scale, 0.2f);
-
-				_chargeElapsedTime = 0.0f;
-				_level++;
+				Vector3 scale = transform.localScale;
+				scale.x += _expansionSpeed * Time.deltaTime;
+				transform.localScale = scale;
+			}
+			else
+			{
+				transform.localScale = new Vector3(_maxScale, transform.localScale.y, transform.localScale.z);
 			}
 		}
 	}

@@ -24,8 +24,8 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 3
-  m_SkyboxMaterial: {fileID: 2100000, guid: 7532f699e134c3547b373487f6b4d57f, type: 2}
+  m_AmbientMode: 0
+  m_SkyboxMaterial: {fileID: 2100000, guid: 812f526fd81b9a14883d9d020502d508, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -36,8 +36,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_Sun: {fileID: 1974453084}
+  m_IndirectSpecularColor: {r: 0.9731425, g: 0.9731425, b: 0.9731425, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -71,7 +71,8 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: 577bd5b33f52c674ca7e9485416860a8,
+    type: 2}
   m_RuntimeCPUUsage: 75
 --- !u!196 &4
 NavMeshSettings:
@@ -1856,7 +1857,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4405121089779478, guid: b20949799e2857540900cd96166a4b31, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.923
       objectReference: {fileID: 0}
     - target: {fileID: 4405121089779478, guid: b20949799e2857540900cd96166a4b31, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3982,7 +3983,14 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114153617770014174, guid: 6569383552022b64e83b7f4099204f65,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114153617770014174, guid: 6569383552022b64e83b7f4099204f65, type: 2}
+    - {fileID: 114946381303158644, guid: 6569383552022b64e83b7f4099204f65, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6569383552022b64e83b7f4099204f65, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1597014228 stripped
@@ -4273,7 +4281,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh66400
+  m_Name: pb_Mesh16308
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
