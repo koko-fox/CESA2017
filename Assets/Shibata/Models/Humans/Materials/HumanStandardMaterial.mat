@@ -1,0 +1,429 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: HumanStandardMaterial
+  m_Shader: {fileID: 4800000, guid: 4443140fbd110a7011005aba44295342, type: 3}
+  m_ShaderKeywords: _EMISSION _IS_BLENDADDTOMATCAP_ON _IS_LIGHTCOLOR_1ST_SHADE_ON
+    _IS_LIGHTCOLOR_2ND_SHADE_ON _IS_LIGHTCOLOR_AR_ON _IS_LIGHTCOLOR_BASE_ON _IS_LIGHTCOLOR_HIGHCOLOR_ON
+    _IS_LIGHTCOLOR_MATCAP_ON _IS_LIGHTCOLOR_RIMLIGHT_ON _SET_SYSTEMSHADOWSTOBASE_ON
+  m_LightmapFlags: 1
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _1st_ShadeMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _2nd_ShadeMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _AngelRing_Sampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BaseMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ClippingMask
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _EnvMapSampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _FalloffSampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MatCap_Sampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalMapForMatCap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalMapSampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Outline_Sampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Ramp
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _RefractTex
+      second:
+        m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _RimLightSampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Set_1st_ShadePosition
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Set_2nd_ShadePosition
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Set_HighColorPosition
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ShadingGradeMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecularReflectionSampler
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ToonShade
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_1330
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_1330_copy
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: PixelSnap
+      second: 0
+    - first:
+        name: _1st2nd_Shades_Feather
+      second: 0.0001
+    - first:
+        name: _1st_ShadeColor_Feather
+      second: 0.0001
+    - first:
+        name: _1st_ShadeColor_Step
+      second: 0.5
+    - first:
+        name: _2nd_ShadeColor_Feather
+      second: 0.0001
+    - first:
+        name: _2nd_ShadeColor_Step
+      second: 0.003
+    - first:
+        name: _AR_OffsetU
+      second: 0
+    - first:
+        name: _AR_OffsetV
+      second: 0.3
+    - first:
+        name: _AngelRing
+      second: 0
+    - first:
+        name: _BaseColor_Step
+      second: 0.6
+    - first:
+        name: _BaseShade_Feather
+      second: 0.0001
+    - first:
+        name: _Clipping_Level
+      second: 0
+    - first:
+        name: _CullMode
+      second: 2
+    - first:
+        name: _Cutoff
+      second: 0.5
+    - first:
+        name: _DepthBias
+      second: 0.00012
+    - first:
+        name: _EdgeThickness
+      second: 1
+    - first:
+        name: _Emission
+      second: 0.64
+    - first:
+        name: _EnvironmentLight
+      second: 0.58
+    - first:
+        name: _Farthest_Distance
+      second: 10
+    - first:
+        name: _Frequency
+      second: 100
+    - first:
+        name: _GI_Intensity
+      second: 0
+    - first:
+        name: _Gloss
+      second: 0.8
+    - first:
+        name: _HighColor_Power
+      second: 0.1
+    - first:
+        name: _Inverse_Clipping
+      second: 0
+    - first:
+        name: _Is_1st_ShadeColorOnly
+      second: 0
+    - first:
+        name: _Is_BlendAddToHiColor
+      second: 0
+    - first:
+        name: _Is_BlendAddToMatCap
+      second: 1
+    - first:
+        name: _Is_BlendBaseColor
+      second: 0
+    - first:
+        name: _Is_BrendBaseColor
+      second: 0
+    - first:
+        name: _Is_LightColor_1st_Shade
+      second: 1
+    - first:
+        name: _Is_LightColor_2nd_Shade
+      second: 1
+    - first:
+        name: _Is_LightColor_AR
+      second: 1
+    - first:
+        name: _Is_LightColor_Base
+      second: 1
+    - first:
+        name: _Is_LightColor_HighColor
+      second: 1
+    - first:
+        name: _Is_LightColor_MatCap
+      second: 1
+    - first:
+        name: _Is_LightColor_RimLight
+      second: 1
+    - first:
+        name: _Is_NormalMap
+      second: 0
+    - first:
+        name: _Is_NormalMapForMatCap
+      second: 0
+    - first:
+        name: _Is_NormalMapToBase
+      second: 0
+    - first:
+        name: _Is_NormalMapToHighColor
+      second: 0
+    - first:
+        name: _Is_NormalMapToRimLight
+      second: 0
+    - first:
+        name: _Is_SpecularToHighColor
+      second: 0
+    - first:
+        name: _Is_UseTweakHighColorOnShadow
+      second: 0
+    - first:
+        name: _Is_UseTweakMatCapOnShadow
+      second: 0
+    - first:
+        name: _MatCap
+      second: 0
+    - first:
+        name: _Metallic
+      second: 0
+    - first:
+        name: _Nearest_Distance
+      second: 0.5
+    - first:
+        name: _Offset_Z
+      second: 0
+    - first:
+        name: _Outline
+      second: 0.005
+    - first:
+        name: _Outline_Width
+      second: 1
+    - first:
+        name: _PosterizeStep
+      second: 8
+    - first:
+        name: _PosterizeSteps
+      second: 100
+    - first:
+        name: _ReflectionStrength
+      second: 0.8
+    - first:
+        name: _RimLight
+      second: 0
+    - first:
+        name: _RimLightSharpness
+      second: 5
+    - first:
+        name: _RimLight_Power
+      second: 0.1
+    - first:
+        name: _Rotate_MatCapUV
+      second: 0
+    - first:
+        name: _Rotate_NormalMapForMatCapUV
+      second: 0
+    - first:
+        name: _Set_SystemShadowsToBase
+      second: 1
+    - first:
+        name: _ShadeColor_Step
+      second: 0.4
+    - first:
+        name: _SpecularGrowSharpness
+      second: 8
+    - first:
+        name: _SpecularPower
+      second: 20
+    - first:
+        name: _TweakHighColorOnShadow
+      second: 0
+    - first:
+        name: _TweakMatCapOnShadow
+      second: 0
+    - first:
+        name: _Tweak_MatCapUV
+      second: 0
+    - first:
+        name: _Tweak_SystemShadowsLevel
+      second: 0
+    - first:
+        name: _node_1501
+      second: 1.5
+    - first:
+        name: _node_2142
+      second: 1.846154
+    - first:
+        name: _node_2553
+      second: 8
+    - first:
+        name: _node_4358
+      second: 0
+    - first:
+        name: _node_5129
+      second: 2
+    - first:
+        name: _node_5371
+      second: 7.153846
+    - first:
+        name: _node_7584
+      second: 1.769231
+    - first:
+        name: _node_7609
+      second: 10
+    - first:
+        name: _node_7723
+      second: 1
+    m_Colors:
+    - first:
+        name: _1st_ShadeColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _2nd_ShadeColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _AngelRing_Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _BaseColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _Color
+      second: {r: 1, g: 0, b: 0, a: 1}
+    - first:
+        name: _HighColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _MatCapColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _OutlineColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _Outline_Color
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - first:
+        name: _RimLightColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _ShadowColor
+      second: {r: 0.8, g: 0.8, b: 1, a: 1}
