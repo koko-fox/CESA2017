@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGun : MonoBehaviour {
+public class EnemyAssaultRifle : EnemyGun {
   private bool isFiring = false;
 
   [SerializeField]
@@ -24,13 +24,13 @@ public class EnemyGun : MonoBehaviour {
   [SerializeField]
   private float firePower;
 
-  public bool CanFire() {
+  public override bool CanFire() {
     if (isFiring) return false;
     if (coolTime > 0.0f) return false;
     return true;
   }
 
-  public void Fire() {
+  public override void Fire() {
     if (!CanFire()) return;
     isFiring = true;
     StartCoroutine("ThreeRoundBurst");
@@ -56,9 +56,9 @@ public class EnemyGun : MonoBehaviour {
     var origin = transform.position;
 
     var direction = Vector3.forward;
-    var directionRandom = Random.insideUnitCircle * groupingRate;
-    direction.x += directionRandom.x;
-    direction.y += directionRandom.y;
+    var randomizedDirection = UnityEngine.Random.insideUnitCircle * groupingRate;
+    direction.x += randomizedDirection.x;
+    direction.y += randomizedDirection.y;
     direction = transform.rotation * direction;
 
     var layerMask = LayerMask.GetMask("Enemy", "BlownEnemy", "ItemOrb");
@@ -84,4 +84,6 @@ public class EnemyGun : MonoBehaviour {
     newBullet.transform.rotation *= lookRotation;
     bulletBehaviour.direction = direction;
   }
+
 }
+
