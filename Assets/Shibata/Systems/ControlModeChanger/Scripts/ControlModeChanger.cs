@@ -17,7 +17,7 @@ public class ControlModeChanger : Lockable
 		if(!_chan)
 			_chan = FindObjectOfType<ChanCore>();
 		if(!_specter)
-		_specter = FindObjectOfType<SpecterCore>();
+			_specter = FindObjectOfType<SpecterCore>();
 
 		Change(true);
 	}
