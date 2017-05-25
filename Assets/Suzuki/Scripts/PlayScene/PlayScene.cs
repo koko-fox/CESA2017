@@ -8,7 +8,7 @@ public class PlayScene : MonoBehaviour {
   private int score;
 
   [SerializeField]
-  private HanachanCore player;
+  private ChanCore player;
   [SerializeField]
   private Timer timer;
   [SerializeField]
