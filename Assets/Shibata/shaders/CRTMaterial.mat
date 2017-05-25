@@ -111,7 +111,7 @@ Material:
       second: 0
     - first:
         name: _Frequency
-      second: 100
+      second: 57.9
     - first:
         name: _GlossMapScale
       second: 1
@@ -135,7 +135,7 @@ Material:
       second: 0.02
     - first:
         name: _PosterizeSteps
-      second: 2
+      second: 10.4
     - first:
         name: _SmoothnessTextureChannel
       second: 0

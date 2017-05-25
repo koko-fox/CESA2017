@@ -6,6 +6,9 @@ public class ChanGrowthSystem : Lockable
 {
 	ChanCore _core;
 	[SerializeField]
+	EnemyProvider _provider;
+
+	[SerializeField]
 	int _maxLevel = 100;
 	int _level = 0;
 	/// <summary>
@@ -105,10 +108,25 @@ public class ChanGrowthSystem : Lockable
 	private void Awake()
 	{
 		_core = GetComponent<ChanCore>();
+
+		if (!_provider)
+			_provider = FindObjectOfType<EnemyProvider>();
+	}
+
+	private void Start()
+	{
+		if (!_provider)
+			return;
+
+		_provider.onDead += _provider_onDead;
+	}
+
+	private void _provider_onDead()
+	{
+		_exp += 1.0f;
 	}
 
 	private void Update()
 	{
-		exp += 1.0f;
 	}
 }
