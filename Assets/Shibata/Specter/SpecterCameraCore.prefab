@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4058546554695994}
-  - component: {fileID: 114949172267856626}
   - component: {fileID: 114452620706008356}
   - component: {fileID: 114031023554700500}
   - component: {fileID: 114538713041309866}
+  - component: {fileID: 114326288132977478}
   m_Layer: 0
   m_Name: SpecterCameraCore
   m_TagString: Untagged
@@ -54,6 +54,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d245d6bc242acce42a3339790069e953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114326288132977478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1489071778714684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a73e1d66a09e394387c1629e755ed0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114452620706008356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,6 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb9a03d04717e644a9a3295351f7d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetCamera: {fileID: 0}
+  _mouseSensitivity: 100
+  _maxElevation: 70
+  _maxDepression: 70
 --- !u!114 &114538713041309866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,14 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7364ad75bda624b4d95b4a0cca4f00f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114949172267856626
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1489071778714684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78a8f8e7d25f8fa438d9eb72e18efbba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _speed: 10
+  _forwardKey: 119
+  _leftKey: 97
+  _rightKey: 100
+  _backKey: 115
+  _upKey: 32
+  _downKey: 306
