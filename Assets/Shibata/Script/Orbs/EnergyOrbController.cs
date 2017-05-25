@@ -11,6 +11,6 @@ public class EnergyOrbController : OrbBase
 
 	protected override void OnCollisionTarget()
 	{
-		_hanachanCore.Energy += recoveryRate / 100.0f * _hanachanCore.MaxEnergy;
+		//_hanachanCore.Energy += recoveryRate / 100.0f * _hanachanCore.MaxEnergy;
 	}
 }

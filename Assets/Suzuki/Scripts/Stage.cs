@@ -5,6 +5,8 @@ using UnityEngine;
 public class Stage : MonoBehaviour {
   public delegate void EnemyKilledEvent();
   public event EnemyKilledEvent onEnemyKilled = delegate { };
+  public delegate void EnemySpawnedEvent(EnemyCore enemy);
+  public event EnemySpawnedEvent onEnemySpawned = delegate { };
 
   [SerializeField]
   private GameObject enemyPrefab;
@@ -31,6 +33,7 @@ public class Stage : MonoBehaviour {
         var rotation = spawnPoint.transform.rotation;
         var newEnemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
         var enemyBehavior = newEnemy.GetComponent<EnemyCore>();
+        onEnemySpawned(enemyBehavior);
         enemyBehavior.onDied += () => {
           StartCoroutine(Spawn());
           onEnemyKilled();
