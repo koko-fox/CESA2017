@@ -36,6 +36,12 @@ public class ChanCameraControlSystem : Lockable
 	float _angleH = 0.0f;
 	public float angleH { get { return _angleH; } }
 
+	private void Awake()
+	{
+		if (!_camera)
+			_camera = FindObjectOfType<Camera>();
+	}
+
 	protected override void LockableUpdate()
 	{
 		float deltaX = Input.GetAxis("Mouse X") * Time.deltaTime * _mouseSensitivity;

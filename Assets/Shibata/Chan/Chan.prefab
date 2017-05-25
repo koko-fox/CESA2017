@@ -2568,6 +2568,7 @@ GameObject:
   - component: {fileID: 114889694659767404}
   - component: {fileID: 114922691005127390}
   - component: {fileID: 114322781165964526}
+  - component: {fileID: 114669177800892038}
   m_Layer: 10
   m_Name: Chan
   m_TagString: Untagged
@@ -18167,8 +18168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d3831be07d17c4f8d217b8cbee76c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotCost: 20
-  _holdCost: 3
+  _shotCost: 0
+  _holdCost: 0
   _shieldPrefab: {fileID: 1119933606310146, guid: 31a4d2ec957971944948171faedc7303,
     type: 2}
   _distance: 1
@@ -18510,6 +18511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5b94bc44ff20b4bb6199ccbd62ebdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _provider: {fileID: 0}
   _maxLevel: 100
   _expCurve:
     serializedVersion: 2
@@ -20906,6 +20908,19 @@ MonoBehaviour:
   - {fileID: 114342675875015122}
   debug: 1
   threshold: 0.01
+--- !u!114 &114669177800892038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1310102318097472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032cb543ad8b1e84fa980f1dc213cf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _provider: {fileID: 0}
+  _requireKillCount: 0
 --- !u!114 &114705933231565752
 MonoBehaviour:
   m_ObjectHideFlags: 1
