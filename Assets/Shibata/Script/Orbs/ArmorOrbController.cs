@@ -12,6 +12,6 @@ public class ArmorOrbController : OrbBase
 	{
 		base.OnCollisionTarget();
 
-		_hanachanCore.Statuses.ArmorValue += amount;
+		//_chanCore.Statuses.ArmorValue += amount;
 	}
 }
