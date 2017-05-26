@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayScene : MonoBehaviour {
   [SerializeField]
@@ -19,12 +20,15 @@ public class PlayScene : MonoBehaviour {
   private GameObject timeBonusEffectPrefab;
   [SerializeField]
   private Canvas mainCanvas;
+  [SerializeField]
+  private Text text;
 
   private void Awake() {
     timer.onValueChanged += Timer_onValueChanged;
     timer.onValueAdded += Timer_onValueAdded;
     stage.onEnemyKilled += () => {
       score += 1;
+      text.text = "討伐数: " + score.ToString();
       timer.RemainingTime += timeBonusPerKill;
     };
   }
