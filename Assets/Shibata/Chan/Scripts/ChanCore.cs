@@ -92,6 +92,8 @@ public class ChanCore : MonoBehaviour
 		return info;
 	}
 
+	DebugPanel _debugPanel;
+
 	private void Awake()
 	{
 		_healthSystem = GetComponent<ChanHealthSystem>();
@@ -109,5 +111,27 @@ public class ChanCore : MonoBehaviour
 		_systems.Add(_cameraControlSystem);
 		_systems.Add(_growthSystem);
 		_systems.Add(_burstSystem);
+
+		_debugPanel = DebugPanelManager.instance.Create(gameObject);
+		_debugPanel.offset = new Vector3(1.0f, 1.4f);
+		_debugPanel.fontSize = 7;
+	}
+
+	private void Update()
+	{
+		_debugPanel.text = "";
+
+		_debugPanel.text += "Position:" + transform.position.ToString() + "\n";
+
+		foreach(var elem in _systems)
+		{
+			_debugPanel.text += elem.GetType().ToString() + ":";
+			if (!elem.isLock)
+				_debugPanel.text += "<color=#00ff00>Enable</color>";
+			else
+				_debugPanel.text += "<color=#ff00ff>Disable</color>";
+
+			_debugPanel.text += "\n";
+		}
 	}
 }
