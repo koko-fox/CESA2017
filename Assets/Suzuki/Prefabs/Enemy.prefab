@@ -1543,7 +1543,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 0f484ffc64faa5d4f83708800d2fd3aa, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1588,6 +1588,7 @@ MonoBehaviour:
   firingArea: {fileID: 114036067970078910}
   gun: {fileID: 114949274308828440}
   durationToChase: 3
+  animator: {fileID: 95507247089504018}
 --- !u!114 &114427677918466832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2341,7 +2342,7 @@ MonoBehaviour:
   timeOfSnapshot: 0
   isSnapshot: 0
   shurikenParticleSystem: {fileID: 198016545267333834}
-  particleSystemId: 1
+  particleSystemId: 0
   particleSystemGameObject: {fileID: 1580509012612526}
   particleSystemTransform: {fileID: 4087342918390256}
   particleSystemRenderer: {fileID: 199624756429217464}
@@ -2362,7 +2363,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 4349
+  _randomSeed: 6350
   randomSeedOnEnable: 1
 --- !u!114 &114482339906812800
 MonoBehaviour:
@@ -2631,7 +2632,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 326402653
+  randomSeed: 236308552
   InitialModule:
     serializedVersion: 3
     enabled: 1

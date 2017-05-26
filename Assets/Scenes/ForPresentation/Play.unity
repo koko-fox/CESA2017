@@ -959,7 +959,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh503584
+  m_Name: pb_Mesh-4062172
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -2532,7 +2532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf99e9c3c4b714a96a2d7ed6cc281814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystems: []
+  particleSystems:
+  - {fileID: 2065989098}
   manipulators: []
   paintMaxPositions: 10000
   calculate: 1
@@ -2881,3 +2882,66 @@ Transform:
   m_Father: {fileID: 444456451}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2065989097
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 17.21867
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000047683716
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 12.729264
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 198016545267333834, guid: 85226096bcf5c0d4f84985da538fd455,
+        type: 2}
+      propertyPath: randomSeed
+      value: -666714222
+      objectReference: {fileID: 0}
+    - target: {fileID: 114427677918466832, guid: 85226096bcf5c0d4f84985da538fd455,
+        type: 2}
+      propertyPath: _randomSeed
+      value: 7445
+      objectReference: {fileID: 0}
+    - target: {fileID: 95507247089504018, guid: 85226096bcf5c0d4f84985da538fd455,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &2065989098 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114427677918466832, guid: 85226096bcf5c0d4f84985da538fd455,
+    type: 2}
+  m_PrefabInternal: {fileID: 2065989097}
+  m_Script: {fileID: 11500000, guid: a095f32c8084a4b1ba25c9153255dd10, type: 3}

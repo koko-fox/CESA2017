@@ -23,6 +23,8 @@ public class EnemyControlModule : EnemyModuleBase {
   private EnemyGun gun;
   [SerializeField]
   private float durationToChase = 3.0f;
+  [SerializeField]
+  private Animator animator;
 
   protected override void DoAwake() {
     agent = GetComponent<NavMeshAgent>();
@@ -46,6 +48,7 @@ public class EnemyControlModule : EnemyModuleBase {
     if (target) {
       agent.destination = target.transform.position;
     }
+    animator.SetBool("isRun", false);
     behaviourTree.Update();
   }
 
@@ -76,6 +79,7 @@ public class EnemyControlModule : EnemyModuleBase {
     agent.destination = target.transform.position;
     transform.position += agent.desiredVelocity * Time.deltaTime;
     agent.nextPosition = transform.position;
+    animator.SetBool("isRun", true);
     FaceToTarget();
   }
 
