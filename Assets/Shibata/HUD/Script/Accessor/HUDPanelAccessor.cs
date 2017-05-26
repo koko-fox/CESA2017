@@ -98,6 +98,12 @@ public class HUDPanelAccessor : Lockable
 		_bar.transform.DOScaleX(scale, duration);
 	}
 
+	public string text
+	{
+		get { return _valueText.text; }
+		set { _valueText.text = value; }
+	}
+
 	private void Reset()
 	{
 		Awake();
@@ -116,12 +122,14 @@ public class HUDPanelAccessor : Lockable
 
 	protected override void LockableUpdate()
 	{
+		/*
 		if (_elapsed < _duration)
 		{
 			_elapsed += Time.deltaTime;
 			float lerped = Mathf.Lerp(_value, _endValue, _elapsed / _duration);
 			_valueText.text = Mathf.FloorToInt(lerped).ToString();
 		}
+		*/
 		
 	}
 

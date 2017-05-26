@@ -14,13 +14,9 @@ public class HealthPanelLinker : Lockable
 		_chanCore = FindObjectOfType<ChanCore>();
 	}
 
-	private void Start()
+	protected override void LockableUpdate()
 	{
-		_chanCore.healthSystem.onHealthChanged += () =>
-		{
-			float ratio = _chanCore.healthSystem.health / _chanCore.healthSystem.maxHealth;
-			_panel.SetBarScale(ratio, 0.5f);
-			_panel.SetValue(_chanCore.healthSystem.health, 0.5f);
-		};
+		_panel.SetBarScale(_chanCore.healthSystem.health / _chanCore.healthSystem.maxHealth, 0.1f);
+		_panel.text = _chanCore.healthSystem.health + "/" + _chanCore.healthSystem.maxHealth;
 	}
 }

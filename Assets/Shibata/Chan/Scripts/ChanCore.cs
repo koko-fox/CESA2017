@@ -49,6 +49,12 @@ public class ChanCore : MonoBehaviour
 	/// </summary>
 	public ChanGrowthSystem growthSystem { get { return _growthSystem; } }
 
+	ChanBurstSystem _burstSystem;
+	/// <summary>
+	/// バーストシステムへのアクセス
+	/// </summary>
+	public ChanBurstSystem burstSystem { get { return _burstSystem; } }
+
 	/// <summary>
 	/// 全てのシステムをロックする
 	/// </summary>
@@ -94,6 +100,7 @@ public class ChanCore : MonoBehaviour
 		_shieldSystem = GetComponent<ChanShieldSystem>();
 		_cameraControlSystem = GetComponent<ChanCameraControlSystem>();
 		_growthSystem = GetComponent<ChanGrowthSystem>();
+		_burstSystem = GetComponent<ChanBurstSystem>();
 
 		_systems.Add(_healthSystem);
 		_systems.Add(_energySystem);
@@ -101,5 +108,6 @@ public class ChanCore : MonoBehaviour
 		_systems.Add(_shieldSystem);
 		_systems.Add(_cameraControlSystem);
 		_systems.Add(_growthSystem);
+		_systems.Add(_burstSystem);
 	}
 }

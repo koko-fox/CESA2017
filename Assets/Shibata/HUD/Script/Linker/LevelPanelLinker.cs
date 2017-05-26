@@ -20,4 +20,9 @@ public class LevelPanelLinker : Lockable
 			  _panel.str = "Lv." + _core.growthSystem.level;
 		  };
 	}
+
+	protected override void LockableUpdate()
+	{
+		_panel.str = "Lv." + _core.growthSystem.level;
+	}
 }

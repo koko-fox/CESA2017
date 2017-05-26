@@ -9,8 +9,16 @@ public class ChanBurstSystem : Lockable
 
 	[SerializeField]
 	int _requireKillCount;
+	public int requireKillCount
+	{
+		get { return _requireKillCount; }
+	}
 
 	int _killCount = 0;
+	public int killCount
+	{
+		get { return _killCount; }
+	}
 
 	private void Awake()
 	{
