@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [AddComponentMenu("Chan/ChanCore")]
@@ -117,21 +118,31 @@ public class ChanCore : MonoBehaviour
 		_debugPanel.fontSize = 7;
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
-		_debugPanel.text = "";
-
-		_debugPanel.text += "Position:" + transform.position.ToString() + "\n";
-
-		foreach(var elem in _systems)
+		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			_debugPanel.text += elem.GetType().ToString() + ":";
-			if (!elem.isLock)
-				_debugPanel.text += "<color=#00ff00>Enable</color>";
-			else
-				_debugPanel.text += "<color=#ff00ff>Disable</color>";
-
-			_debugPanel.text += "\n";
+			_burstSystem.ForcedBurst();
 		}
+
+		StringBuilder str = new StringBuilder();
+
+		str.Append("BurstMode:");
+		if (_burstSystem.isBurst)
+		{
+			str.Append("<color=#00ff00>Active</color>\n");
+			str.Append("Remain:").Append(_burstSystem.remainTime.ToString()).Append("[sec]\n");
+		}
+		else
+			str.Append("<color=#ff0000>Inactive</color>\n");
+
+		str.Append("-speed_multiplier_operands-\n");
+		foreach(var elem in _movementSystem.SpeedMultipliers)
+		{
+			str.Append(elem._name).Append(":").Append(elem._operand).Append("\n");
+		}
+		str.Append("---------------------------");
+
+		_debugPanel.text = str.ToString();
 	}
 }

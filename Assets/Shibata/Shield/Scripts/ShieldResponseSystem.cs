@@ -7,11 +7,11 @@ using UnityEngine;
 public class ShieldResponseSystem : Lockable
 {
 	[SerializeField]
-	AudioClip _hitSound;
+	AudioClip _hitSound=null;
 	AudioSource _audioSource;
 
 	[SerializeField]
-	GameObject _hitParticle;
+	GameObject _hitParticle=null;
 
 	private void Awake()
 	{

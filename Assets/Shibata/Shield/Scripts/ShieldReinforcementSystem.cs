@@ -8,11 +8,11 @@ public class ShieldReinforcementSystem : Lockable
 	ShieldCore _core;
 
 	[SerializeField]
-	float _maxScale;
+	float _maxScale = 3.0f;
 	[SerializeField]
-	float _minScale;
+	float _minScale = 1.0f;
 	[SerializeField]
-	float _expansionSpeed;
+	float _expansionSpeed = 1.0f;
 
 	private void Awake()
 	{

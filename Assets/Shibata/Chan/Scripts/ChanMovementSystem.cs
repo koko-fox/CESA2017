@@ -24,8 +24,75 @@ public class ChanMovementSystem : Lockable
 	float _backWalkMul = 0.5f;
 	[SerializeField]
 	float _dashMul = 1.5f;
+	const string _dashMulOperandName = "InDash";
 
-	[SerializeField]
+	public struct SpeedMultiplier
+	{
+		public string _name;
+		public float _operand;
+
+		public SpeedMultiplier(string name,float operand)
+		{
+			_name = name;
+			_operand = operand;
+		}
+	}
+
+	List<SpeedMultiplier> _speedMultipliers;
+	public List<SpeedMultiplier> SpeedMultipliers
+	{
+		get
+		{
+			return _speedMultipliers;
+		}
+	}
+
+	/// <summary>
+	/// 乗数を追加する
+	/// </summary>
+	/// <param name="name">演算数の名前</param>
+	/// <param name="operand">演算数</param>
+	public void AddSpeedMultiplier(string name,float operand)
+	{
+		SpeedMultiplier mul = new SpeedMultiplier(name, operand);
+		_speedMultipliers.Add(mul);
+	}
+
+	/// <summary>
+	/// 乗数を削除する
+	/// </summary>
+	/// <param name="name">削除する演算数の名前</param>
+	public void RemoveSpeedMultiplier(string name)
+	{
+		_speedMultipliers.RemoveAll(mul => mul._name == name);
+	}
+
+	/// <summary>
+	/// 速度を加工する
+	/// </summary>
+	/// <param name="value">加工する速度</param>
+	/// <returns>加工された速度</returns>
+	Vector3 ProcessSpeed(Vector3 value)
+	{
+		Vector3 ret = value;
+		foreach(var elem in _speedMultipliers)
+		{
+			ret *= elem._operand;
+		}
+
+		return ret;
+	}
+
+	float ProcessSpeed(float value)
+	{
+		float ret = value;
+		foreach(var elem in _speedMultipliers)
+		{
+			ret *= elem._operand;
+		}
+		return ret;
+	}
+
 	KeyCode _forwardKey = KeyCode.W;
 	[SerializeField]
 	KeyCode _leftKey = KeyCode.A;
@@ -33,8 +100,22 @@ public class ChanMovementSystem : Lockable
 	KeyCode _rightKey = KeyCode.D;
 	[SerializeField]
 	KeyCode _backKey = KeyCode.S;
+
 	[SerializeField]
 	KeyCode _dashKey = KeyCode.LeftShift;
+	bool _isDash;
+
+	void BeginDash()
+	{
+		AddSpeedMultiplier(_dashMulOperandName, _dashMul);
+		_isDash = true;
+	}
+
+	void EndDash()
+	{
+		RemoveSpeedMultiplier(_dashMulOperandName);
+		_isDash = false;
+	}
 
 	bool _dashLock = false;
 	/// <summary>
@@ -43,11 +124,18 @@ public class ChanMovementSystem : Lockable
 	public bool dashLock
 	{
 		get { return _dashLock; }
-		set { _dashLock = value; }
+		set
+		{
+			_dashLock = value;
+			if (_dashLock)
+				EndDash();
+		}
 	}
 
 	private void Awake()
 	{
+		_speedMultipliers = new List<SpeedMultiplier>();
+
 		_core = GetComponent<ChanCore>();
 		_body = GetComponent<Rigidbody>();
 		_animator = _model.GetComponent<Animator>();
@@ -60,7 +148,12 @@ public class ChanMovementSystem : Lockable
 		bool isLeft = Input.GetKey(_leftKey);
 		bool isRight = Input.GetKey(_rightKey);
 		bool isBack = Input.GetKey(_backKey);
-		bool isDash = Input.GetKey(_dashKey) && !dashLock;
+
+		if (Input.GetKeyDown(_dashKey) && !dashLock&&!_isDash)
+			BeginDash();
+		
+		if(Input.GetKeyUp(_dashKey))
+			EndDash();
 
 		if (isForward && !isBack)
 			velocity.z += _baseSpeed;
@@ -71,29 +164,17 @@ public class ChanMovementSystem : Lockable
 		if (isBack && !isForward)
 			velocity.z -= _baseSpeed * _backWalkMul;
 
-		if (isDash && !isBack)
-			velocity *= _dashMul;
+		velocity = ProcessSpeed(velocity);
 
 		velocity = transform.TransformDirection(velocity);
 		_body.velocity = velocity;
-
-		/*
-		_animator.SetBool("Forward", isForward);
-		_animator.SetBool("Left", isLeft);
-		_animator.SetBool("Right", isRight);
-		_animator.SetBool("Back", isBack);
-		*/
-
+	
 		_animator.SetBool("isRun", isForward || isLeft || isRight);
-
-		/*
-		if (isDash)
-			_animator.SetFloat("DashMultiplier", _dashMul);
-		else
-			_animator.SetFloat("DashMultiplier", 1.0f);
-		*/
+		_animator.SetFloat("Speed", ProcessSpeed(1.0f));
 
 		if (isForward || isLeft || isRight || isBack || _core.shieldSystem.isHolding)
 			transform.DORotateQuaternion(Quaternion.AngleAxis(_core.cameraControlSystem.angleH, Vector3.up), 0.2f);
 	}
+
+	
 }

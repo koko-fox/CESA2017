@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 [AddComponentMenu("Shield/ShieldCore")]
@@ -38,6 +39,7 @@ public class ShieldCore : MonoBehaviour
 	public ShieldResponseSystem responseSystem { get { return _responseSystem; } }
 
 	DebugPanel _debugPanel;
+	float _updateInterval = 3.0f;
 
 	private void Awake()
 	{
@@ -62,16 +64,19 @@ public class ShieldCore : MonoBehaviour
 	private void Update()
 	{
 		_debugPanel.text = "";
+
+		StringBuilder builder = new StringBuilder();
+		
 		foreach (var elem in _systems)
 		{
-			_debugPanel.text += elem.GetType().ToString() + ":";
+			builder.Append(elem.GetType().ToString()).Append(":");
 			if (!elem.isLock)
-				_debugPanel.text += "<color=#00ff00>Enable</color>";
+				builder.Append("<color=#00ff00>Enable</color>\n");
 			else
-				_debugPanel.text += "<color=#ff00ff>Disable</color>";
-
-			_debugPanel.text += "\n";
+				builder.Append("<color=#ff00ff>Disable</color>\n");
 		}
+
+		_debugPanel.text = builder.ToString();
 	}
 
 	private void OnDestroy()

@@ -8,6 +8,7 @@ public class DebugPanel : MonoBehaviour
 	Text _name;
 	Text _text;
 	Image _textBack;
+	Camera _camera;
 
 	Vector3 _offset;
 	public Vector3 offset
@@ -38,6 +39,7 @@ public class DebugPanel : MonoBehaviour
 		_text = transform.FindChild("Text").GetComponent<Text>();
 		_name = transform.FindChild("Name").GetComponent<Text>();
 		_textBack = transform.FindChild("TextBack").GetComponent<Image>();
+		_camera = FindObjectOfType<Camera>();
 
 		var canvas = GameObject.Find("DebugCanvas");
 		transform.SetParent(canvas.transform);
@@ -51,5 +53,10 @@ public class DebugPanel : MonoBehaviour
 	private void Update()
 	{
 		transform.position = _owner.transform.position + transform.TransformDirection(offset);
+	}
+
+	private void OnGUI()
+	{
+		transform.SetSiblingIndex((int)(Vector3.Distance(_camera.transform.position, transform.position) * 1000.0f));
 	}
 }
