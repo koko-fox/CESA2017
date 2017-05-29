@@ -80,7 +80,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.25
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -88,7 +88,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.083333336
     accuratePlacement: 1
   m_NavMeshData: {fileID: 23800000, guid: 5531aa7b637c199468263b09abbb01d2, type: 2}
 --- !u!1 &17177583
@@ -2202,15 +2202,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 198692209928764972, guid: 327de6e4ec82ec24e87f2727cfe8fbbf,
-        type: 2}
-      propertyPath: randomSeed
-      value: -1632997460
-      objectReference: {fileID: 0}
     - target: {fileID: 114398362135780884, guid: 327de6e4ec82ec24e87f2727cfe8fbbf,
         type: 2}
       propertyPath: _randomSeed
-      value: 9288
+      value: 5387
+      objectReference: {fileID: 0}
+    - target: {fileID: 198692209928764972, guid: 327de6e4ec82ec24e87f2727cfe8fbbf,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1780529279
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 327de6e4ec82ec24e87f2727cfe8fbbf, type: 2}
@@ -2972,7 +2972,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-4373388
+  m_Name: pb_Mesh-4542214
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -6946,7 +6946,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 5162
+  _randomSeed: 4017
   randomSeedOnEnable: 1
 --- !u!199 &1398179081
 ParticleSystemRenderer:
@@ -7055,7 +7055,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -717439434
+  randomSeed: -400398196
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13463,7 +13463,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 7843
+  _randomSeed: 3940
   randomSeedOnEnable: 1
 --- !u!199 &1994492111
 ParticleSystemRenderer:
@@ -13572,7 +13572,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1073802036
+  randomSeed: -907391756
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -16992,7 +16992,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 1418
+  _randomSeed: 93
   randomSeedOnEnable: 1
 --- !u!199 &2002915435
 ParticleSystemRenderer:
@@ -17101,7 +17101,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -726505817
+  randomSeed: 518036408
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19888,15 +19888,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 17.21867
+      value: 11.7
       objectReference: {fileID: 0}
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.729264
+      value: 21.48
       objectReference: {fileID: 0}
     - target: {fileID: 4422919990480800, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_LocalRotation.x
@@ -19921,7 +19921,7 @@ Prefab:
     - target: {fileID: 198016545267333834, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
       propertyPath: randomSeed
-      value: -998586325
+      value: -179021970
       objectReference: {fileID: 0}
     - target: {fileID: 114427677918466832, guid: 85226096bcf5c0d4f84985da538fd455,
         type: 2}
@@ -19935,7 +19935,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1065401929964676, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85226096bcf5c0d4f84985da538fd455, type: 2}
@@ -20075,7 +20075,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-4373386
+  m_Name: pb_Mesh-4542212
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
