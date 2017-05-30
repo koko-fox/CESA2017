@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using SimpleBehaviourTree;
 
 public class KamikazeEnemyController : EnemyModuleBase {
-  private Transform target;
+  private Vector3 targetPosition;
   private EnemyStatus status;
   private BehaviourTree behaviourTree;
   private new Rigidbody rigidbody;
@@ -19,6 +19,8 @@ public class KamikazeEnemyController : EnemyModuleBase {
   private float preparationTime;
   [SerializeField]
   private GameObject targetMarker;
+
+  private GameObject marker;
 
   protected override void DoAwake() {
     rigidbody = GetComponent<Rigidbody>();
@@ -36,28 +38,27 @@ public class KamikazeEnemyController : EnemyModuleBase {
 
   protected override void DoDied() {
     Destroy(detectionArea);
+    Destroy(marker);
   }
 
   private void DetectionArea_OnSensorEnter(Collider other) {
     if (isTargetInDetectionArea) return;
     if (IsPlayer(other.gameObject)) {
-      target = other.gameObject.transform;
+      targetPosition = other.gameObject.transform.position;
       isTargetInDetectionArea = true;
     }
   }
 
   private void Kamikaze() {
-    var angle = ElevationAngle(target) + 35.0f;
+    var angle = ElevationAngle(targetPosition) + 35.0f;
     angle = Mathf.Clamp(angle, 35.0f, 85.0f);
-    rigidbody.velocity = BallisticVel(target, angle);
-    var position = target.position + new Vector3(0.0f, 0.1f, 0.0f);
-    Instantiate(targetMarker, target.position, Quaternion.AngleAxis(-90.0f, Vector3.right));
+    rigidbody.velocity = BallisticVel(targetPosition, angle);
     IsPreparing = false;
     IsFlying = true;
   }
 
-  private Vector3 BallisticVel(Transform target, float angle) {
-    var dir = (target.position - transform.position);
+  private Vector3 BallisticVel(Vector3 targetPosition, float angle) {
+    var dir = (targetPosition - transform.position);
     var height = dir.y;
     var distance = dir.magnitude;
     var a = angle * Mathf.Deg2Rad;
@@ -68,8 +69,8 @@ public class KamikazeEnemyController : EnemyModuleBase {
     return vel * dir.normalized;
   }
 
-  private float ElevationAngle(Transform target) {
-    var dir = (target.position - transform.position);
+  private float ElevationAngle(Vector3 targetPosition) {
+    var dir = (targetPosition - transform.position);
     var dirH = new Vector3(dir.x, 0.0f, dir.y);
     var angle = Vector3.Angle(dir, dirH);
     if (dir.y < 0.0f) {
@@ -89,6 +90,8 @@ public class KamikazeEnemyController : EnemyModuleBase {
   }
 
   private void PrepareForKamikaze() {
+    var position = targetPosition + new Vector3(0.0f, 0.1f, 0.0f);
+    marker = Instantiate(targetMarker, targetPosition, Quaternion.AngleAxis(-90.0f, Vector3.right));
     IsPreparing = true;
   }
 
