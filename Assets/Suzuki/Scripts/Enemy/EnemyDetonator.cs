@@ -18,7 +18,7 @@ public class EnemyDetonator : EnemyModuleBase {
 
   private void OnCollisionEnter(Collision collision) {
     if (IsEnemy(collision.gameObject)) return;
-    if (!controller.isFlying) return;
+    if (!controller.IsFlying) return;
 
     // 爆風発生
     var position = transform.position;

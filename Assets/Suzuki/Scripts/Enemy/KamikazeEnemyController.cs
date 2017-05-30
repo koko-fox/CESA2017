@@ -10,10 +10,13 @@ public class KamikazeEnemyController : EnemyModuleBase {
   private BehaviourTree behaviourTree;
   private new Rigidbody rigidbody;
   private bool isTargetInDetectionArea;
-  public bool isFlying = false;
+  public bool IsFlying { get; private set; }
+  public bool IsPreparing { get; private set; }
 
   [SerializeField]
   private Sensor detectionArea;
+  [SerializeField]
+  private float preparationTime;
 
   protected override void DoAwake() {
     rigidbody = GetComponent<Rigidbody>();
@@ -45,7 +48,8 @@ public class KamikazeEnemyController : EnemyModuleBase {
     var angle = ElevationAngle(target) + 35.0f;
     angle = Mathf.Clamp(angle, 35.0f, 85.0f);
     rigidbody.velocity = BallisticVel(target, angle);
-    isFlying = true;
+    IsPreparing = false;
+    IsFlying = true;
   }
 
   private Vector3 BallisticVel(Transform target, float angle) {
@@ -80,16 +84,35 @@ public class KamikazeEnemyController : EnemyModuleBase {
     return false;
   }
 
+  private void PrepareForKamikaze() {
+    IsPreparing = true;
+  }
+
+  private void ProcPreparation() {
+    preparationTime -= Time.deltaTime;
+  }
+
   private void BuildBehaviourTree() {
-    var kamikazeAction = new ActionNode(Kamikaze);
-    var canKamikazeDecorator = new DecoratorNode(kamikazeAction, () => isTargetInDetectionArea);
+    var prepareAction = new ActionNode(PrepareForKamikaze);
     var waitAction = new ActionNode(Wait);
-    var selector1 = new SelectorNode(canKamikazeDecorator, waitAction);
-    var isFlyingDecorator = new DecoratorNode(waitAction, () => isFlying);
-    var selector2 = new SelectorNode(isFlyingDecorator, selector1);
+    var canPrepareDecorator =  new DecoratorNode(prepareAction, () => isTargetInDetectionArea);
+    var selector1 = new SelectorNode(canPrepareDecorator, waitAction);
+
+    var kamikazeAction = new ActionNode(Kamikaze);
+    var procPrepareAction = new ActionNode(ProcPreparation);
+    var canKamikazeDecorator = new DecoratorNode(kamikazeAction, () => { return preparationTime < 0.0f; });
+    var selector2 = new SelectorNode(canKamikazeDecorator, procPrepareAction);
+
+    var isPreparingDecorator = new DecoratorNode(selector1, () => !IsPreparing);
+    var selector3 = new SelectorNode(isPreparingDecorator, selector2);
+
+    var isFlyingDecorator = new DecoratorNode(waitAction, () => IsFlying);
+    var selector4 = new SelectorNode(isFlyingDecorator, selector3);
+
     var isBlownDecorator = new DecoratorNode(waitAction, () => core.isBlown);
-    var selector3 = new SelectorNode(isBlownDecorator, selector2);
-    behaviourTree = new BehaviourTree(selector3);
+    var selector5 = new SelectorNode(isBlownDecorator, selector4);
+
+    behaviourTree = new BehaviourTree(selector5);
   }
 
 }

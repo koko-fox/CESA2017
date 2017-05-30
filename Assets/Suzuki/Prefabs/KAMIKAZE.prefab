@@ -2294,8 +2294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a75bd34944ccf641834a610c11c3e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFlying: 0
   detectionArea: {fileID: 114607859090263030}
+  preparationTime: 1
 --- !u!135 &135393698347300014
 SphereCollider:
   m_ObjectHideFlags: 1
