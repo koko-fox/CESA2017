@@ -10,7 +10,7 @@ public class KamikazeEnemyController : EnemyModuleBase {
   private BehaviourTree behaviourTree;
   private new Rigidbody rigidbody;
   private bool isTargetInDetectionArea;
-  private bool isFlying;
+  public bool isFlying = false;
 
   [SerializeField]
   private Sensor detectionArea;

@@ -16,6 +16,7 @@ public class EnemyCore : MonoBehaviour {
   public event DamagedEvent onDamaged = delegate { };
 
   public bool isBlown { get; private set; }
+  private bool diedMark = false;
   private List<int> collisions = new List<int>();
   private ShieldCore collidedShield;
   [SerializeField]
@@ -65,11 +66,13 @@ public class EnemyCore : MonoBehaviour {
     Die();
   }
 
-  private void Die() {
+  public void Die() {
+    if (diedMark) return;
     Destroy(GetComponent<Rigidbody>());
     Destroy(GetComponent<Collider>());
     onDied();
     StartCoroutine(ToDie());
+    diedMark = true;
   }
 
   private bool IsRadiateShield(GameObject other) {
