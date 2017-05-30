@@ -2296,6 +2296,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionArea: {fileID: 114607859090263030}
   preparationTime: 1
+  targetMarker: {fileID: 1902028722731816, guid: ea5d664ab691e884faf7e66f589b7174,
+    type: 2}
 --- !u!135 &135393698347300014
 SphereCollider:
   m_ObjectHideFlags: 1

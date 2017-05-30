@@ -17,6 +17,8 @@ public class KamikazeEnemyController : EnemyModuleBase {
   private Sensor detectionArea;
   [SerializeField]
   private float preparationTime;
+  [SerializeField]
+  private GameObject targetMarker;
 
   protected override void DoAwake() {
     rigidbody = GetComponent<Rigidbody>();
@@ -48,6 +50,8 @@ public class KamikazeEnemyController : EnemyModuleBase {
     var angle = ElevationAngle(target) + 35.0f;
     angle = Mathf.Clamp(angle, 35.0f, 85.0f);
     rigidbody.velocity = BallisticVel(target, angle);
+    var position = target.position + new Vector3(0.0f, 0.1f, 0.0f);
+    Instantiate(targetMarker, target.position, Quaternion.AngleAxis(-90.0f, Vector3.right));
     IsPreparing = false;
     IsFlying = true;
   }
