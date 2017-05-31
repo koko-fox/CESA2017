@@ -34,7 +34,7 @@ public class Stage : MonoBehaviour {
         var newEnemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
         var enemyBehavior = newEnemy.GetComponent<EnemyCore>();
         onEnemySpawned(enemyBehavior);
-        enemyBehavior.onDied += () => {
+        enemyBehavior.onDied += (EnemyCore.DiedFactor factor) => {
           StartCoroutine(Spawn());
           onEnemyKilled();
         };

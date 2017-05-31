@@ -8,14 +8,20 @@ using ParticlePlayground;
 public class EnemyCore : MonoBehaviour {
   public delegate void UpdateEvent();
   public delegate void FixedUpdateEvent();
-  public delegate void DiedEvent();
+  public delegate void DiedEvent(DiedFactor factor);
   public delegate void DamagedEvent(float value);
   public event UpdateEvent onUpdated = delegate { };
   public event FixedUpdateEvent onFixedUpdated = delegate { };
   public event DiedEvent onDied = delegate { };
   public event DamagedEvent onDamaged = delegate { };
 
+  public enum DiedFactor {
+    KilledByPlayer,
+    Suicided
+  }
+
   public bool isBlown { get; private set; }
+  private bool diedMark = false;
   private List<int> collisions = new List<int>();
   private ShieldCore collidedShield;
   [SerializeField]
@@ -62,14 +68,16 @@ public class EnemyCore : MonoBehaviour {
     health -= damageValue;
     onDamaged(damageValue);
     if (health > 0.0f) return;
-    Die();
+    Die(DiedFactor.KilledByPlayer);
   }
 
-  private void Die() {
+  public void Die(DiedFactor factor) {
+    if (diedMark) return;
     Destroy(GetComponent<Rigidbody>());
     Destroy(GetComponent<Collider>());
-    onDied();
+    onDied(factor);
     StartCoroutine(ToDie());
+    diedMark = true;
   }
 
   private bool IsRadiateShield(GameObject other) {
