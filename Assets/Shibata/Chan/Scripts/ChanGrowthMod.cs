@@ -126,8 +126,11 @@ public class ChanGrowthMod : Module
 	#endregion
 
 	#region event callbacks
-	private void _provider_onDead()
+	private void _provider_onDead(EnemyCore.DiedFactor factor)
 	{
+		if (factor == EnemyCore.DiedFactor.Suicided)
+			return;
+
 		_comboCount++;
 		_comboDiscardElapsed = _comboDiscardDuration;
 		_exp += _baseExp * _comboCount;

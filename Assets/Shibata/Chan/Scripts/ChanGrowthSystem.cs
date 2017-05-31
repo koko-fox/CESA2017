@@ -118,7 +118,7 @@ public class ChanGrowthSystem : Lockable
 		if (!_provider)
 			return;
 
-		_provider.onDead += _provider_onDead;
+		//_provider.onDead += _provider_onDead;
 	}
 
 	private void _provider_onDead()

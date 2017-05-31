@@ -68,7 +68,7 @@ public class ChanBurstSystem : Lockable
 		if (!_provider)
 			return;
 
-		_provider.onDead += _provider_onDead;
+		//_provider.onDead += _provider_onDead;
 	}
 
 	private void Update()
