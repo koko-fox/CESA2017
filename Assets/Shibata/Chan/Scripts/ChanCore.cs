@@ -114,7 +114,7 @@ public class ChanCore : MonoBehaviour
 		_systems.Add(_burstSystem);
 
 		_debugPanel = DebugPanelManager.instance.Create(gameObject);
-		_debugPanel.offset = new Vector3(1.0f, 1.4f);
+		_debugPanel.offset = new Vector3(0.0f, 1.8f);
 		_debugPanel.fontSize = 7;
 	}
 
@@ -141,7 +141,11 @@ public class ChanCore : MonoBehaviour
 		{
 			str.Append(elem._name).Append(":").Append(elem._operand).Append("\n");
 		}
-		str.Append("---------------------------");
+		str.Append("---------------------------\n");
+		str.Append(_growthSystem.exp).Append("exp\n");
+		str.Append("next require:").Append(_growthSystem.nextRequireExp).Append("exp\n");
+		str.Append(_growthSystem.level).Append("lv\n");
+		str.Append(_burstSystem.killCount).Append("kill\n");
 
 		_debugPanel.text = str.ToString();
 	}

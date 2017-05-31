@@ -5,11 +5,16 @@ using UnityEngine.UI;
 
 public class DebugPanel : MonoBehaviour
 {
+	static Vector2 _hideout = new Vector2(100000.0f, 100000.0f);
+
+	#region properties
 	Text _name;
 	Text _text;
 	Image _textBack;
 	Camera _camera;
-
+	Canvas _debugCanvas;
+	RectTransform _rectTransform;
+	LineRenderer _lineRenderer;
 	Vector3 _offset;
 	public Vector3 offset
 	{
@@ -33,16 +38,17 @@ public class DebugPanel : MonoBehaviour
 		get { return _text.fontSize; }
 		set { _text.fontSize = value; }
 	}
-
+	#endregion
 	private void Awake()
 	{
 		_text = transform.FindChild("Text").GetComponent<Text>();
 		_name = transform.FindChild("Name").GetComponent<Text>();
 		_textBack = transform.FindChild("TextBack").GetComponent<Image>();
-		_camera = FindObjectOfType<Camera>();
+		_rectTransform = GetComponent<RectTransform>();
+		_lineRenderer = GetComponent<LineRenderer>();
 
-		var canvas = GameObject.Find("DebugCanvas");
-		transform.SetParent(canvas.transform);
+		_debugCanvas = GameObject.Find("DebugCanvas").GetComponent<Canvas>();
+		transform.SetParent(_debugCanvas.transform, false);
 	}
 
 	private void Start()
@@ -52,11 +58,19 @@ public class DebugPanel : MonoBehaviour
 
 	private void Update()
 	{
-		transform.position = _owner.transform.position + transform.TransformDirection(offset);
+		var pos = Camera.main.WorldToScreenPoint(_owner.transform.position + _owner.transform.TransformDirection(_offset));
+		var originPos = Camera.main.WorldToScreenPoint(_owner.transform.position);
+
+		if (pos.z < 0.0f)
+			_rectTransform.position = _hideout;
+		else
+			_rectTransform.position = pos;
+
+		_lineRenderer.SetPosition(0, Camera.main.ScreenToWorldPoint(transform.position));
+		_lineRenderer.SetPosition(1, _owner.transform.position);
 	}
 
-	private void OnGUI()
+	void FixedUpdate()
 	{
-		transform.SetSiblingIndex((int)(Vector3.Distance(_camera.transform.position, transform.position) * 1000.0f));
 	}
 }

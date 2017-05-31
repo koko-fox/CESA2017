@@ -114,6 +114,7 @@ public class ChanBurstSystem : Lockable
 	void EndBurst()
 	{
 		_isBurst = false;
+		_killCount = 0;
 		_core.movementSystem.RemoveSpeedMultiplier(_operandName);
 	}
 
