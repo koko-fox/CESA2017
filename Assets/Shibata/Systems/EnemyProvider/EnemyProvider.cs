@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyProvider : MonoBehaviour
 {
-	public delegate void DeadEventHandler();
+	public delegate void DeadEventHandler(EnemyCore.DiedFactor factor);
 	/// <summary>
 	/// enemyが死んだとき
 	/// </summary>
@@ -32,8 +32,8 @@ public class EnemyProvider : MonoBehaviour
 		enemy.onDied += Enemy_onDied;
 	}
 
-	private void Enemy_onDied()
+	private void Enemy_onDied(EnemyCore.DiedFactor deadFactor)
 	{
-		onDead();
+		onDead(deadFactor);
 	}
 }

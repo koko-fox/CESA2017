@@ -68,7 +68,7 @@ public class ChanBurstSystem : Lockable
 		if (!_provider)
 			return;
 
-		_provider.onDead += _provider_onDead;
+		//_provider.onDead += _provider_onDead;
 	}
 
 	private void Update()
@@ -114,6 +114,7 @@ public class ChanBurstSystem : Lockable
 	void EndBurst()
 	{
 		_isBurst = false;
+		_killCount = 0;
 		_core.movementSystem.RemoveSpeedMultiplier(_operandName);
 	}
 

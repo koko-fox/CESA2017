@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class HealthPanelLinker : Lockable
 {
@@ -17,6 +18,6 @@ public class HealthPanelLinker : Lockable
 	protected override void LockableUpdate()
 	{
 		_panel.SetBarScale(_chanCore.healthSystem.health / _chanCore.healthSystem.maxHealth, 0.1f);
-		_panel.text = _chanCore.healthSystem.health + "/" + _chanCore.healthSystem.maxHealth;
+		_panel.text = Convert.ToInt32(_chanCore.healthSystem.health).ToString() + "/" + Convert.ToInt32(_chanCore.healthSystem.maxHealth).ToString();
 	}
 }

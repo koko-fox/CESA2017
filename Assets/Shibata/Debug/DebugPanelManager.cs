@@ -29,6 +29,30 @@ public class DebugPanelManager : MonoBehaviour
 	{
 	}
 
+	private void FixedUpdate()
+	{
+		if (!_debugCanvas)
+			return;
+
+		List<DebugPanel> list = new List<DebugPanel>();
+		foreach (Transform elem in _debugCanvas.transform)
+		{
+			var panel = elem.GetComponent<DebugPanel>();
+			if (panel)
+				list.Add(panel);
+		}
+
+		list.Sort((DebugPanel lhs, DebugPanel rhs) =>
+		{
+		float ldist = Vector3.Distance(Camera.main.transform.position, lhs._owner.transform.position);
+			float rdist = Vector3.Distance(Camera.main.transform.position, rhs._owner.transform.position);
+			return ldist - rdist > 0 ? -1 : 1;
+		});
+
+		for (int f1 = 0; f1 < list.Count; f1++)
+			list[f1].transform.SetAsLastSibling();
+	}
+
 	public DebugPanel Create(GameObject owner)
 	{
 		var obj = Instantiate(_original);

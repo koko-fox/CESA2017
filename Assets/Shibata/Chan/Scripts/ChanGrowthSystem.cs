@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public class ChanGrowthSystem : Lockable
 {
+	DebugPanel _debugPanel;
+
 	ChanCore _core;
 	[SerializeField]
 	EnemyProvider _provider;
@@ -20,8 +23,6 @@ public class ChanGrowthSystem : Lockable
 	AnimationCurve _expCurve;
 	[SerializeField]
 	AnimationCurve _healthCurve;
-	[SerializeField]
-	AnimationCurve _energyCurve;
 
 	public delegate void OnValueChanged();
 
@@ -54,20 +55,16 @@ public class ChanGrowthSystem : Lockable
 		get { return _exp; }
 		set
 		{
+			_exp = value;
 			int next = GetLevel(_exp);
 			if (_level != next && next != -1)
 			{
 				_core.healthSystem.maxHealth = _healthCurve.keys[next].value;
-				_core.energySystem.maxEnergy = _energyCurve.keys[next].value;
-
 				_core.healthSystem.health = _core.healthSystem.maxHealth;
-				_core.energySystem.energy = _core.energySystem.maxEnergy;
 
 				onLevelChanged();
 			}
 			_level = next;
-
-			_exp = value;
 			onExpChanged();
 		}
 	}
@@ -99,9 +96,8 @@ public class ChanGrowthSystem : Lockable
 	{
 		for (int f1 = 0; f1 <= _maxLevel; f1++)
 		{
-			_expCurve.AddKey(f1, (f1 * f1)+1);
-			_healthCurve.AddKey(f1, (f1 * f1) + 1);
-			_energyCurve.AddKey(f1, (f1 * f1) + 1);
+			_expCurve.AddKey(f1, ((f1 + 1) * 100.0f));
+			_healthCurve.AddKey(f1, ((f1 + 1) * 100.0f));
 		}
 	}
 
@@ -111,6 +107,10 @@ public class ChanGrowthSystem : Lockable
 
 		if (!_provider)
 			_provider = FindObjectOfType<EnemyProvider>();
+
+		_debugPanel = DebugPanelManager.instance.Create(gameObject);
+		_debugPanel.fontSize = 7;
+		_debugPanel.offset = new Vector3(0.0f, 1.4f, -0.5f);
 	}
 
 	private void Start()
@@ -118,15 +118,26 @@ public class ChanGrowthSystem : Lockable
 		if (!_provider)
 			return;
 
-		_provider.onDead += _provider_onDead;
+		//_provider.onDead += _provider_onDead;
 	}
 
 	private void _provider_onDead()
 	{
-		_exp += 1.0f;
+		exp += 100.0f;
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
+		_debugPanel.text = "";
+		StringBuilder buf = new StringBuilder();
+
+		buf.Append("EXP:").Append(_exp).Append("\n");
+		buf.Append("Lv:").Append(GetLevel(_exp)).Append("\n");
+		for(int f1=1;f1<10;f1++)
+		{
+			buf.Append("exp require Lv").Append(f1).Append(":").Append(_expCurve[f1].value).Append("\n");
+		}
+
+		_debugPanel.text = buf.ToString();
 	}
 }
