@@ -29,8 +29,8 @@ public class EnemyBullet : MonoBehaviour {
       Debug.Log("hit shield");
     }
     if (IsPlayer(collision.gameObject)) {
-      var player = collision.gameObject.GetComponent<ChanCore>();
-      player.healthSystem.health -= power;
+      var player = collision.gameObject.GetComponent<ChanHealthMod>();
+      player.health -= power;
       Debug.Log("hit player");
     }
     Destroy(gameObject);

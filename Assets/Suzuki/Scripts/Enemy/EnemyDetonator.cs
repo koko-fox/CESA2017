@@ -34,8 +34,8 @@ public class EnemyDetonator : EnemyModuleBase {
       }
       layer = LayerMask.NameToLayer("UnityChan");
       if (elem.gameObject.layer == layer) {
-        var player = elem.gameObject.GetComponent<ChanCore>();
-        player.healthSystem.health -= firePower;
+        var player = elem.gameObject.GetComponent<ChanHealthMod>();
+        player.health -= firePower;
       }
     }
 
