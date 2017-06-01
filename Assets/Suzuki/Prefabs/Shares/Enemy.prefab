@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 114129992872602762}
   - component: {fileID: 114116493918971638}
   m_Layer: 9
-  m_Name: Enemy (1)
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,8 +387,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionArea: {fileID: 114002813659282234}
   firingArea: {fileID: 114369494525351024}
-  gun: {fileID: 114295475468859166}
+  gun: {fileID: 0}
   durationToChase: 3
+  animator: {fileID: 0}
 --- !u!114 &114474805012636368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,6 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   diedSound: {fileID: 8300000, guid: ede738a988fd0e346a7a3edc62e767a6, type: 3}
+  particle: {fileID: 0}
 --- !u!135 &135038305542365934
 SphereCollider:
   m_ObjectHideFlags: 1

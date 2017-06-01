@@ -56,7 +56,7 @@ MonoBehaviour:
   source: 1
   activeState: 0
   emit: 1
-  loop: 1
+  loop: 0
   clearParticlesOnEmissionStop: 0
   disableOnDone: 1
   disableOnDoneRoutine: 1
@@ -639,7 +639,7 @@ MonoBehaviour:
   sourceTransform: {fileID: 4668546235500960}
   sourceTransforms:
   - transform: {fileID: 4668546235500960}
-    instanceID: -221406
+    instanceID: -104472
     available: 1
     position: {x: 0, y: 6.17, z: 0}
     localPosition: {x: 0, y: 0, z: 0}
@@ -816,7 +816,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 5016
+  _randomSeed: 895
   randomSeedOnEnable: 1
 --- !u!198 &198212319770079584
 ParticleSystem:
@@ -873,7 +873,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 253778053
+  randomSeed: 391930082
   InitialModule:
     serializedVersion: 3
     enabled: 1
