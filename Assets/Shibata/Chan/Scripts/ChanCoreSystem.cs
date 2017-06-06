@@ -18,6 +18,7 @@ public class ChanCoreSystem : Core
 
 	protected override void Start()
 	{
+		base.Start();
 		_facade = GetComponent<ChanFacadeHolder>().facade;
 	}
 
