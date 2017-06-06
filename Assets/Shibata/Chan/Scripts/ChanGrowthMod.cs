@@ -81,6 +81,11 @@ public class ChanGrowthMod : Module
 	{
 		get { return _comboCount; }
 	}
+	/// <summary>コンボによる経験値倍率</summary>
+	public float expMultiplierFromCombo
+	{
+		get{ return 1f + Mathf.Clamp(_comboCount * 0.01f, 0f, 1f); }
+	}
 	#endregion
 
 	#region private methods
@@ -133,7 +138,7 @@ public class ChanGrowthMod : Module
 
 		_comboCount++;
 		_comboDiscardElapsed = _comboDiscardDuration;
-		_exp += _baseExp * _comboCount;
+		_exp += _baseExp * expMultiplierFromCombo;
 	}
 	#endregion
 }

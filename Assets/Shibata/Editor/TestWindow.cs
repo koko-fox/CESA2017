@@ -30,7 +30,7 @@ public class TestWindow : EditorWindow
 
 		if (EditorApplication.isPlaying)
 		{
-			GUI.Label(new Rect(0f, 12f, 300f, 300f), ChanCoreSystem._buffer.ToString(), style);
+		//	GUI.Label(new Rect(0f, 12f, 300f, 300f), ChanCoreSystem._buffer.ToString(), style);
 		}
 		else
 			GUI.Label(new Rect(0, 12, 300, 300), "waiting...", style);
