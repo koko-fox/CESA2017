@@ -5,7 +5,7 @@ using UnityEngine;
 public class ControlModeChanger : Lockable
 {
 	[SerializeField]
-	ChanCore _chan;
+	ChanCoreSystem _chan;
 	[SerializeField]
 	SpecterCore _specter;
 
@@ -15,7 +15,7 @@ public class ControlModeChanger : Lockable
 	private void Awake()
 	{
 		if(!_chan)
-			_chan = FindObjectOfType<ChanCore>();
+			_chan = FindObjectOfType<ChanCoreSystem>();
 		if(!_specter)
 			_specter = FindObjectOfType<SpecterCore>();
 
@@ -28,12 +28,16 @@ public class ControlModeChanger : Lockable
 
 		if (_isChan)
 		{
-			_chan.UnlockAll();
+			foreach (var elem in _chan.modules)
+				elem.locked = false;
+
 			_specter.LockAll();
 		}
 		else
 		{
-			_chan.LockAll();
+			foreach (var elem in _chan.modules)
+				elem.locked = true;
+
 			_specter.UnlockAll();
 		}
 	}
@@ -46,12 +50,16 @@ public class ControlModeChanger : Lockable
 
 			if(_isChan)
 			{
-				_chan.UnlockAll();
+				foreach (var elem in _chan.modules)
+					elem.locked = false;
+
 				_specter.LockAll();
 			}
 			else
 			{
-				_chan.LockAll();
+				foreach (var elem in _chan.modules)
+					elem.locked = true;
+
 				_specter.UnlockAll();
 			}
 		}

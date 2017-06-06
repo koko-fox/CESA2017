@@ -8,7 +8,7 @@ public class CursorOperationModeChanger : Lockable
 	bool _isFree = false;
 
 	[SerializeField]
-	ChanCore _chan;
+	ChanCoreSystem _chan;
 	[SerializeField]
 	SpecterCore _specter;
 	[SerializeField]
@@ -17,7 +17,7 @@ public class CursorOperationModeChanger : Lockable
 	private void Awake()
 	{
 		if(!_chan)
-			_chan = FindObjectOfType<ChanCore>();
+			_chan = FindObjectOfType<ChanCoreSystem>();
 		if(!_specter)
 			_specter = FindObjectOfType<SpecterCore>();
 		if (!_controlModeChanger)
@@ -38,7 +38,8 @@ public class CursorOperationModeChanger : Lockable
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;
 
-				_chan.LockAll();
+				foreach (var elem in _chan.modules)
+					elem.locked = true;
 				_specter.LockAll();
 				_controlModeChanger.isLock = true;
 			}
@@ -47,7 +48,8 @@ public class CursorOperationModeChanger : Lockable
 				Cursor.lockState = CursorLockMode.Locked;
 				Cursor.visible = false;
 
-				_chan.UnlockAll();
+				foreach (var elem in _chan.modules)
+					elem.locked = false;
 				_specter.UnlockAll();
 
 				_controlModeChanger.isLock = false;

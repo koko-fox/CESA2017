@@ -5,6 +5,7 @@ using UnityEngine;
 public class Core : MonoBehaviour
 {
 	protected List<Module> _modules = new List<Module>();
+	public List<Module> modules { get { return _modules; } }
 
 	public void ApplyMod(Module mod)
 	{
