@@ -99,17 +99,23 @@ public class ChanMovementMod : Module
 	void BeginLeftWalk()
 	{
 		AddSpeedMultiplier(_sideWalkMulOperandName, _sideWalkMul);
+		_targetModel.transform.DOComplete();
+		_targetModel.transform.DOLocalRotate(new Vector3(0.0f, -45.0f), 0.2f);
 		_inLeftWalk = true;
 	}
 
 	void BeginRightWalk()
 	{
 		AddSpeedMultiplier(_sideWalkMulOperandName, _sideWalkMul);
+		_targetModel.transform.DOComplete();
+		_targetModel.transform.DOLocalRotate(new Vector3(0.0f, 45.0f), 0.2f);
 		_inRightWalk = true;
 	}
 	void BeginBackWalk()
 	{
 		AddSpeedMultiplier(_backWalkMulOperandName, _backWalkMul);
+		_targetModel.transform.DOComplete();
+		_targetModel.transform.DOLocalRotate(new Vector3(0.0f, 180.0f), 0.2f);
 		_inBackWalk = true;
 	}
 
@@ -127,18 +133,24 @@ public class ChanMovementMod : Module
 	void EndLeftWalk()
 	{
 		RemoveSpeedMultiplier(_sideWalkMulOperandName);
+		_targetModel.transform.DOComplete();
+		_targetModel.transform.DOLocalRotate(new Vector3(0.0f, 0.0f), 0.2f);
 		_inLeftWalk = false;
 	}
 
 	void EndRightWalk()
 	{
 		RemoveSpeedMultiplier(_sideWalkMulOperandName);
+		_targetModel.transform.DOComplete();
+		_targetModel.transform.DOLocalRotate(new Vector3(0.0f, 0.0f), 0.2f);
 		_inRightWalk = false;
 	}
 
 	void EndBackWalk()
 	{
 		RemoveSpeedMultiplier(_backWalkMulOperandName);
+		_targetModel.transform.DOComplete();
+		_targetModel.transform.DOLocalRotate(new Vector3(0.0f, 0.0f), 0.2f);
 		_inBackWalk = false;
 	}
 
@@ -160,31 +172,35 @@ public class ChanMovementMod : Module
 
 	public override void OrdableFixedUpdate()
 	{
-		base.OrdableFixedUpdate();
+		bool forward = Input.GetKey(_forwardKey);
+		bool left = Input.GetKey(_leftKey);
+		bool right = Input.GetKey(_rightKey);
+		bool back = Input.GetKey(_backKey);
+		bool dash = Input.GetKey(_dashKey);
 
-		if (Input.GetKeyDown(_forwardKey)&&!_inBackWalk&&!_inForwardWalk)
+		if (forward && !back&&!_inForwardWalk)
 			BeginForwardWalk();
-		if (Input.GetKeyUp(_forwardKey)&&_inForwardWalk)
+		if ((!forward||back) && _inForwardWalk)
 			EndForwardWalk();
 
-		if (Input.GetKeyDown(_leftKey) && !_inRightWalk&&!_inLeftWalk)
-			BeginLeftWalk();
-		if (Input.GetKeyUp(_leftKey)&&_inLeftWalk)
-			EndLeftWalk();
-
-		if (Input.GetKeyDown(_rightKey) && !_inLeftWalk&&!_inRightWalk)
-			BeginRightWalk();
-		if (Input.GetKeyUp(_rightKey)&&_inRightWalk)
-			EndRightWalk();
-
-		if (Input.GetKeyDown(_backKey) && !_inForwardWalk && !_inBackWalk)
+		if (back && !forward&&!_inBackWalk)
 			BeginBackWalk();
-		if (Input.GetKeyUp(_backKey) && _inBackWalk)
+		if ((!back||forward) && _inBackWalk)
 			EndBackWalk();
 
-		if (Input.GetKeyDown(_dashKey)&&!_inDash)
+		if (left && !right&&!_inLeftWalk)
+			BeginLeftWalk();
+		if ((!left||right) && _inLeftWalk)
+			EndLeftWalk();
+
+		if (right && !left&&!_inRightWalk)
+			BeginRightWalk();
+		if ((!right||left) && _inRightWalk)
+			EndRightWalk();
+
+		if (dash && !_inDash)
 			BeginDash();
-		if (Input.GetKeyUp(_dashKey)&&_inDash)
+		if (!dash && _inDash)
 			EndDash();
 
 		Vector3 velocity = Vector3.zero;
@@ -202,7 +218,7 @@ public class ChanMovementMod : Module
 		velocity = transform.TransformDirection(velocity);
 		_rigidbody.velocity = velocity;
 
-		_animator.SetBool("isRun", _inForwardWalk || _inLeftWalk || _inRightWalk);
+		_animator.SetBool("isRun", _inForwardWalk || _inLeftWalk || _inRightWalk||_inBackWalk);
 		_animator.SetFloat("Speed", velocity.magnitude/_baseSpeed);
 
 		if(_inForwardWalk||_inLeftWalk||_inRightWalk||_inBackWalk||_shieldMod.state== ChanShieldControlMod.State.Hold)

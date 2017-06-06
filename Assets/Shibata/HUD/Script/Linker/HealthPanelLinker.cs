@@ -3,21 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HealthPanelLinker : Lockable
+public class HealthPanelLinker : MonoBehaviour
 {
+	#region inputs
 	HUDPanelAccessor _panel;
+	ChanHealthMod _healthMod;
+	#endregion
 
-	ChanCore _chanCore;
-
+	#region unity methods
 	private void Awake()
 	{
 		_panel = GetComponent<HUDPanelAccessor>();
-		_chanCore = FindObjectOfType<ChanCore>();
+		_healthMod = FindObjectOfType<ChanFacadeHolder>().facade.healthMod;
 	}
-
-	protected override void LockableUpdate()
+	private void Start()
 	{
-		_panel.SetBarScale(_chanCore.healthSystem.health / _chanCore.healthSystem.maxHealth, 0.1f);
-		_panel.text = Convert.ToInt32(_chanCore.healthSystem.health).ToString() + "/" + Convert.ToInt32(_chanCore.healthSystem.maxHealth).ToString();
+		_healthMod.onHealthChanged += () =>
+		  {
+			  _panel.SetBarScale(_healthMod.health / _healthMod.maxHealth, 0.1f);
+			  _panel.text = Convert.ToInt32(_healthMod.health).ToString() + "/"
+			  + Convert.ToInt32(_healthMod.maxHealth).ToString();
+		  };
+		_panel.SetBarScale(_healthMod.health / _healthMod.maxHealth, 0.1f);
+		_panel.text = Convert.ToInt32(_healthMod.health).ToString() + "/"
+			  + Convert.ToInt32(_healthMod.maxHealth).ToString();
 	}
+	#endregion
 }

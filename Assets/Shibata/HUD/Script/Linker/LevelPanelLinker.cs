@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelPanelLinker : Lockable
+public class LevelPanelLinker : MonoBehaviour
 {
+	#region inputs
 	HUDTextPanelAccessor _panel;
-	ChanCore _core;
+	ChanFacade _facade;
+	#endregion
 
+	#region unity methods
 	private void Awake()
 	{
 		_panel = GetComponent<HUDTextPanelAccessor>();
-		_core = FindObjectOfType<ChanCore>();
+		_facade = FindObjectOfType<ChanFacadeHolder>().facade;
 	}
 
 	private void Start()
 	{
-		_core.growthSystem.onLevelChanged += () =>
+		_facade.growthMod.onLevelChanged += () =>
 		  {
-			  _panel.str = "Lv." + _core.growthSystem.level;
+			  _panel.str = "Lv." + _facade.growthMod.level;
 		  };
+		_panel.str = "Lv." + _facade.growthMod.level;
 	}
-
-	protected override void LockableUpdate()
-	{
-		_panel.str = "Lv." + _core.growthSystem.level;
-	}
+	#endregion
 }

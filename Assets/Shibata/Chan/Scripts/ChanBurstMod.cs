@@ -5,6 +5,11 @@ using UnityEngine;
 [AddComponentMenu("Chan/ChanBurstMod")]
 public class ChanBurstMod : Module
 {
+	#region events
+	public delegate void ValueChangedEventHandler();
+	public event ValueChangedEventHandler onChangedKillCount = delegate { };
+	#endregion
+
 	#region inputs
 	EnemyProvider _provider;
 	ChanFacade _facade;
@@ -46,6 +51,7 @@ public class ChanBurstMod : Module
 	{
 		_inBurst = false;
 		_killCount = 0;
+		onChangedKillCount();
 		_facade.movementMod.RemoveSpeedMultiplier(_operandName);
 	}
 	#endregion
@@ -91,6 +97,7 @@ public class ChanBurstMod : Module
 			return;
 
 		_killCount++;
+		onChangedKillCount();
 		if (_killCount >= _requireKillCount)
 			BeginBurst();
 	}

@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurstPanelLinker : Lockable
+public class BurstPanelLinker : MonoBehaviour
 {
+	#region inputs
 	HUDPanelAccessor _panel;
-	ChanCore _core;
-	ChanBurstSystem _burstSystem;
+	ChanBurstMod _burstMod;
+	#endregion
 
 	private void Awake()
 	{
 		_panel = GetComponent<HUDPanelAccessor>();
-		_core = FindObjectOfType<ChanCore>();
+		_burstMod = FindObjectOfType<ChanBurstMod>();
 	}
 
 	private void Start()
 	{
-		_burstSystem = _core.burstSystem;
-	}
-
-	protected override void LockableUpdate()
-	{
-		_panel.text = _burstSystem.killCount + "/" + _burstSystem.requireKillCount;
-		_panel.SetBarScale(_burstSystem.killCount / (float)_burstSystem.requireKillCount, 0.1f);
+		_burstMod.onChangedKillCount += () =>
+		  {
+			  _panel.text = _burstMod.killCount + "/" + _burstMod.requireKillCount;
+			  _panel.SetBarScale(_burstMod.killCount / _burstMod.requireKillCount, 0.0f);
+		  };
+		_panel.text = _burstMod.killCount + "/" + _burstMod.requireKillCount;
+		_panel.SetBarScale(_burstMod.killCount / _burstMod.requireKillCount, 0.0f);
 	}
 }

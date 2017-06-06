@@ -44,8 +44,8 @@ public class DebugPanelManager : MonoBehaviour
 
 		list.Sort((DebugPanel lhs, DebugPanel rhs) =>
 		{
-		float ldist = Vector3.Distance(Camera.main.transform.position, lhs._owner.transform.position);
-			float rdist = Vector3.Distance(Camera.main.transform.position, rhs._owner.transform.position);
+		float ldist = Vector3.Distance(Camera.main.transform.position, lhs.owner.transform.position);
+			float rdist = Vector3.Distance(Camera.main.transform.position, rhs.owner.transform.position);
 			return ldist - rdist > 0 ? -1 : 1;
 		});
 
@@ -57,7 +57,7 @@ public class DebugPanelManager : MonoBehaviour
 	{
 		var obj = Instantiate(_original);
 		var panel = obj.GetComponent<DebugPanel>();
-		panel._owner = owner;
+		panel.owner = owner;
 
 		return panel;
 	}
