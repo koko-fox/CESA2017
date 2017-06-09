@@ -2238,7 +2238,7 @@ MonoBehaviour:
   prewarmTime: 1
   prewarmCycles: 16
   particleTimescale: 1
-  _randomSeed: 1600
+  _randomSeed: 4841
   randomSeedOnEnable: 1
 --- !u!114 &114462904596239040
 MonoBehaviour:
@@ -2308,7 +2308,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 40
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137965975931760190
 SkinnedMeshRenderer:
@@ -2442,7 +2442,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -600891624
+  randomSeed: -1871638042
   InitialModule:
     serializedVersion: 3
     enabled: 1

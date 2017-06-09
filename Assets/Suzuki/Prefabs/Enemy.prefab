@@ -2447,7 +2447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2787aa873742c45973e5d5bf68f9d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadTime: 1
+  reloadTime: 3
   coolTime: 0
   audioSource: {fileID: 82496168593149384}
   shootSound: {fileID: 8300000, guid: 415684dc188702f49a33101f42dd48cc, type: 3}
@@ -2455,7 +2455,7 @@ MonoBehaviour:
   groupingRate: 0.3
   bullet: {fileID: 1944783478291386, guid: 6d69d6ea4446ae14d9897090253fc26e, type: 2}
   firePower: 1
-  bulletsPerFire: 7
+  bulletsPerFire: 1
 --- !u!135 &135174942196637546
 SphereCollider:
   m_ObjectHideFlags: 1
