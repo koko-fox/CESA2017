@@ -7,9 +7,6 @@ using UnityEngine.UI;
 public class PlayScene : MonoBehaviour {
   [SerializeField]
   private int score;
-
-  [SerializeField]
-  private ChanCore player;
   [SerializeField]
   private Timer timer;
   [SerializeField]
