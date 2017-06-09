@@ -9,7 +9,7 @@ public class Stage : MonoBehaviour {
   public event EnemySpawnedEvent onEnemySpawned = delegate { };
 
   [SerializeField]
-  private GameObject enemyPrefab;
+  private GameObject[] enemyPrefabs;
   [SerializeField]
   private float spawnWait;
   [SerializeField]
@@ -31,6 +31,8 @@ public class Stage : MonoBehaviour {
       if (spawnPoint.transform.childCount == 0) {
         var position = spawnPoint.transform.position;
         var rotation = spawnPoint.transform.rotation;
+        var prefabIndex = Random.Range(0, enemyPrefabs.Length);
+        var enemyPrefab = enemyPrefabs[prefabIndex];
         var newEnemy = Instantiate(enemyPrefab, position, rotation, spawnPoint.transform) as GameObject;
         var enemyBehavior = newEnemy.GetComponent<EnemyCore>();
         onEnemySpawned(enemyBehavior);
