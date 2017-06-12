@@ -11,6 +11,12 @@ public class ChanGrowthMod : Module
 	public event ValueChangeEventHandler onLevelChanged = delegate { };
 	/// <summary>exp変更イベント</summary>
 	public event ValueChangeEventHandler onExpChanged = delegate { };
+	/// <summary>コンボ開始イベント</summary>
+	public event ValueChangeEventHandler onStartCombo = delegate { };
+	/// <summary>コンボ中イベント</summary>
+	public event ValueChangeEventHandler onWhileCombo = delegate { };
+	/// <summary>コンボ終了イベント</summary>
+	public event ValueChangeEventHandler onEndCombo = delegate { };
 	#endregion
 
 	#region inputs
@@ -29,7 +35,7 @@ public class ChanGrowthMod : Module
 	int _comboCount;
 	[SerializeField]
 	float _comboDiscardDuration;
-	float _comboDiscardElapsed;
+	float _comboRemainTime;
 	[SerializeField]
 	AnimationCurve _expCurve;
 	[SerializeField]
@@ -71,10 +77,12 @@ public class ChanGrowthMod : Module
 	{
 		get { return _expCurve.keys[_level].value; }
 	}
+	/// <summary>コンボ持続時間</summary>
+	public float comboDiscardDuration { get { return _comboDiscardDuration; } }
 	/// <summary>コンボが中断されるまでの時間</summary>
-	public float comboDiscardElapsed
+	public float comboRemainTime
 	{
-		get { return _comboDiscardElapsed; }
+		get { return _comboRemainTime; }
 	}
 	/// <summary>現在のコンボ数</summary>
 	public int comboCount
@@ -128,17 +136,37 @@ public class ChanGrowthMod : Module
 
 		_provider.onDead += _provider_onDead;
 	}
+
+	public override void OrdableUpdate()
+	{
+		if(_comboRemainTime>=0f)
+		{
+			_comboRemainTime -= Time.deltaTime;
+			onWhileCombo();
+			if (_comboRemainTime < 0f)
+			{
+				_comboCount = 0;
+				onEndCombo();
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.P))
+			_provider.ThrowDummy();
+	}
 	#endregion
 
 	#region event callbacks
-	private void _provider_onDead(EnemyCore.DiedFactor factor)
+	private void _provider_onDead(EnemyCore.DeathInfo info)
 	{
-		if (factor == EnemyCore.DiedFactor.Suicided)
+		if (info.Factor == EnemyCore.DeathInfo.DeathFactor.Suicided) 
 			return;
 
 		_comboCount++;
-		_comboDiscardElapsed = _comboDiscardDuration;
+		_comboRemainTime = _comboDiscardDuration;
 		_exp += _baseExp * expMultiplierFromCombo;
+
+		if (_comboCount == 1)
+			onStartCombo();
 	}
 	#endregion
 }

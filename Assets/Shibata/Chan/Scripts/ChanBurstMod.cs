@@ -91,9 +91,9 @@ public class ChanBurstMod : Module
 	#endregion
 
 	#region event callbacks
-	private void _provider_onDead(EnemyCore.DiedFactor factor)
+	private void _provider_onDead(EnemyCore.DeathInfo info)
 	{
-		if (inBurst || factor == EnemyCore.DiedFactor.Suicided)
+		if (inBurst || info.Factor == EnemyCore.DeathInfo.DeathFactor.Suicided) 
 			return;
 
 		_killCount++;

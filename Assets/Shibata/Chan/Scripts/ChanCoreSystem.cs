@@ -40,7 +40,7 @@ public class ChanCoreSystem : Core
 		buf.Append("-----------------\n");
 		buf.AppendFormat("require exp:{0}\n", growth.requireExpForLevelUp);
 		buf.AppendFormat("combo count:{0}combo\n", growth.comboCount);
-		buf.AppendFormat("combo remain:{0}[sec]\n", growth.comboDiscardElapsed);
+		buf.AppendFormat("combo remain:{0}[sec]\n", growth.comboRemainTime);
 		buf.AppendFormat("exp multiplier:x{0}\n", growth.expMultiplierFromCombo);
 		_panel.text = "<color=#ffffff>" + buf.ToString() + "</color>";
 	}
