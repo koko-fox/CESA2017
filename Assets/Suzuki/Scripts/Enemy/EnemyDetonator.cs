@@ -39,7 +39,10 @@ public class EnemyDetonator : EnemyModuleBase {
       }
     }
 
-    core.Die(EnemyCore.DiedFactor.Suicided);
+    var info = new EnemyCore.DeathInfo();
+    info.Enemy = core;
+    info.Factor = EnemyCore.DeathInfo.DeathFactor.Suicided;
+    core.Die(info);
   }
 
   private bool IsEnemy(GameObject other) {
