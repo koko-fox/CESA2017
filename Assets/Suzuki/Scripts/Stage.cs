@@ -47,7 +47,7 @@ public class Stage : MonoBehaviour {
             var newEnemy = Instantiate(elem.Enemy, position, rotation, spawnPoint.transform) as GameObject;
             var enemyBehavior = newEnemy.GetComponent<EnemyCore>();
             onEnemySpawned(enemyBehavior);
-            enemyBehavior.onDied += (EnemyCore.DiedFactor factor) => {
+            enemyBehavior.onDied += (EnemyCore.DeathInfo info) => {
               StartCoroutine(Spawning());
               onEnemyKilled();
             };

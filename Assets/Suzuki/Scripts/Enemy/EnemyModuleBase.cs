@@ -26,7 +26,7 @@ public abstract class EnemyModuleBase : MonoBehaviour {
     DoFixedUpdate();
   }
 
-  private void OnDied (EnemyCore.DiedFactor factor) {
+  private void OnDied (EnemyCore.DeathInfo info) {
     core.onUpdated -= OnUpdated;
     core.onFixedUpdated -= OnFixedUpdate;
     core.onDied -= OnDied;

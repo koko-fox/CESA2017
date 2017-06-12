@@ -8,16 +8,24 @@ using ParticlePlayground;
 public class EnemyCore : MonoBehaviour {
   public delegate void UpdateEvent();
   public delegate void FixedUpdateEvent();
-  public delegate void DiedEvent(DiedFactor factor);
+  public delegate void DiedEvent(DeathInfo info);
   public delegate void DamagedEvent(float value);
   public event UpdateEvent onUpdated = delegate { };
   public event FixedUpdateEvent onFixedUpdated = delegate { };
   public event DiedEvent onDied = delegate { };
   public event DamagedEvent onDamaged = delegate { };
 
-  public enum DiedFactor {
-    KilledByPlayer,
-    Suicided
+  public class DeathInfo {
+    public enum DeathFactor {
+      KilledByPlayer,
+      Suicided
+    }
+
+    private EnemyCore enemy;
+    private DeathFactor factor;
+
+    public EnemyCore Enemy { get; set; }
+    public DeathFactor Factor { get; set; }
   }
 
   public bool isBlown { get; private set; }
@@ -68,14 +76,17 @@ public class EnemyCore : MonoBehaviour {
     health -= damageValue;
     onDamaged(damageValue);
     if (health > 0.0f) return;
-    Die(DiedFactor.KilledByPlayer);
+    var info = new DeathInfo();
+    info.Enemy = this;
+    info.Factor = DeathInfo.DeathFactor.KilledByPlayer;
+    Die(info);
   }
 
-  public void Die(DiedFactor factor) {
+  public void Die(DeathInfo info) {
     if (diedMark) return;
     Destroy(GetComponent<Rigidbody>());
     Destroy(GetComponent<Collider>());
-    onDied(factor);
+    onDied(info);
     StartCoroutine(ToDie());
     diedMark = true;
   }
