@@ -56,13 +56,16 @@ public class ShieldCore : MonoBehaviour
 		_systems.Add(_reinforcementSystem);
 		_systems.Add(_responseSystem);
 
+		/*
 		_debugPanel = DebugPanelManager.instance.Create(gameObject);
 		_debugPanel.offset = new Vector3(1.0f, 1.0f);
 		_debugPanel.fontSize = 7;
+		*/
 	}
 
 	private void Update()
 	{
+		/*
 		_debugPanel.text = "";
 
 		StringBuilder builder = new StringBuilder();
@@ -77,10 +80,11 @@ public class ShieldCore : MonoBehaviour
 		}
 
 		_debugPanel.text = builder.ToString();
+		*/
 	}
 
 	private void OnDestroy()
 	{
-		Destroy(_debugPanel.gameObject);
+		//Destroy(_debugPanel.gameObject);
 	}
 }
