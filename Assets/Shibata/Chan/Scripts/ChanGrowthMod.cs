@@ -117,7 +117,7 @@ public class ChanGrowthMod : Module
 	{
 		for(int f1=0;f1<=_maxLevel;f1++)
 		{
-			_expCurve.AddKey(f1, ((f1 + 1) * 100.0f));
+			_expCurve.AddKey(f1, ((f1 + 1) * 1000.0f));
 			_healthCurve.AddKey(f1,((f1 + 1) * 100.0f));
 		}
 	}
@@ -163,7 +163,7 @@ public class ChanGrowthMod : Module
 
 		_comboCount++;
 		_comboRemainTime = _comboDiscardDuration;
-		_exp += _baseExp * expMultiplierFromCombo;
+		exp += _baseExp * expMultiplierFromCombo;
 
 		if (_comboCount == 1)
 			onStartCombo();

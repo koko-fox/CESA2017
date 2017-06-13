@@ -38,10 +38,13 @@ public class ChanCoreSystem : Core
 				buf.Append(":<color=#00ff00>unlocked</color>\n");
 		}
 		buf.Append("-----------------\n");
+		buf.AppendFormat("exp:{0}\n", growth.exp);
 		buf.AppendFormat("require exp:{0}\n", growth.requireExpForLevelUp);
 		buf.AppendFormat("combo count:{0}combo\n", growth.comboCount);
 		buf.AppendFormat("combo remain:{0}[sec]\n", growth.comboRemainTime);
 		buf.AppendFormat("exp multiplier:x{0}\n", growth.expMultiplierFromCombo);
+		buf.AppendFormat("in burst:{0}\n",_facade.burstMod.inBurst.ToString());
+		buf.AppendFormat("burst remain:{0}[sec]\n", _facade.burstMod.remain.ToString());
 		_panel.text = "<color=#ffffff>" + buf.ToString() + "</color>";
 	}
 }

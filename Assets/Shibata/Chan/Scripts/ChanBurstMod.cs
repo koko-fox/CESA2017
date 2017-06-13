@@ -68,12 +68,12 @@ public class ChanBurstMod : Module
 	{
 		if (!_provider)
 			_provider = FindObjectOfType<EnemyProvider>();
-
-		_facade = GetComponent<ChanFacadeHolder>().facade;
 	}
 
 	public override void OrdableStart()
 	{
+		_facade = GetComponent<ChanFacadeHolder>().facade;
+
 		if (!_provider)
 			return;
 		_provider.onDead += _provider_onDead;
