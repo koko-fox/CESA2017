@@ -112,6 +112,24 @@ public class ChanGrowthMod : Module
 	}
 	#endregion
 
+	#region public methods
+	/// <summary>EXPカーブの値を設定</summary>
+	/// <param name="key">設定するキー</param>
+	/// <param name="value">値</param>
+	public void SetExpCurveValue(int key,float value)
+	{
+		_expCurve.keys[key].value = value;
+	}
+
+	/// <summary>ヘルスカーブの値を設定</summary>
+	/// <param name="key">設定するキー</param>
+	/// <param name="value">値</param>
+	public void SetHealthCurveValue(int key, float value)
+	{
+		_healthCurve.keys[key].value = value;
+	}
+	#endregion
+
 	#region override/unity methods
 	private void Reset()
 	{
