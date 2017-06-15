@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayScene : MonoBehaviour {
+  private ChanHealthMod chanHealth;
+
   [SerializeField]
   private int score;
   [SerializeField]
@@ -21,12 +23,22 @@ public class PlayScene : MonoBehaviour {
   private Text text;
 
   private void Awake() {
+    chanHealth = FindObjectOfType<ChanHealthMod>();
     timer.onValueChanged += Timer_onValueChanged;
     timer.onValueAdded += Timer_onValueAdded;
-    stage.onEnemyKilled += () => {
-      score += 1;
-      text.text = "討伐数: " + score.ToString();
-      timer.RemainingTime += timeBonusPerKill;
+    stage.onEnemySpawned += enemy => {
+      enemy.onDied += info => {
+        score += 1;
+        text.text = "討伐数: " + score.ToString();
+        timer.RemainingTime += timeBonusPerKill;
+      };
+    };
+  }
+
+  private void Start() {
+    chanHealth.onHealthChanged += () => {
+      if (chanHealth.health > 0.0f) return;
+      SceneManager.LoadScene(2);
     };
   }
 
