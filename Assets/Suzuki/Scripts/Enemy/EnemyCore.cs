@@ -32,12 +32,23 @@ public class EnemyCore : MonoBehaviour {
   private bool diedMark = false;
   private List<int> collisions = new List<int>();
   private ShieldCore collidedShield;
-  [SerializeField]
   private float health;
+  private float prevHealth;
+  [SerializeField]
+  private float maxHealth;
   [SerializeField]
   private AudioClip diedSound;
   [SerializeField]
+  private AudioClip damagedSound;
+  [SerializeField]
   private PlaygroundParticlesC particle;
+  [SerializeField]
+  private float[] damagedSoundRate;
+
+  private void Awake() {
+    health = maxHealth;
+    prevHealth = health;
+  }
 
   private void Update() {
     onUpdated();
@@ -74,7 +85,16 @@ public class EnemyCore : MonoBehaviour {
   private void ApplyDamage() {
     var damageValue = collidedShield.attackSystem.lastValue * Time.fixedDeltaTime;
     health -= damageValue;
+    foreach (var elem in damagedSoundRate) {
+      var rate = health / maxHealth;
+      var prevRate = prevHealth / maxHealth;
+      if (rate <= elem && prevRate > elem) {
+        AudioSource.PlayClipAtPoint(damagedSound, transform.position);
+        break;
+      }
+    }
     onDamaged(damageValue);
+    prevHealth = health;
     if (health > 0.0f) return;
     var info = new DeathInfo();
     info.Enemy = this;

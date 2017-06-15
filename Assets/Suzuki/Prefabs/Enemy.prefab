@@ -1568,9 +1568,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcb4399370c2004b982c0f0f50f1c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  maxHealth: 100
   diedSound: {fileID: 8300000, guid: ede738a988fd0e346a7a3edc62e767a6, type: 3}
+  damagedSound: {fileID: 8300000, guid: 3110618c9249f084ba5d541b6e57e9b0, type: 3}
   particle: {fileID: 114427677918466832}
+  damagedSoundRate:
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
 --- !u!114 &114388087946130206
 MonoBehaviour:
   m_ObjectHideFlags: 1
