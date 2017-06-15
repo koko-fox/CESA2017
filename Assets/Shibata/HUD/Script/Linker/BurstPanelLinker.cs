@@ -20,9 +20,9 @@ public class BurstPanelLinker : MonoBehaviour
 		_burstMod.onChangedKillCount += () =>
 		  {
 			  _panel.text = _burstMod.killCount + "/" + _burstMod.requireKillCount;
-			  _panel.SetBarScale(_burstMod.killCount / _burstMod.requireKillCount, 0.0f);
+			  _panel.SetBarScale((float)_burstMod.killCount / _burstMod.requireKillCount, 0.0f);
 		  };
 		_panel.text = _burstMod.killCount + "/" + _burstMod.requireKillCount;
-		_panel.SetBarScale(_burstMod.killCount / _burstMod.requireKillCount, 0.0f);
+		_panel.SetBarScale((float)_burstMod.killCount / _burstMod.requireKillCount, 0.0f);
 	}
 }

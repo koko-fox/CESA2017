@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 114704110971885390}
   - component: {fileID: 114188291570223912}
   - component: {fileID: 114303964744678974}
+  - component: {fileID: 114487717653723788}
   m_Layer: 10
   m_Name: Chan
   m_TagString: Untagged
@@ -2596,6 +2597,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc24f9e99a8f2340ba6f6608851ec11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114487717653723788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1542947135390122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b20fc5546162d2418f08a4c72290de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: 3110618c9249f084ba5d541b6e57e9b0, type: 3}
 --- !u!114 &114594195450891908
 MonoBehaviour:
   m_ObjectHideFlags: 1
