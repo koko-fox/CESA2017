@@ -71,6 +71,9 @@ public class EnemyControlModule : EnemyModuleBase {
 
   private void Fire() {
     FaceToTarget();
+    var forward = (target.transform.position - transform.position);
+    var rot = Quaternion.LookRotation(forward);
+    gun.transform.rotation = rot;
     gun.Fire();
   }
 
