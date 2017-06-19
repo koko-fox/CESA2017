@@ -45,7 +45,7 @@ public class PlayScene : MonoBehaviour {
   private void Timer_onValueAdded(float value) {
     var effect = Instantiate(timeBonusEffectPrefab, mainCanvas.transform, false) as GameObject;
     var effectBehaviour = effect.GetComponent<TimeBonusEffect>();
-    effectBehaviour.Text.text = "+" + ((int)(value)).ToString();
+    effectBehaviour.Text.text = "+" + value.ToString("F1");
   }
 
   private void Timer_onValueChanged(float value) {

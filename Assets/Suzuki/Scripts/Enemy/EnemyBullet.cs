@@ -26,12 +26,11 @@ public class EnemyBullet : MonoBehaviour {
     if (IsShield(collision.gameObject)) {
       var shield = collision.gameObject.GetComponent<ShieldCore>();
       shield.responseSystem.NoticeHitBullet(collision.contacts[0].point);
-      Debug.Log("hit shield");
     }
     if (IsPlayer(collision.gameObject)) {
-      var player = collision.gameObject.GetComponent<ChanHealthMod>();
-      player.health -= power;
-      Debug.Log("hit player");
+      var player = collision.gameObject.GetComponent<ChanResponseMod>();
+      var hitpos = collision.contacts[0].point;
+      player.NoticeHitBullet(power, hitpos);
     }
     Destroy(gameObject);
   }
