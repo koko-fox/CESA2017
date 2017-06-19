@@ -2662,6 +2662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae210065de1c846489b598cae96b84e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chargeSound: {fileID: 8300000, guid: 119c4e73683fef34783be11c58fe2a8a, type: 3}
+  _shotSound: {fileID: 8300000, guid: 119c4e73683fef34783be11c58fe2a8a, type: 3}
   _shieldPrefab: {fileID: 0}
   _genDistance: 1
   _genHeight: 1

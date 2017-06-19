@@ -18,9 +18,16 @@ public class ChanShieldControlMod : Module
 	#endregion
 
 	#region private fields
+	[SerializeField]
+	AudioClip _chargeSound;
+	[SerializeField]
+	AudioClip _shotSound;
+
 	State _state;
 	GameObject _holdingShield = null;
 	ShieldCore _shieldCore;
+
+	int _chargeSoundId;
 	#endregion
 
 	#region properties
@@ -37,6 +44,7 @@ public class ChanShieldControlMod : Module
 	#region private methods
 	void ShotReady()
 	{
+
 		if(Input.GetMouseButtonDown(0))
 		{
 			_holdingShield = Instantiate(_shieldPrefab);
@@ -47,6 +55,8 @@ public class ChanShieldControlMod : Module
 			_shieldCore.movementSystem.isLock = true;
 
 			_state = State.Hold;
+
+			_chargeSoundId = TFSound.Play("ShieldCharge", true, 1f, transform);
 		}
 	}
 
@@ -64,6 +74,8 @@ public class ChanShieldControlMod : Module
 			_shieldCore.movementSystem.isLock = false;
 			_holdingShield = null;
 			_state = State.ShotReady;
+			TFSound.Stop(_chargeSoundId);
+			TFSound.Play("ShieldShot", false, 1f, transform);
 			return;
 		}
 
@@ -81,6 +93,9 @@ public class ChanShieldControlMod : Module
 
 		if (!_shieldPrefab)
 			_shieldPrefab=(GameObject)Resources.Load("Shield");
+
+		TFSound.Load("ShieldCharge", _chargeSound);
+		TFSound.Load("ShieldShot", _shotSound);
 	}
 
 	public override void OrdableUpdate()
