@@ -60,7 +60,7 @@ public static class TFSound
 		/// <summary>チャンネルの割り当てを行う</summary>
 		/// <param name="clip">オーディオクリップ</param>
 		/// <returns>割り当てられたチャンネル</returns>
-		public static Channel Allocate(AudioClip clip)
+		public static Channel Allocate()
 		{
 			Channel unused = null;
 
@@ -70,7 +70,6 @@ public static class TFSound
 					continue;
 
 				_channels[f1].used = true;
-				_channels[f1].audioSrc.clip = clip;
 				unused = _channels[f1];
 				break;
 			}
@@ -128,13 +127,28 @@ public static class TFSound
 		#endregion
 
 	}
-
 	class Updater:MonoBehaviour
 	{
 		void Update()
 		{
 			ChannelAllocator.Update();	
 		}
+	}
+
+	/// <summary>オーディオ設定</summary>
+	[System.Serializable]
+	public class AudioProperty
+	{
+		/// <summary>オーディオクリップ</summary>
+		public AudioClip _clip;
+		/// <summary>ループフラグ</summary>
+		public bool _loop = false;
+		[Range(0f,1f)]
+		/// <summary>3Dブレンド</summary>
+		public float _spatialBlend = 1f;
+		[Range(0f,1f)]
+		/// <summary>音量</summary>
+		public float _volume = 1f;
 	}
 	#endregion
 
@@ -176,12 +190,46 @@ public static class TFSound
 			_updater.AddComponent<Updater>();
 		}
 
-		var channel = ChannelAllocator.Allocate(_audioDict[key]);
+		var channel = ChannelAllocator.Allocate();
 		if (channel != null)
 		{
+			channel.audioSrc.clip = _audioDict[key];
 			channel.audioSrc.Play();
 			channel.audioSrc.loop = loop;
 			channel.audioSrc.spatialBlend = spatialBlend;
+			channel.target = trackingTarget;
+			return channel.id;
+		}
+
+		return -1;
+	}
+
+	/// <summary>サウンドを再生する</summary>
+	/// <param name="prop">オーディオプロパティ</param>
+	/// <param name="trackingTarget">追跡ターゲット(オプション)</param>
+	/// <returns>チャンネルID</returns>
+	public static int Play(AudioProperty prop, Transform trackingTarget = null)
+	{
+		if (!ChannelAllocator.initialized)
+		{
+			ChannelAllocator.Initialize();
+		}
+
+		if (!_updater)
+		{
+			_updater = new GameObject("Updater@TFSound");
+			GameObject.DontDestroyOnLoad(_updater);
+			_updater.AddComponent<Updater>();
+		}
+
+		var channel = ChannelAllocator.Allocate();
+		if (channel != null)
+		{
+			channel.audioSrc.clip = prop._clip;
+			channel.audioSrc.Play();
+			channel.audioSrc.loop = prop._loop;
+			channel.audioSrc.spatialBlend = prop._spatialBlend;
+			channel.audioSrc.volume = prop._volume;
 			channel.target = trackingTarget;
 			return channel.id;
 		}
@@ -209,9 +257,10 @@ public static class TFSound
 			_updater.AddComponent<Updater>();
 		}
 
-		var channel = ChannelAllocator.Allocate(_audioDict[key]);
+		var channel = ChannelAllocator.Allocate();
 		if (channel != null)
 		{
+			channel.audioSrc.clip = _audioDict[key];
 			channel.audioSrc.Play();
 			channel.audioSrc.loop = loop;
 			channel.audioSrc.spatialBlend = spatialBlend;
