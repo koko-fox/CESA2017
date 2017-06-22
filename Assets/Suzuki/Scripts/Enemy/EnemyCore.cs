@@ -37,9 +37,9 @@ public class EnemyCore : MonoBehaviour {
   [SerializeField]
   private float maxHealth;
   [SerializeField]
-  private AudioClip diedSound;
+  private TFSound.AudioProperty diedSound;
   [SerializeField]
-  private AudioClip damagedSound;
+  private TFSound.AudioProperty damagedSound;
   [SerializeField]
   private PlaygroundParticlesC particle;
   [SerializeField]
@@ -89,7 +89,7 @@ public class EnemyCore : MonoBehaviour {
       var rate = health / maxHealth;
       var prevRate = prevHealth / maxHealth;
       if (rate <= elem && prevRate > elem) {
-        AudioSource.PlayClipAtPoint(damagedSound, transform.position);
+        TFSound.Play(damagedSound, transform);
         break;
       }
     }
@@ -118,6 +118,7 @@ public class EnemyCore : MonoBehaviour {
   }
 
   private IEnumerator ToDie() {
+    TFSound.Play(diedSound, transform);
     Vector3 scaleOrigin = transform.localScale;
     float t = 0.0f;
     while (transform.localScale.x > 0.0f) {
@@ -127,8 +128,6 @@ public class EnemyCore : MonoBehaviour {
       scale.y = scaleOrigin.y;
       transform.localScale = scale;
     }
-    //yield return new WaitForSeconds(1.0f);
-    AudioSource.PlayClipAtPoint(diedSound, transform.position);
     Destroy(gameObject);
   }
 
