@@ -11,6 +11,15 @@ public class ResultScene : MonoBehaviour {
   private Image fade;
   [SerializeField]
   private float duration;
+  [SerializeField]
+  private Text score;
+  [SerializeField]
+  private Text level;
+
+  private void Awake() {
+    score.text += ScoreHolder.score;
+    level.text += ScoreHolder.level;
+  }
 
   private void Start() {
     startButton.onClick.AddListener(onStartButtonClicked);

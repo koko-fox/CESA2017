@@ -13,6 +13,8 @@ public class TitleScene : MonoBehaviour {
   private float duration;
 
   private void Start() {
+    ScoreHolder.score = 0;
+    ScoreHolder.level = 0;
     startButton.onClick.AddListener(onStartButtonClicked);
   }
 

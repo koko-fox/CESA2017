@@ -21,8 +21,10 @@ public class PlayScene : MonoBehaviour {
   private Canvas mainCanvas;
   [SerializeField]
   private Text text;
+  private ChanGrowthMod chanGrowth;
 
   private void Awake() {
+    chanGrowth = FindObjectOfType<ChanGrowthMod>();
     chanHealth = FindObjectOfType<ChanHealthMod>();
     timer.onValueChanged += Timer_onValueChanged;
     timer.onValueAdded += Timer_onValueAdded;
@@ -38,7 +40,7 @@ public class PlayScene : MonoBehaviour {
   private void Start() {
     chanHealth.onHealthChanged += () => {
       if (chanHealth.health > 0.0f) return;
-      SceneManager.LoadScene(2);
+        GameOver();
     };
   }
 
@@ -50,7 +52,13 @@ public class PlayScene : MonoBehaviour {
 
   private void Timer_onValueChanged(float value) {
     if (value <= 0.0f) {
-      SceneManager.LoadScene(2);
+      GameOver();
     }
+  }
+
+  private void GameOver() {
+    ScoreHolder.score = score;
+    ScoreHolder.level = chanGrowth.level;
+    SceneManager.LoadScene(2);
   }
 }
