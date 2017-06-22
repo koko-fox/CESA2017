@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 195374389958635292}
   - component: {fileID: 114892999981949928}
   - component: {fileID: 114692081608655072}
+  - component: {fileID: 114889094061102406}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -1569,8 +1570,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  diedSound: {fileID: 8300000, guid: ede738a988fd0e346a7a3edc62e767a6, type: 3}
-  damagedSound: {fileID: 8300000, guid: 3110618c9249f084ba5d541b6e57e9b0, type: 3}
+  diedSound:
+    _clip: {fileID: 8300000, guid: ede738a988fd0e346a7a3edc62e767a6, type: 3}
+    _loop: 0
+    _spatialBlend: 0.5
+    _volume: 1
+  damagedSound:
+    _clip: {fileID: 8300000, guid: 3110618c9249f084ba5d541b6e57e9b0, type: 3}
+    _loop: 0
+    _spatialBlend: 0.5
+    _volume: 1
   particle: {fileID: 114427677918466832}
   damagedSoundRate:
   - 0.1
@@ -1963,7 +1972,7 @@ MonoBehaviour:
   lifetimeColor:
     key0:
       serializedVersion: 2
-      rgba: 16777215
+      rgba: 221
     key1:
       serializedVersion: 2
       rgba: 4294967295
@@ -2398,6 +2407,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayLength: 10
   rayColor: {r: 0.7794118, g: 0.21204588, b: 0.21204588, a: 1}
+--- !u!114 &114889094061102406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065401929964676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4605171eb817b04a878d1bbff1fc0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageParticle: {fileID: 114427677918466832}
+  emitParticlesPerDamaged: 1
 --- !u!114 &114892999981949928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5204,7 +5226,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 95995661363254b1b8072e8f19ace38b, type: 2}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
