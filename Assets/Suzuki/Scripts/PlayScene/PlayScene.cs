@@ -59,6 +59,7 @@ public class PlayScene : MonoBehaviour {
   private void GameOver() {
     ScoreHolder.score = score;
     ScoreHolder.level = chanGrowth.level;
+    TFCursor.Enable();
     SceneManager.LoadScene(2);
   }
 }
